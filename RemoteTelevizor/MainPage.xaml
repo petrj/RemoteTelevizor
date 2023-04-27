@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RemoteTelevizor.MainPage">
+
+    <AbsoluteLayout x:Name="absoluteLayout">
+
+        <Label Text="Remote Televizor" TextColor="White"/>
+
+        <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.25,0.25" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Blue" CornerRadius="1000" x:Name="MainFrame">
+        </Frame>
+
+        <Frame AbsoluteLayout.LayoutBounds="0.5,0.4,0.1,0.1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent" x:Name="ButtonUpFrame">
+            <Label Text="&#x25B2;" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="30"/>
+
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnButtonUp" NumberOfTapsRequired="1" />
+            </Frame.GestureRecognizers>
+
+        </Frame>
+
+        <Frame AbsoluteLayout.LayoutBounds="0.5,0.6,0.1,0.1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent" x:Name="ButtonDownFrame">
+            <Label Text="&#x25BC;" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="30"/>
+
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnButtonDown" NumberOfTapsRequired="1" />
+            </Frame.GestureRecognizers>
+
+        </Frame>
+
+        <Frame AbsoluteLayout.LayoutBounds="0.4,0.5,0.1,0.1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent"  x:Name="ButtonLeftFrame">
+            <Label Text="&#x25C0;" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="30"/>
+
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnButtonLeft" NumberOfTapsRequired="1" />
+            </Frame.GestureRecognizers>
+
+        </Frame>
+
+        <Frame AbsoluteLayout.LayoutBounds="0.6,0.5,0.1,0.1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent"  x:Name="ButtonRightFrame">
+            <Label Text="&#x25B6;" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="30"/>
+
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnButtonRight" NumberOfTapsRequired="1" />
+            </Frame.GestureRecognizers>
+
+        </Frame>
+
+        <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.1,0.1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent"  x:Name="ButtonOKFrame">
+            <Label Text="OK" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="30"/>
+
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnButtonOK" NumberOfTapsRequired="1" />
+            </Frame.GestureRecognizers>
+
+        </Frame>
+
+    </AbsoluteLayout>
+
+</ContentPage>

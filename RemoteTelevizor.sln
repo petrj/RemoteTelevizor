@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33502.453
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteTelevizor", "RemoteTelevizor\RemoteTelevizor.csproj", "{E61F8861-A6AF-457F-93A5-F79E5EF0207D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteTelevizor.Android", "RemoteTelevizor.Android\RemoteTelevizor.Android.csproj", "{7CC4150D-C3F2-48CC-86AA-BD2D2E496FC8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerService", "LoggerService\LoggerService.csproj", "{6336BB08-0206-46CE-B259-EB3C0953341A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E61F8861-A6AF-457F-93A5-F79E5EF0207D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E61F8861-A6AF-457F-93A5-F79E5EF0207D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E61F8861-A6AF-457F-93A5-F79E5EF0207D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E61F8861-A6AF-457F-93A5-F79E5EF0207D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CC4150D-C3F2-48CC-86AA-BD2D2E496FC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CC4150D-C3F2-48CC-86AA-BD2D2E496FC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CC4150D-C3F2-48CC-86AA-BD2D2E496FC8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{7CC4150D-C3F2-48CC-86AA-BD2D2E496FC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CC4150D-C3F2-48CC-86AA-BD2D2E496FC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CC4150D-C3F2-48CC-86AA-BD2D2E496FC8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6336BB08-0206-46CE-B259-EB3C0953341A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6336BB08-0206-46CE-B259-EB3C0953341A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6336BB08-0206-46CE-B259-EB3C0953341A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6336BB08-0206-46CE-B259-EB3C0953341A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {226C05E0-9444-473C-B6B0-A2B0838503D5}
+	EndGlobalSection
+EndGlobal
