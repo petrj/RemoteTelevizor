@@ -3,14 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RemoteTelevizor.MainPage">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="ButtonFrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
     <AbsoluteLayout x:Name="absoluteLayout">
 
         <Label Text="Remote Televizor" TextColor="White"/>
 
-        <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.25,0.25" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Blue" CornerRadius="1000" x:Name="MainFrame">
+        <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.35,0.35" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Blue" CornerRadius="1000" x:Name="MainFrame" IsVisible="True">
         </Frame>
 
-        <Frame AbsoluteLayout.LayoutBounds="0.5,0.4,0.1,0.1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent" x:Name="ButtonUpFrame">
+        <Frame AbsoluteLayout.LayoutBounds="0.5,0.35,0.1,0.1" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonUpFrame" Style="{DynamicResource ButtonFrameStyle}">
             <Label Text="&#x25B2;" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="30"/>
 
             <Frame.GestureRecognizers>
@@ -19,7 +32,7 @@
 
         </Frame>
 
-        <Frame AbsoluteLayout.LayoutBounds="0.5,0.6,0.1,0.1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent" x:Name="ButtonDownFrame">
+        <Frame AbsoluteLayout.LayoutBounds="0.5,0.65,0.1,0.1" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonDownFrame"  Style="{DynamicResource ButtonFrameStyle}">
             <Label Text="&#x25BC;" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="30"/>
 
             <Frame.GestureRecognizers>
@@ -28,7 +41,7 @@
 
         </Frame>
 
-        <Frame AbsoluteLayout.LayoutBounds="0.4,0.5,0.1,0.1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent"  x:Name="ButtonLeftFrame">
+        <Frame AbsoluteLayout.LayoutBounds="0.35,0.5,0.1,0.1" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonLeftFrame"  Style="{DynamicResource ButtonFrameStyle}">
             <Label Text="&#x25C0;" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="30"/>
 
             <Frame.GestureRecognizers>
@@ -37,7 +50,7 @@
 
         </Frame>
 
-        <Frame AbsoluteLayout.LayoutBounds="0.6,0.5,0.1,0.1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent"  x:Name="ButtonRightFrame">
+        <Frame AbsoluteLayout.LayoutBounds="0.65,0.5,0.1,0.1" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonRightFrame"  Style="{DynamicResource ButtonFrameStyle}">
             <Label Text="&#x25B6;" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="30"/>
 
             <Frame.GestureRecognizers>
@@ -46,7 +59,7 @@
 
         </Frame>
 
-        <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.1,0.1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent"  x:Name="ButtonOKFrame">
+        <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.15,0.15" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonOKFrame"  Style="{DynamicResource ButtonFrameStyle}">
             <Label Text="OK" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="30"/>
 
             <Frame.GestureRecognizers>
