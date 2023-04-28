@@ -30,8 +30,8 @@ namespace RemoteTelevizor
 
             _viewModel.SetConnection(new SocketConnection()
             {
-                IP = "10.0.0.231",
-                Port = 49152,
+                IP = "192.168.1.163",
+                Port = 49151,
                 SecurityKey = "OnlineTelevizor"
             });
         }

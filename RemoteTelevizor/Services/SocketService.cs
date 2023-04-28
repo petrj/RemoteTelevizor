@@ -33,18 +33,19 @@ namespace RemoteTelevizor.Services
         {
             try
             {
-                var localEndPoint = new IPEndPoint(_connection.IPAddress, _connection.Port);
-
-                using (var socket = new Socket(_connection.IPAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp))
+                using (var socket = new System.Net.Sockets.TcpClient(_connection.IP, _connection.Port))
                 {
-                    socket.Connect(localEndPoint);
-
-                    var messageBytes = System.Text.Encoding.UTF8.GetBytes(message);
-
-                    var bytesSent = socket.Send(messageBytes);
-
+                    using (var stream = socket.GetStream())
+                    {
+                        using (var streamWriter = new StreamWriter(stream))
+                        {
+                            streamWriter.WriteLine(message);
+                            streamWriter.Flush();
+                        }
+                    }
                     socket.Close();
                 }
+
             } catch (Exception ex)
             {
                 MessagingCenter.Send($"Error: {ex.Message}", MainPageViewModel.MSG_ToastMessage);
