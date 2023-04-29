@@ -11,7 +11,7 @@ namespace RemoteTelevizor
         {
             InitializeComponent();
 
-            MainPage = new MainPage(loggingService);
+            MainPage = new NavigationPage(new MainPage(loggingService));
         }
 
         protected override void OnStart()

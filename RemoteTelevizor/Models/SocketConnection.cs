@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RemoteTelevizor.Models
 {
-    public class SocketConnection
+    public class RemoteDeviceConnection
     {
         public string Name { get; set; }
 

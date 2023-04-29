@@ -28,12 +28,23 @@ namespace RemoteTelevizor
         {
             base.OnAppearing();
 
-            _viewModel.SetConnection(new SocketConnection()
+            NavigationPage.SetHasNavigationBar(this, false);
+
+            _viewModel.SetConnection(new RemoteDeviceConnection()
             {
                 IP = "192.168.1.163",
                 Port = 49151,
                 SecurityKey = "OnlineTelevizor"
             });
+        }
+
+        private async void OnButtonList(object sender, EventArgs e)
+        {
+            await ButtonListFrame.ScaleTo(2, 100);
+            await ButtonListFrame.ScaleTo(1, 100);
+
+            var listPage = new ListPage(_loggingService);
+            await Navigation.PushAsync(listPage);
         }
 
         private async void OnButtonDown(object sender, EventArgs e)

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RemoteTelevizor.RemoteDeviceConnectionPage"
+             BackgroundColor="Black"
+             Title="Remote device connection">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="CommonEntryTextStyle" TargetType="Entry">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="HorizontalTextAlignment" Value="Right"/>
+                <Setter Property="PlaceholderColor" Value="Gray"/>
+                <Setter Property="BackgroundColor" Value="#222222"/>
+                <Setter Property="Margin" Value="3,3,3,3"/>
+            </Style>
+
+            <Style x:Key="CaptionStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="ActionButtonFrameStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="90"/>
+                <Setter Property="BackgroundColor" Value="Blue"/>
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="Margin" Value="0,20,0,0"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+     <ScrollView>
+
+        <StackLayout>
+
+            <Grid Margin="10,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*" />
+                </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="Name" Style="{StaticResource CaptionStyle}" />
+            <Entry Grid.Row="1" Grid.Column="0" x:Name="NameEntry" Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource CommonEntryTextStyle}" />
+
+            <Label Grid.Row="2" Grid.Column="0" Text="IP" Style="{StaticResource CaptionStyle}" />
+            <Entry Grid.Row="3" Grid.Column="0" x:Name="IPEntry" Text="{Binding IP, Mode=TwoWay}" Style="{StaticResource CommonEntryTextStyle}" Keyboard="Url" />
+
+            <Label Grid.Row="4" Grid.Column="0" Text="Port" Style="{StaticResource CaptionStyle}"  />
+            <Entry Grid.Row="5" Grid.Column="0" x:Name="PortEntry" Text="{Binding Port, Mode=TwoWay}" Style="{StaticResource CommonEntryTextStyle}" Keyboard="Numeric" />
+
+            <Label Grid.Row="6" Grid.Column="0" Text="Security Key" Style="{StaticResource CaptionStyle}" />
+            <Entry Grid.Row="7" Grid.Column="0"  x:Name="SecurityKeyEntry" Text="{Binding SecurityKey, Mode=TwoWay}" Style="{StaticResource CommonEntryTextStyle}" />
+        </Grid>
+
+        <Frame x:Name="AddButtonFrame"  Style="{DynamicResource ActionButtonFrameStyle}" HorizontalOptions="End">
+            <Label Text="Add" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="50" Margin="10,0,10,0"/>
+
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnButtonAdd" NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
+
+            </Frame>
+
+        </StackLayout>
+
+    </ScrollView>
+
+
+
+</ContentPage>

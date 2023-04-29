@@ -1,20 +1,20 @@
-﻿using Android.InputMethodServices;
+﻿using Android.Content.Res;
+using Android.InputMethodServices;
 using LoggerService;
 using RemoteTelevizor.Models;
 using RemoteTelevizor.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace RemoteTelevizor.ViewModels
 {
-    public class MainPageViewModel : BaseNotifableObject
+    public class MainPageViewModel : BaseViewModel
     {
-        public const string MSG_ToastMessage = "ToastMessage";
-
         private ILoggingService _loggingService;
         private SocketService _socketService;
-        private SocketConnection _currentConnection;
+        private RemoteDeviceConnection _currentConnection;
 
         public MainPageViewModel(ILoggingService loggingService)
         {
@@ -22,7 +22,7 @@ namespace RemoteTelevizor.ViewModels
             _socketService = new SocketService(_loggingService);
         }
 
-        public void SetConnection(SocketConnection connection)
+        public void SetConnection(RemoteDeviceConnection connection)
         {
             _currentConnection = connection;
             _socketService.SetConnection(connection);
@@ -37,9 +37,12 @@ namespace RemoteTelevizor.ViewModels
                 commandArg1 = keyCode
             };
 
+
             var encryptedMessage = CryptographyService.EncryptString(_currentConnection.SecurityKey, msg.ToString());
 
             _socketService.SendMessage(encryptedMessage);
         }
+
+
     }
 }

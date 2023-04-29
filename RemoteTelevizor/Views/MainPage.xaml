@@ -12,6 +12,13 @@
                 <Setter Property="Margin" Value="0,0,0,0"/>
             </Style>
 
+            <Style x:Key="ActionButtonFrameStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="90"/>
+                <Setter Property="BackgroundColor" Value="Gray"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+            </Style>
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -64,6 +71,17 @@
 
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Tapped="OnButtonOK" NumberOfTapsRequired="1" />
+            </Frame.GestureRecognizers>
+
+        </Frame>
+
+
+
+        <Frame AbsoluteLayout.LayoutBounds="0.95,0.95,0.1,0.1" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonListFrame"  Style="{DynamicResource ActionButtonFrameStyle}">
+            <Label Text="&#x2261;" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="50"/>
+
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnButtonList" NumberOfTapsRequired="1" />
             </Frame.GestureRecognizers>
 
         </Frame>

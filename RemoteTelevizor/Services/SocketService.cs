@@ -17,14 +17,14 @@ namespace RemoteTelevizor.Services
     public class SocketService
     {
         private ILoggingService _loggingService;
-        private SocketConnection _connection;
+        private RemoteDeviceConnection _connection;
 
         public SocketService(ILoggingService loggingService)
         {
             _loggingService = loggingService;
         }
 
-        public void SetConnection(SocketConnection connection)
+        public void SetConnection(RemoteDeviceConnection connection)
         {
             _connection = connection;
         }
