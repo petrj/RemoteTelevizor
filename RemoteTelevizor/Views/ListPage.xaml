@@ -14,6 +14,7 @@
                 <Setter Property="HasUnevenRows" Value="True"/>
                 <Setter Property="IsPullToRefreshEnabled" Value="True"/>
                 <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
             </Style>
 
             <Style x:Key="ListItemLabelStyle" TargetType="Label">
@@ -30,15 +31,23 @@
 
             <Style x:Key="ActionButtonFrameStyle" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="90"/>
-                <Setter Property="BackgroundColor" Value="Gray"/>
-                <Setter Property="Padding" Value="0"/>
+                <Setter Property="BackgroundColor" Value="Blue"/>
+                <Setter Property="Padding" Value="10"/>
                 <Setter Property="Margin" Value="0,0,0,0"/>
+                <Setter Property="HorizontalOptions" Value="End"/>
+            </Style>
+
+            <Style x:Key="ButtonLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
             </Style>
 
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <AbsoluteLayout x:Name="absoluteLayout">
+    <StackLayout BackgroundColor="Transparent">
 
             <ListView
                 AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
@@ -75,8 +84,19 @@
 
             </ListView>
 
-            <Frame AbsoluteLayout.LayoutBounds="0.95,0.95,0.1,0.1" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonAddFrame"  Style="{DynamicResource ActionButtonFrameStyle}">
-                <Label Text="+" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="50"/>
+        <Grid Margin="10,10,10,10" HorizontalOptions="End">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+
+
+            <Frame Grid.Row="0" Grid.Column="0" x:Name="ButtonAddFrame"  Style="{DynamicResource ActionButtonFrameStyle}">
+                <Label Text="Add new" Style="{DynamicResource ButtonLabelStyle}"/>
 
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnButtonAdd" NumberOfTapsRequired="1" />
@@ -84,6 +104,28 @@
 
             </Frame>
 
-    </AbsoluteLayout>
+            <Frame Grid.Row="0" Grid.Column="1" x:Name="ButtonEditFrame"  Style="{DynamicResource ActionButtonFrameStyle}" IsVisible="{Binding EditButtonVisible}">
+                <Label Text="Edit" Style="{DynamicResource ButtonLabelStyle}"/>
+
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnButtonEdit" NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
+
+            </Frame>
+
+            <Frame Grid.Row="0" Grid.Column="2" x:Name="ButtonDeleteFrame"  Style="{DynamicResource ActionButtonFrameStyle}" IsVisible="{Binding DeleteButtonVisible}">
+                <Label Text="Delete" Style="{DynamicResource ButtonLabelStyle}"/>
+
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnButtonDelete" NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
+
+            </Frame>
+
+        </Grid>
+
+
+
+    </StackLayout>
 
 </ContentPage>

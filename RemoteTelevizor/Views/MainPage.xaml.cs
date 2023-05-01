@@ -14,12 +14,15 @@ namespace RemoteTelevizor
     public partial class MainPage : ContentPage
     {
         private ILoggingService _loggingService;
-        MainPageViewModel _viewModel;
+        private MainPageViewModel _viewModel;
+        private IAppData _appData;
 
-        public MainPage(ILoggingService loggingService)
+        public MainPage(ILoggingService loggingService, IAppData appData)
         {
             InitializeComponent();
+
             _loggingService = loggingService;
+            _appData = appData;
 
             BindingContext = _viewModel = new MainPageViewModel(loggingService);
         }
@@ -43,7 +46,7 @@ namespace RemoteTelevizor
             await ButtonListFrame.ScaleTo(2, 100);
             await ButtonListFrame.ScaleTo(1, 100);
 
-            var listPage = new ListPage(_loggingService);
+            var listPage = new ListPage(_loggingService, _appData);
             await Navigation.PushAsync(listPage);
         }
 

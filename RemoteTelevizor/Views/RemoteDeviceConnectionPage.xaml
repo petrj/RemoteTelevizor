@@ -28,6 +28,13 @@
                 <Setter Property="Margin" Value="0,20,0,0"/>
             </Style>
 
+            <Style x:Key="ButtonLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -64,7 +71,7 @@
         </Grid>
 
         <Frame x:Name="AddButtonFrame"  Style="{DynamicResource ActionButtonFrameStyle}" HorizontalOptions="End">
-            <Label Text="Add" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="50" Margin="10,0,10,0"/>
+                <Label Text="Add" Style="{DynamicResource ButtonLabelStyle}"/>
 
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnButtonAdd" NumberOfTapsRequired="1" />

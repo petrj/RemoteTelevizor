@@ -15,8 +15,10 @@ namespace RemoteTelevizor
     public partial class RemoteDeviceConnectionPage : ContentPage
     {
         private ILoggingService _loggingService;
-        RemoteDeviceConnectionViewModel _viewModel;
-        DialogService _dialogService;
+        private RemoteDeviceConnectionViewModel _viewModel;
+        private DialogService _dialogService;
+
+        public bool Confirmed { get; set; } = false;
 
         public RemoteDeviceConnectionPage(ILoggingService loggingService)
         {
@@ -38,7 +40,7 @@ namespace RemoteTelevizor
 
         protected override bool OnBackButtonPressed()
         {
-            return true;
+            return base.OnBackButtonPressed();
         }
 
         public RemoteDeviceConnection Connection
@@ -55,6 +57,7 @@ namespace RemoteTelevizor
 
         private async void OnButtonAdd(object sender, EventArgs e)
         {
+            Confirmed = true;
             await Navigation.PopAsync();
         }
     }

@@ -16,14 +16,16 @@ namespace RemoteTelevizor.ViewModels
     {
         private ILoggingService _loggingService;
         private RemoteDeviceConnection _selectedItem;
+        private IAppData _appData;
 
         public ObservableCollection<RemoteDeviceConnection> RemoteDevices { get; set; } = new ObservableCollection<RemoteDeviceConnection>();
 
         public Command RefreshCommand { get; set; }
 
-        public ListPageViewModel(ILoggingService loggingService)
+        public ListPageViewModel(ILoggingService loggingService, IAppData appData)
         {
             _loggingService = loggingService;
+            _appData = appData;
 
             RefreshCommand = new Command(async () => await Refresh());
         }
@@ -34,9 +36,14 @@ namespace RemoteTelevizor.ViewModels
 
             try
             {
-
                 RemoteDevices.Clear();
 
+                foreach (var device in _appData.LoadConnections())
+                {
+                    RemoteDevices.Add(device);
+                }
+
+                /*
                 RemoteDevices.Add(new RemoteDeviceConnection()
                 {
                     Name = "Evolveo TV Box",
@@ -51,10 +58,27 @@ namespace RemoteTelevizor.ViewModels
                     Port = 49151,
                     SecurityKey = "OnlineTelevizor"
                 });
+                */
             }
             finally
             {
                 IsBusy = false;
+            }
+        }
+
+        public bool EditButtonVisible
+        {
+            get
+            {
+                return _selectedItem != null;
+            }
+        }
+
+        public bool DeleteButtonVisible
+        {
+            get
+            {
+                return _selectedItem != null;
             }
         }
 
@@ -69,6 +93,9 @@ namespace RemoteTelevizor.ViewModels
                  _selectedItem = value;
 
                 OnPropertyChanged(nameof(SelectedItem));
+
+                OnPropertyChanged(nameof(EditButtonVisible));
+                OnPropertyChanged(nameof(DeleteButtonVisible));
             }
         }
     }

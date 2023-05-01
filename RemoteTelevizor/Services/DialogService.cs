@@ -23,12 +23,6 @@ namespace RemoteTelevizor.Services
             return result;
         }
 
-        public async Task ConfirmSingleButton(string message, string title = "Confirmation", string btnOK = "OK")
-        {
-            var dp = DialogPage == null ? Application.Current.MainPage : DialogPage;
-            await dp.DisplayAlert(title, message, btnOK);
-        }
-
         public async Task Information(string message, string title = "Information")
         {
             var dp = DialogPage == null ? Application.Current.MainPage : DialogPage;
