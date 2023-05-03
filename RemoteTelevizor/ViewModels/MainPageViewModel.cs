@@ -26,6 +26,35 @@ namespace RemoteTelevizor.ViewModels
         {
             _currentConnection = connection;
             _socketService.SetConnection(connection);
+
+            OnPropertyChanged(nameof(DeviceName));
+            OnPropertyChanged(nameof(IPPort));
+        }
+
+        public string DeviceName
+        {
+            get
+            {
+                if (_currentConnection == null)
+                {
+                    return "No device selected";
+                }
+
+                return _currentConnection.Name;
+            }
+        }
+
+        public string IPPort
+        {
+            get
+            {
+                if (_currentConnection == null)
+                {
+                    return "";
+                }
+
+                return _currentConnection.IP + ":" + _currentConnection.Port.ToString();
+            }
         }
 
         public void SendKey(string keyCode)

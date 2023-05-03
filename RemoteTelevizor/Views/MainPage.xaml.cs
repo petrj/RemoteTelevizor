@@ -37,17 +37,9 @@ namespace RemoteTelevizor
             {
                 IP = "192.168.1.163",
                 Port = 49151,
+                Name = "Android TV Box",
                 SecurityKey = "OnlineTelevizor"
             });
-        }
-
-        private async void OnButtonList(object sender, EventArgs e)
-        {
-            await ButtonListFrame.ScaleTo(2, 100);
-            await ButtonListFrame.ScaleTo(1, 100);
-
-            var listPage = new ListPage(_loggingService, _appData);
-            await Navigation.PushAsync(listPage);
         }
 
         private async void OnButtonDown(object sender, EventArgs e)

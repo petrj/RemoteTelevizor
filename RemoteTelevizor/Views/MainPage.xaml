@@ -12,20 +12,25 @@
                 <Setter Property="Margin" Value="0,0,0,0"/>
             </Style>
 
-            <Style x:Key="ActionButtonFrameStyle" TargetType="Frame">
-                <Setter Property="CornerRadius" Value="90"/>
-                <Setter Property="BackgroundColor" Value="Gray"/>
-                <Setter Property="Padding" Value="0"/>
-                <Setter Property="Margin" Value="0,0,0,0"/>
+            <Style x:Key="CaptionStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#41b3ff"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
             </Style>
 
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <AbsoluteLayout x:Name="absoluteLayout" BackgroundColor="Black">
 
-    <AbsoluteLayout x:Name="absoluteLayout">
-
-        <Label Text="Remote Televizor" TextColor="White"/>
+        <Label AbsoluteLayout.LayoutBounds="0.5,0.0,0.35,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding DeviceName}" Style="{DynamicResource CaptionStyle}"/>
+        <Label AbsoluteLayout.LayoutBounds="0.5,0.05,0.35,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding IPPort}" Style="{DynamicResource LabelStyle}"/>
 
         <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.35,0.35" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Blue" CornerRadius="1000" x:Name="MainFrame" IsVisible="True">
         </Frame>
@@ -71,17 +76,6 @@
 
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Tapped="OnButtonOK" NumberOfTapsRequired="1" />
-            </Frame.GestureRecognizers>
-
-        </Frame>
-
-
-
-        <Frame AbsoluteLayout.LayoutBounds="0.95,0.95,0.1,0.1" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonListFrame"  Style="{DynamicResource ActionButtonFrameStyle}">
-            <Label Text="&#x2261;" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="50"/>
-
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnButtonList" NumberOfTapsRequired="1" />
             </Frame.GestureRecognizers>
 
         </Frame>

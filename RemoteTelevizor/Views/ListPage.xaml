@@ -15,6 +15,7 @@
                 <Setter Property="IsPullToRefreshEnabled" Value="True"/>
                 <Setter Property="VerticalOptions" Value="FillAndExpand"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
             </Style>
 
             <Style x:Key="ListItemLabelStyle" TargetType="Label">
@@ -26,7 +27,13 @@
             <Style x:Key="CaptionStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="#41b3ff"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="15,5,5,5"/>
+                <Setter Property="Margin" Value="5,5,5,5"/>
+            </Style>
+
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="25,5,5,5"/>
             </Style>
 
             <Style x:Key="ActionButtonFrameStyle" TargetType="Frame">
@@ -44,10 +51,19 @@
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
             </Style>
 
+            <Style x:Key="TitleFrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#444444"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+            </Style>
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout BackgroundColor="Transparent">
+    <StackLayout BackgroundColor="#333333">
+
+        <Frame Style="{DynamicResource TitleFrameStyle}">
+            <Label Text="Devices" Style="{DynamicResource CaptionStyle}"/>
+        </Frame>
 
             <ListView
                 AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
@@ -73,7 +89,7 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" Style="{DynamicResource CaptionStyle}" FontSize="20"/>
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" Style="{DynamicResource LabelStyle}"/>
 
                                 </Grid>
 
@@ -96,7 +112,7 @@
 
 
             <Frame Grid.Row="0" Grid.Column="0" x:Name="ButtonAddFrame"  Style="{DynamicResource ActionButtonFrameStyle}">
-                <Label Text="Add new" Style="{DynamicResource ButtonLabelStyle}"/>
+                <Label Text="Add" Style="{DynamicResource ButtonLabelStyle}"/>
 
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnButtonAdd" NumberOfTapsRequired="1" />

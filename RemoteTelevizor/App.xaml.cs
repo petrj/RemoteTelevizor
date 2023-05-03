@@ -12,7 +12,14 @@ namespace RemoteTelevizor
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage(loggingService, appData));
+            var flyoutPage = new FlyoutPage()
+            {
+                Title = "Remote Televizor"
+            };
+            flyoutPage.Flyout = new ListPage(loggingService, appData);
+            flyoutPage.Detail = new MainPage(loggingService, appData);
+
+            MainPage = new NavigationPage(flyoutPage);
         }
 
         protected override void OnStart()
