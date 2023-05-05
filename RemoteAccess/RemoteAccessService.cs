@@ -99,21 +99,38 @@ namespace RemoteAccess
                             }
                             catch (Exception ex)
                             {
-                                _loggingService.Error(ex, "[RAS]: error reading message");
+                                _loggingService.Error(ex, "[RAS]: error receiving message");
                             }
 
-                            var responseMessage = new RemoteAccessMessage()
-                            {
-                                command = "responseStatus",
-                                commandArg1 = "OK"
-                            };
-                            var response = JsonConvert.SerializeObject(responseMessage);
-                            var responseEncrypted = CryptographyService.EncryptString(_securityKey, response);
+                            // sending response
 
-                            handler.Send(Encoding.ASCII.GetBytes(responseEncrypted));
-                            handler.Send(Encoding.ASCII.GetBytes(TerminateString));
-                            handler.Shutdown(SocketShutdown.Both);
-                            handler.Close();
+                            try
+                            {
+                                var responseMessage = new RemoteAccessMessage()
+                                {
+                                    command = "responseStatus",
+                                    commandArg1 = "OK"
+                                };
+                                var response = JsonConvert.SerializeObject(responseMessage);
+                                var responseEncrypted = CryptographyService.EncryptString(_securityKey, response);
+
+                                handler.Send(Encoding.ASCII.GetBytes(responseEncrypted));
+                                handler.Send(Encoding.ASCII.GetBytes(TerminateString));
+                            }
+                            catch (Exception ex)
+                            {
+                                _loggingService.Error(ex, "[RAS]: error sending response");
+                            }
+
+                            try
+                            {
+                                handler.Shutdown(SocketShutdown.Both);
+                                handler.Close();
+                            }
+                            catch (Exception ex)
+                            {
+                                _loggingService.Error(ex, "[RAS]: error closing socket");
+                            }
                         }
                     }
                 }
@@ -122,10 +139,12 @@ namespace RemoteAccess
             {
                 e.Cancel = true;
                 Thread.ResetAbort();
+
+                _loggingService.Info("[RAS] background thread aborted");
             }
             catch (Exception ex)
             {
-                _loggingService.Error(ex, "[RAS]");
+                _loggingService.Error(ex, "[RAS] background thread stopped");
             }
         }
 
@@ -186,7 +205,7 @@ namespace RemoteAccess
                     int bytesSent = sender.Send(Encoding.ASCII.GetBytes(messageEncrypted));
                     bytesSent +=    sender.Send(Encoding.ASCII.GetBytes(TerminateString));
 
-                    // reading response
+                    // Receive response
 
                     string data = null;
 
