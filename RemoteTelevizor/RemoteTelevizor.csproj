@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LoggerService\LoggerService.csproj" />
+    <ProjectReference Include="..\RemoteAccess\RemoteAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>

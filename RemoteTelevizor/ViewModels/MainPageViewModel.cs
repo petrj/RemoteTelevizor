@@ -1,6 +1,7 @@
 ﻿using Android.Content.Res;
 using Android.InputMethodServices;
 using LoggerService;
+using RemoteAccess;
 using RemoteTelevizor.Models;
 using RemoteTelevizor.Services;
 using System;
@@ -13,19 +14,19 @@ namespace RemoteTelevizor.ViewModels
     public class MainPageViewModel : BaseViewModel
     {
         private ILoggingService _loggingService;
-        private SocketService _socketService;
         private RemoteDeviceConnection _currentConnection;
+        private RemoteAccessService _remoteAccessService;
 
         public MainPageViewModel(ILoggingService loggingService)
         {
             _loggingService = loggingService;
-            _socketService = new SocketService(_loggingService);
+            _remoteAccessService = new RemoteAccessService(loggingService);
         }
 
         public void SetConnection(RemoteDeviceConnection connection)
         {
             _currentConnection = connection;
-            _socketService.SetConnection(connection);
+            _remoteAccessService.SetConnection(connection.IP, connection.Port, connection.SecurityKey);
 
             OnPropertyChanged(nameof(DeviceName));
             OnPropertyChanged(nameof(IPPort));
@@ -61,17 +62,11 @@ namespace RemoteTelevizor.ViewModels
         {
             var msg = new RemoteAccessMessage()
             {
-                securityKey = _currentConnection.SecurityKey,
                 command = "keyDown",
                 commandArg1 = keyCode
             };
 
-
-            var encryptedMessage = CryptographyService.EncryptString(_currentConnection.SecurityKey, msg.ToString());
-
-            _socketService.SendMessage(encryptedMessage);
+            _remoteAccessService.SendMessage(msg);
         }
-
-
     }
 }
