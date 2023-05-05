@@ -6,32 +6,21 @@ var loggingService = new BasicLoggingService();
 var serverRAS = new RemoteAccessService(loggingService);
 serverRAS.SetConnection("10.0.0.2", 41414, "OnlineTelevizor");
 
-serverRAS.OnMessageReceived += (sender, args) =>
+void OnMessageReceived(RemoteAccessMessage msg)
 {
-    Console.WriteLine($"Received message: {args.Message}");
-};
+    Console.WriteLine($"Received message: {msg}");
+}
 
 var clientRAS = new RemoteAccessService(loggingService);
 clientRAS.SetConnection("10.0.0.2", 41414, "OnlineTelevizor");
 
-serverRAS.StartListening();
+serverRAS.StartListening(OnMessageReceived);
 
 clientRAS.SendMessage(new RemoteAccessMessage()
 {
      command = "Test",
      commandArg1 = "arg1",
      commandArg2 = "arg2"
-});
-
-Console.WriteLine("Press Key....");
-Console.ReadLine();
-
-
-clientRAS.SendMessage(new RemoteAccessMessage()
-{
-    command = "Test 2",
-    commandArg1 = "arg3",
-    commandArg2 = "arg4"
 });
 
 Console.WriteLine("Press Key....");

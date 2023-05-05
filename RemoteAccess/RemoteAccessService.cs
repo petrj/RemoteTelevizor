@@ -24,8 +24,7 @@ namespace RemoteAccess
         private int _port;
         private string _securityKey;
 
-        public delegate void MessageReceivedHandler(object myObject, MessageReceivedArgs args);
-        public event MessageReceivedHandler OnMessageReceived;
+        private Action<RemoteAccessMessage> _messageReceived = null;
 
         public RemoteAccessService(ILoggingService loggingService)
         {
@@ -89,37 +88,46 @@ namespace RemoteAccess
 
                             var messageString = data.Substring(0,data.Length-TerminateString.Length);
 
+                            var ok = true;
+
                             try
                             {
                                 var decryptedData = CryptographyService.DecryptString(_securityKey, messageString);
 
                                 var message = JsonConvert.DeserializeObject<RemoteAccessMessage>(decryptedData);
 
-                                OnMessageReceived(this, new MessageReceivedArgs(message));
+                                if (_messageReceived != null)
+                                {
+                                    _messageReceived(message);
+                                }
                             }
                             catch (Exception ex)
                             {
                                 _loggingService.Error(ex, "[RAS]: error receiving message");
+                                ok = false;
                             }
 
                             // sending response
 
-                            try
+                            if (ok)
                             {
-                                var responseMessage = new RemoteAccessMessage()
+                                try
                                 {
-                                    command = "responseStatus",
-                                    commandArg1 = "OK"
-                                };
-                                var response = JsonConvert.SerializeObject(responseMessage);
-                                var responseEncrypted = CryptographyService.EncryptString(_securityKey, response);
+                                    var responseMessage = new RemoteAccessMessage()
+                                    {
+                                        command = "responseStatus",
+                                        commandArg1 = "OK"
+                                    };
+                                    var response = JsonConvert.SerializeObject(responseMessage);
+                                    var responseEncrypted = CryptographyService.EncryptString(_securityKey, response);
 
-                                handler.Send(Encoding.ASCII.GetBytes(responseEncrypted));
-                                handler.Send(Encoding.ASCII.GetBytes(TerminateString));
-                            }
-                            catch (Exception ex)
-                            {
-                                _loggingService.Error(ex, "[RAS]: error sending response");
+                                    handler.Send(Encoding.ASCII.GetBytes(responseEncrypted));
+                                    handler.Send(Encoding.ASCII.GetBytes(TerminateString));
+                                }
+                                catch (Exception ex)
+                                {
+                                    _loggingService.Error(ex, "[RAS]: error sending response");
+                                }
                             }
 
                             try
@@ -168,10 +176,12 @@ namespace RemoteAccess
             return true;
         }
 
-        public void StartListening()
+        public void StartListening(Action<RemoteAccessMessage> messageReceived)
         {
             if (_worker.IsBusy)
                 return;
+
+            _messageReceived = messageReceived;
 
             _worker.RunWorkerAsync();
         }
