@@ -13,7 +13,7 @@ namespace RemoteAccess
 
         public override string ToString()
         {
-            return $"Message: Command: {command}";
+            return $"Message: Command: {command}  arg1: {commandArg1}  arg2: {commandArg2}";
         }
     }
 }

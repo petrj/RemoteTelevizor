@@ -19,6 +19,7 @@ namespace RemoteAccess
         private ILoggingService _loggingService;
 
         private const int BufferSize = 1024;
+        private const string TerminateString = "b9fb065b-dee4-4b1e-b8b4-b0c82556380c";
         private string _ip;
         private int _port;
         private string _securityKey;
@@ -72,8 +73,6 @@ namespace RemoteAccess
 
                 IPEndPoint localEndPoint = new IPEndPoint(ipAddress, _port);
 
-                // Create a TCP/IP socket.
-
                 using (var listener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp))
                 {
                     listener.Bind(localEndPoint);
@@ -87,24 +86,22 @@ namespace RemoteAccess
                         {
                             string data = null;
 
-                            var bytesRec = int.MaxValue;
-                            while (bytesRec > 0)
+                            while (true)
                             {
-                                bytesRec = handler.Receive(bytes);
+                                bytes = new byte[BufferSize];
+                                int bytesRec = handler.Receive(bytes);
                                 data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                                if (data.IndexOf(TerminateString) > -1)
+                                {
+                                    break;
+                                }
                             }
 
-                            _loggingService.Debug($"[RAS]: Received data: {data}");
-
-                            //var responseMessage = new RemoteAccessMessage()
-                            //{
-                            //    command = "responseStatus",
-                            //    commandArg1 = "OK"
-                            //};
+                            var messageString = data.Substring(0,data.Length-TerminateString.Length);
 
                             try
                             {
-                                var decryptedData = CryptographyService.DecryptString(_securityKey, data);
+                                var decryptedData = CryptographyService.DecryptString(_securityKey, messageString);
 
                                 var message = JsonConvert.DeserializeObject<RemoteAccessMessage>(decryptedData);
 
@@ -115,12 +112,19 @@ namespace RemoteAccess
                                 _loggingService.Info("[RAS]: unknown message");
                             }
 
-                            //var response = JsonConvert.SerializeObject(responseMessage);
-                            //var responseEncrypted = CryptographyService.EncryptString(_securityKey, response);
+                            var responseMessage = new RemoteAccessMessage()
+                            {
+                                command = "responseStatus",
+                                commandArg1 = "OK"
+                            };
+                            var response = JsonConvert.SerializeObject(responseMessage);
+                            var responseEncrypted = CryptographyService.EncryptString(_securityKey, response);
 
-                            //handler.Send(Encoding.ASCII.GetBytes(responseEncrypted));
+                            handler.Send(Encoding.ASCII.GetBytes(responseEncrypted));
+                            handler.Send(Encoding.ASCII.GetBytes(TerminateString));
                             handler.Shutdown(SocketShutdown.Both);
                             handler.Close();
+
                         }
                     }
                 }
@@ -173,33 +177,69 @@ namespace RemoteAccess
             _worker.CancelAsync();
         }
 
-        public bool SendMessage(RemoteAccessMessage message)
+        public RemoteAccessMessage SendMessage(RemoteAccessMessage message)
         {
-            try
-            {
-                using (var socket = new System.Net.Sockets.TcpClient(_ip, _port))
-                {
-                    using (var stream = socket.GetStream())
-                    {
-                        using (var streamWriter = new StreamWriter(stream))
-                        {
-                            var messageJSON = JsonConvert.SerializeObject(message);
-                            var messageEncrypted = CryptographyService.EncryptString(_securityKey, messageJSON);
+            _loggingService.Info($"Sending: {message}");
 
-                            streamWriter.Write(messageEncrypted);
-                            streamWriter.Flush();
+            var bytes = new Byte[BufferSize];
+
+            var ipAddress = IPAddress.Parse(_ip);
+            var localEndPoint = new IPEndPoint(ipAddress, _port);
+
+            using (var sender = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp))
+            {
+                try
+                {
+                    sender.Connect(localEndPoint);
+
+                    var messageJSON = JsonConvert.SerializeObject(message);
+                    var messageEncrypted = CryptographyService.EncryptString(_securityKey, messageJSON);
+
+                    int bytesSent = sender.Send(Encoding.ASCII.GetBytes(messageEncrypted));
+                    bytesSent +=    sender.Send(Encoding.ASCII.GetBytes(TerminateString));
+
+                    // reading response
+
+                    string data = null;
+
+                    while (true)
+                    {
+                        bytes = new byte[BufferSize];
+                        int bytesRec = sender.Receive(bytes);
+                        data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
+                        if (data.IndexOf(TerminateString) > -1)
+                        {
+                            break;
                         }
                     }
-                    socket.Close();
+
+                    RemoteAccessMessage responseMessage = null;
+                    try
+                    {
+                        var messageString = data.Substring(0, data.Length - TerminateString.Length);
+
+                        var decryptedData = CryptographyService.DecryptString(_securityKey, messageString);
+
+                        responseMessage = JsonConvert.DeserializeObject<RemoteAccessMessage>(decryptedData);
+
+                        _loggingService.Info($"Response: {responseMessage}");
+
+                    }
+                    catch (Exception ex)
+                    {
+                        _loggingService.Info("[RAS]: unknown message");
+                    }
+
+                    sender.Shutdown(SocketShutdown.Both);
+                    sender.Close();
+
+                    return responseMessage;
                 }
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _loggingService.Error(ex);
-
-                return false;
+                catch (Exception e)
+                {
+                    Console.WriteLine("Unexpected exception : {0}", e.ToString());
+                    return null;
+                }
             }
         }
     }
