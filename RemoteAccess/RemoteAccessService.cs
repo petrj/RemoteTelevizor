@@ -50,24 +50,14 @@ namespace RemoteAccess
 
         private void _worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            _loggingService.Info("[RAS]: Starting Remote Access Service background thread");
+            _loggingService.Info("[RAS]: Starting background thread");
 
             try
             {
                 // Data buffer for incoming data.
                 var bytes = new Byte[BufferSize];
 
-                IPAddress ipAddress;
-
-                if (string.IsNullOrEmpty(_ip))
-                {
-                    var ipHostInfo = Dns.GetHostEntry(Dns.GetHostName());
-                    ipAddress = ipHostInfo.AddressList[0];
-                }
-                else
-                {
-                    ipAddress = IPAddress.Parse(_ip);
-                }
+                var ipAddress = IPAddress.Parse(_ip);
 
                 _loggingService.Info($"[RAS]: Endpoint: {_ip}:{_port}");
 
@@ -109,7 +99,7 @@ namespace RemoteAccess
                             }
                             catch (Exception ex)
                             {
-                                _loggingService.Info("[RAS]: unknown message");
+                                _loggingService.Error(ex, "[RAS]: error reading message");
                             }
 
                             var responseMessage = new RemoteAccessMessage()
@@ -124,7 +114,6 @@ namespace RemoteAccess
                             handler.Send(Encoding.ASCII.GetBytes(TerminateString));
                             handler.Shutdown(SocketShutdown.Both);
                             handler.Close();
-
                         }
                     }
                 }
@@ -156,7 +145,6 @@ namespace RemoteAccess
             _ip = ip;
             _port = port;
             _securityKey = securityKey;
-
 
             return true;
         }
@@ -227,7 +215,7 @@ namespace RemoteAccess
                     }
                     catch (Exception ex)
                     {
-                        _loggingService.Info("[RAS]: unknown message");
+                        _loggingService.Error(ex, "[RAS]: error reading message response");
                     }
 
                     sender.Shutdown(SocketShutdown.Both);
@@ -237,7 +225,7 @@ namespace RemoteAccess
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("Unexpected exception : {0}", e.ToString());
+                    _loggingService.Error(e,"[RAS]");
                     return null;
                 }
             }
