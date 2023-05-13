@@ -7,6 +7,7 @@ using RemoteTelevizor.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RemoteTelevizor.ViewModels
@@ -58,7 +59,7 @@ namespace RemoteTelevizor.ViewModels
             }
         }
 
-        public void SendKey(string keyCode)
+        public async Task SendKey(string keyCode)
         {
             var msg = new RemoteAccessMessage()
             {
@@ -66,7 +67,7 @@ namespace RemoteTelevizor.ViewModels
                 commandArg1 = keyCode
             };
 
-            _remoteAccessService.SendMessage(msg);
+            await Task.Run(() => { _remoteAccessService.SendMessage(msg); });
         }
     }
 }

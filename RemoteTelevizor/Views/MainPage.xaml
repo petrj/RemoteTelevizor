@@ -27,89 +27,104 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <AbsoluteLayout x:Name="absoluteLayout" BackgroundColor="Black">
+    <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
 
-        <Label AbsoluteLayout.LayoutBounds="0.0,0.0,0.35,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding DeviceName}" Style="{DynamicResource CaptionStyle}"/>
-        <Label AbsoluteLayout.LayoutBounds="1.0,0.0,0.35,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding IPPort}" Style="{DynamicResource LabelStyle}"/>
+        <!--BoxView AbsoluteLayout.LayoutBounds="0.5,0.5,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="RemoteStackLayout" BackgroundColor="LightGray" /-->
 
+        <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="RemoteStackLayout" BackgroundColor="Black">
 
-        <Frame AbsoluteLayout.LayoutBounds="0.5,0.7,0.2,0.1" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonUpFrame" Style="{DynamicResource ButtonFrameStyle}">
-            <Image Source="ButtonUp" Aspect="Fill"/>
+            <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
 
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnButtonUp" NumberOfTapsRequired="1" />
-            </Frame.GestureRecognizers>
+                <!--Label AbsoluteLayout.LayoutBounds="0.0,0.0,0.35,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding DeviceName}" Style="{DynamicResource CaptionStyle}"/-->
 
-        </Frame>
+                <!--Label AbsoluteLayout.LayoutBounds="1.0,0.0,0.35,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding IPPort}" Style="{DynamicResource LabelStyle}"/-->
 
-        <Frame AbsoluteLayout.LayoutBounds="0.5,1.0,0.2,0.1" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonDownFrame"  Style="{DynamicResource ButtonFrameStyle}">
-            <Image Source="ButtonDown" Aspect="Fill"/>
+                <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonUpFrame" Style="{DynamicResource ButtonFrameStyle}">
+                    <Image Source="ButtonUp" Aspect="AspectFit"/>
 
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnButtonDown" NumberOfTapsRequired="1" />
-            </Frame.GestureRecognizers>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnButtonUp" NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
 
-        </Frame>
+                </Frame>
 
-        <Frame AbsoluteLayout.LayoutBounds="0.35,0.9,0.1,0.2" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonLeftFrame"  Style="{DynamicResource ButtonFrameStyle}">
-            <Image Source="ButtonLeft" Aspect="Fill"/>
+                <Frame AbsoluteLayout.LayoutBounds="0.5,1.1,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonDownFrame"  Style="{DynamicResource ButtonFrameStyle}">
+                    <Image Source="ButtonDown" Aspect="AspectFit"/>
 
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnButtonLeft" NumberOfTapsRequired="1" />
-            </Frame.GestureRecognizers>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnButtonDown" NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
 
-        </Frame>
+                </Frame>
 
-        <Frame AbsoluteLayout.LayoutBounds="0.65,0.9,0.1,0.2" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonRightFrame"  Style="{DynamicResource ButtonFrameStyle}">
-            <Image Source="ButtonRight"  Aspect="Fill"/>
+                <Frame AbsoluteLayout.LayoutBounds="0.2,0.8,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonLeftFrame"  Style="{DynamicResource ButtonFrameStyle}">
+                    <Image Source="ButtonLeft" Aspect="AspectFit"/>
 
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnButtonRight" NumberOfTapsRequired="1" />
-            </Frame.GestureRecognizers>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnButtonLeft" NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
 
-        </Frame>
+                </Frame>
 
-        <Frame AbsoluteLayout.LayoutBounds="0.5,0.87,0.15,0.15" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonOKFrame"  Style="{DynamicResource ButtonFrameStyle}">
-            <Image Source="ButtonOK"  Aspect="Fill"/>
+                <Frame AbsoluteLayout.LayoutBounds="0.8,0.8,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonRightFrame"  Style="{DynamicResource ButtonFrameStyle}">
+                    <Image Source="ButtonRight"  Aspect="AspectFit"/>
 
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnButtonOK" NumberOfTapsRequired="1" />
-            </Frame.GestureRecognizers>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnButtonRight" NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
 
-        </Frame>
+                </Frame>
 
+                <Frame AbsoluteLayout.LayoutBounds="0.5,0.8,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonOKFrame"  Style="{DynamicResource ButtonFrameStyle}">
+                    <Image Source="ButtonOK"  Aspect="AspectFit"/>
 
-        <Frame AbsoluteLayout.LayoutBounds="0.35,0.6,0.1,0.1" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonBackFrame"  Style="{DynamicResource ButtonFrameStyle}">
-            <Image Source="ButtonBack"  Aspect="AspectFit"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnButtonOK" NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
 
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnButtonOK" NumberOfTapsRequired="1" />
-            </Frame.GestureRecognizers>
+                </Frame>
 
-        </Frame>
+                <Label AbsoluteLayout.LayoutBounds="0.5,0.8,0.3,0.3" AbsoluteLayout.LayoutFlags="All"  Text="OK" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="30">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnButtonOK" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-        <Frame AbsoluteLayout.LayoutBounds="0.65,0.6,0.1,0.1" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonMenuFrame"  Style="{DynamicResource ButtonFrameStyle}">
-            <Image Source="ButtonMenu"  Aspect="AspectFit"/>
+                <Frame AbsoluteLayout.LayoutBounds="0.1,0.5,0.15,0.15" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonBackFrame"  Style="{DynamicResource ButtonFrameStyle}">
+                    <Image Source="ButtonBack"  Aspect="AspectFit"/>
 
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Tapped="OnButtonOK" NumberOfTapsRequired="1" />
-            </Frame.GestureRecognizers>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnButtonOK" NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
 
-        </Frame>
+                </Frame>
 
-        <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.35,0.0,0.1,0.1" AbsoluteLayout.LayoutFlags="All" />
-        <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.0,0.1,0.1" AbsoluteLayout.LayoutFlags="All" />
-        <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.65,0.0,0.1,0.1" AbsoluteLayout.LayoutFlags="All" />
+                <Frame AbsoluteLayout.LayoutBounds="0.9,0.5,0.15,0.15" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonMenuFrame"  Style="{DynamicResource ButtonFrameStyle}">
+                    <Image Source="ButtonMenu"  Aspect="AspectFit"/>
 
-        <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.35,0.15,0.1,0.1" AbsoluteLayout.LayoutFlags="All" />
-        <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.15,0.1,0.1" AbsoluteLayout.LayoutFlags="All" />
-        <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.65,0.15,0.1,0.1" AbsoluteLayout.LayoutFlags="All" />
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnButtonOK" NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
 
-        <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.35,0.3,0.1,0.1" AbsoluteLayout.LayoutFlags="All" />
-        <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.3,0.1,0.1" AbsoluteLayout.LayoutFlags="All" />
-        <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.65,0.3,0.1,0.1" AbsoluteLayout.LayoutFlags="All" />
+                </Frame>
 
-        <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.45,0.1,0.1" AbsoluteLayout.LayoutFlags="All" />
+                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.2,0.0,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
+                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.0,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
+                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.8,0.0,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
+
+                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.2,0.15,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
+                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.15,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
+                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.8,0.15,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
+
+                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.2,0.3,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
+                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.3,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
+                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.8,0.3,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
+
+                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.45,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
+
+            </AbsoluteLayout>
+
+        </StackLayout>
 
     </AbsoluteLayout>
 
