@@ -31,7 +31,7 @@ namespace RemoteTelevizor.Droid
 
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
-            MessagingCenter.Subscribe<string>(this, MainPageViewModel.MSG_ToastMessage, (message) =>
+            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_ToastMessage, (message) =>
             {
                 ShowToastMessage(message);
             });

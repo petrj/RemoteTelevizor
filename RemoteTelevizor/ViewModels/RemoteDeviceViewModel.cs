@@ -12,13 +12,13 @@ using Xamarin.Forms;
 
 namespace RemoteTelevizor.ViewModels
 {
-    public class MainPageViewModel : BaseViewModel
+    public class RemoteDeviceViewModel : BaseViewModel
     {
         private ILoggingService _loggingService;
         private RemoteDeviceConnection _currentConnection;
         private RemoteAccessService _remoteAccessService;
 
-        public MainPageViewModel(ILoggingService loggingService)
+        public RemoteDeviceViewModel(ILoggingService loggingService)
         {
             _loggingService = loggingService;
             _remoteAccessService = new RemoteAccessService(loggingService);
@@ -61,6 +61,11 @@ namespace RemoteTelevizor.ViewModels
 
         public async Task SendKey(string keyCode)
         {
+            if (_currentConnection == null)
+            {
+                return;
+            }
+
             var msg = new RemoteAccessMessage()
             {
                 command = "keyDown",
@@ -68,6 +73,24 @@ namespace RemoteTelevizor.ViewModels
             };
 
             await Task.Run(() => { _remoteAccessService.SendMessage(msg); });
+        }
+
+        public static void SetViewAbsoluteLayoutBySize(View view, double width, double height)
+        {
+            var ratio = 0.0;
+
+            if (width > height)
+            {
+                ratio = height / width;
+                AbsoluteLayout.SetLayoutBounds(view, new Rectangle(0.5, 0.5, ratio, 1));
+            }
+            else
+            {
+                AbsoluteLayout.SetLayoutBounds(view, new Rectangle(0, 0, 1, 1));
+                ratio = width / height;
+            }
+
+            AbsoluteLayout.SetLayoutFlags(view, AbsoluteLayoutFlags.All);
         }
     }
 }

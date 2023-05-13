@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RemoteTelevizor.MainPage">
+             x:Class="RemoteTelevizor.NavPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -22,6 +22,8 @@
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="20"/>
             </Style>
 
         </ResourceDictionary>
@@ -39,7 +41,7 @@
 
                 <!--Label AbsoluteLayout.LayoutBounds="1.0,0.0,0.35,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding IPPort}" Style="{DynamicResource LabelStyle}"/-->
 
-                <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonUpFrame" Style="{DynamicResource ButtonFrameStyle}">
+                <Frame AbsoluteLayout.LayoutBounds="0.5,0.15,0.4,0.4" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonUpFrame" Style="{DynamicResource ButtonFrameStyle}">
                     <Image Source="ButtonUp" Aspect="AspectFit"/>
 
                     <Frame.GestureRecognizers>
@@ -48,7 +50,7 @@
 
                 </Frame>
 
-                <Frame AbsoluteLayout.LayoutBounds="0.5,1.1,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonDownFrame"  Style="{DynamicResource ButtonFrameStyle}">
+                <Frame AbsoluteLayout.LayoutBounds="0.5,0.85,0.4,0.4" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonDownFrame"  Style="{DynamicResource ButtonFrameStyle}">
                     <Image Source="ButtonDown" Aspect="AspectFit"/>
 
                     <Frame.GestureRecognizers>
@@ -57,7 +59,7 @@
 
                 </Frame>
 
-                <Frame AbsoluteLayout.LayoutBounds="0.2,0.8,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonLeftFrame"  Style="{DynamicResource ButtonFrameStyle}">
+                <Frame AbsoluteLayout.LayoutBounds="0.1,0.5,0.4,0.4" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonLeftFrame"  Style="{DynamicResource ButtonFrameStyle}">
                     <Image Source="ButtonLeft" Aspect="AspectFit"/>
 
                     <Frame.GestureRecognizers>
@@ -66,7 +68,7 @@
 
                 </Frame>
 
-                <Frame AbsoluteLayout.LayoutBounds="0.8,0.8,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonRightFrame"  Style="{DynamicResource ButtonFrameStyle}">
+                <Frame AbsoluteLayout.LayoutBounds="0.9,0.5,0.4,0.4" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonRightFrame"  Style="{DynamicResource ButtonFrameStyle}">
                     <Image Source="ButtonRight"  Aspect="AspectFit"/>
 
                     <Frame.GestureRecognizers>
@@ -75,7 +77,7 @@
 
                 </Frame>
 
-                <Frame AbsoluteLayout.LayoutBounds="0.5,0.8,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonOKFrame"  Style="{DynamicResource ButtonFrameStyle}">
+                <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonOKFrame"  Style="{DynamicResource ButtonFrameStyle}">
                     <Image Source="ButtonOK"  Aspect="AspectFit"/>
 
                     <Frame.GestureRecognizers>
@@ -84,13 +86,13 @@
 
                 </Frame>
 
-                <Label AbsoluteLayout.LayoutBounds="0.5,0.8,0.3,0.3" AbsoluteLayout.LayoutFlags="All"  Text="OK" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="30">
+                <Label AbsoluteLayout.LayoutBounds="0.5,0.5,0.3,0.3" AbsoluteLayout.LayoutFlags="All"  Text="OK" Style="{DynamicResource LabelStyle}" >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnButtonOK" NumberOfTapsRequired="1" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Frame AbsoluteLayout.LayoutBounds="0.1,0.5,0.15,0.15" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonBackFrame"  Style="{DynamicResource ButtonFrameStyle}">
+                <Frame AbsoluteLayout.LayoutBounds="0.1,0.9,0.2,0.2" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonBackFrame"  Style="{DynamicResource ButtonFrameStyle}">
                     <Image Source="ButtonBack"  Aspect="AspectFit"/>
 
                     <Frame.GestureRecognizers>
@@ -99,7 +101,7 @@
 
                 </Frame>
 
-                <Frame AbsoluteLayout.LayoutBounds="0.9,0.5,0.15,0.15" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonMenuFrame"  Style="{DynamicResource ButtonFrameStyle}">
+                <Frame AbsoluteLayout.LayoutBounds="0.9,0.1,0.2,0.2" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonMenuFrame"  Style="{DynamicResource ButtonFrameStyle}">
                     <Image Source="ButtonMenu"  Aspect="AspectFit"/>
 
                     <Frame.GestureRecognizers>
@@ -107,20 +109,6 @@
                     </Frame.GestureRecognizers>
 
                 </Frame>
-
-                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.2,0.0,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
-                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.0,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
-                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.8,0.0,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
-
-                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.2,0.15,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
-                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.15,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
-                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.8,0.15,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
-
-                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.2,0.3,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
-                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.3,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
-                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.8,0.3,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
-
-                <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.45,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
 
             </AbsoluteLayout>
 
