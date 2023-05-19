@@ -59,10 +59,26 @@ namespace RemoteTelevizor.Droid
                 };
 
                 connections.Add(tabletConnection);
+                appData.Connections = connections;
+            }
+
+            var TVConnection = appData.GetConnectionByIP("10.0.0.18");
+            if (TVConnection == null)
+            {
+                TVConnection = new RemoteDeviceConnection()
+                {
+                    IP = "10.0.0.18",
+                    Port = 49152,
+                    Name = "TV",
+                    SecurityKey = "OnlineTelevizor"
+                };
+
+                connections.Add(TVConnection);
 
                 appData.Connections = connections;
             }
-            appData.LastConnectionIP = "10.0.0.231";
+
+            appData.LastConnectionIP = "10.0.0.18";
 
 #endif
 
