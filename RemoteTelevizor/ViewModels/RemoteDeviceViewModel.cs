@@ -24,8 +24,21 @@ namespace RemoteTelevizor.ViewModels
             _remoteAccessService = new RemoteAccessService(loggingService);
         }
 
+        public RemoteDeviceConnection Connection
+        {
+            get
+            {
+                return _currentConnection;
+            }
+        }
+
         public void SetConnection(RemoteDeviceConnection connection)
         {
+            if (connection == null)
+            {
+                return;
+            }
+
             _currentConnection = connection;
             _remoteAccessService.SetConnection(connection.IP, connection.Port, connection.SecurityKey);
 

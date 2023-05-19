@@ -30,6 +30,18 @@ namespace RemoteTelevizor
             BindingContext = _viewModel = new RemoteDeviceViewModel(loggingService);
         }
 
+        public RemoteDeviceConnection Connection
+        {
+            get
+            {
+                return _viewModel.Connection;
+            }
+            set
+            {
+                _viewModel.SetConnection(value);
+            }
+        }
+
         protected override void OnSizeAllocated(double width, double height)
         {
             _loggingService.Info($"OnSizeAllocated: {width}/{height}");

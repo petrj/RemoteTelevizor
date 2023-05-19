@@ -55,7 +55,7 @@ namespace RemoteTelevizor
 
                 if (remoteDeviceConnectionPage.Confirmed)
                 {
-                    _appData.SaveConnections(_viewModel.RemoteDevices);
+                    _appData.Connections = _viewModel.RemoteDevices;
                 } else
                 {
                     _viewModel.SelectedItem = null;
@@ -71,7 +71,7 @@ namespace RemoteTelevizor
             if (await _dialogService.Confirm($"Are you sure to delete selected remote device?"))
             {
                 _viewModel.RemoteDevices.Remove(_viewModel.SelectedItem);
-                _appData.SaveConnections(_viewModel.RemoteDevices);
+                _appData.Connections = _viewModel.RemoteDevices;
 
                 _viewModel.SelectedItem = null;
                 _viewModel.RefreshCommand.Execute(this);
@@ -99,9 +99,11 @@ namespace RemoteTelevizor
 
                 if (remoteDeviceConnectionPage.Confirmed)
                 {
+                    /*
                     var devices = _appData.LoadConnections();
                     devices.Add(remoteDeviceConnectionPage.Connection);
                     _appData.SaveConnections(devices);
+                    */
                 }
             };
 

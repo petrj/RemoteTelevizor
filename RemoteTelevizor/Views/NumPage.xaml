@@ -48,12 +48,12 @@
                     </Label>
                     <Label AbsoluteLayout.LayoutBounds="0.5,0.0,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="2" Style="{DynamicResource LabelStyle}" >
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton1" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Tapped="OnButton2" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
                     <Label AbsoluteLayout.LayoutBounds="0.8,0.0,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="3" Style="{DynamicResource LabelStyle}" >
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton1" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Tapped="OnButton3" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
 
@@ -63,17 +63,17 @@
 
                     <Label AbsoluteLayout.LayoutBounds="0.2,0.3,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="4" Style="{DynamicResource LabelStyle}" >
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton1" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Tapped="OnButton4" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
                     <Label AbsoluteLayout.LayoutBounds="0.5,0.3,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="5" Style="{DynamicResource LabelStyle}" >
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton1" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Tapped="OnButton5" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
                     <Label AbsoluteLayout.LayoutBounds="0.8,0.3,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="6" Style="{DynamicResource LabelStyle}" >
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton1" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Tapped="OnButton6" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
 
@@ -83,17 +83,17 @@
 
                     <Label AbsoluteLayout.LayoutBounds="0.2,0.6,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="4" Style="{DynamicResource LabelStyle}" >
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton1" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Tapped="OnButton7" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
                     <Label AbsoluteLayout.LayoutBounds="0.5,0.6,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="5" Style="{DynamicResource LabelStyle}" >
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton1" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Tapped="OnButton8" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
                     <Label AbsoluteLayout.LayoutBounds="0.8,0.6,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="6" Style="{DynamicResource LabelStyle}" >
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton1" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Tapped="OnButton9" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
 
@@ -101,7 +101,7 @@
 
                     <Label AbsoluteLayout.LayoutBounds="0.5,0.9,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="0" Style="{DynamicResource LabelStyle}" >
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton1" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Tapped="OnButton0" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
 

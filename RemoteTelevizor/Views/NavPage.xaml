@@ -96,7 +96,7 @@
                     <Image Source="ButtonBack"  Aspect="AspectFit"/>
 
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnButtonOK" NumberOfTapsRequired="1" />
+                        <TapGestureRecognizer Tapped="OnButtonEscape" NumberOfTapsRequired="1" />
                     </Frame.GestureRecognizers>
 
                 </Frame>
@@ -105,7 +105,7 @@
                     <Image Source="ButtonMenu"  Aspect="AspectFit"/>
 
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnButtonOK" NumberOfTapsRequired="1" />
+                        <TapGestureRecognizer Tapped="OnButtonMenu" NumberOfTapsRequired="1" />
                     </Frame.GestureRecognizers>
 
                 </Frame>

@@ -7,7 +7,8 @@ namespace RemoteTelevizor.Models
 {
     public interface IAppData
     {
-        void SaveConnections(ObservableCollection<RemoteDeviceConnection> connections);
-        ObservableCollection<RemoteDeviceConnection> LoadConnections();
+        ObservableCollection<RemoteDeviceConnection> Connections { get; set; }
+        string LastConnectionIP { get; set; }
+        RemoteDeviceConnection GetConnectionByIP(string ip);
     }
 }

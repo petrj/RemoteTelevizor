@@ -30,6 +30,18 @@ namespace RemoteTelevizor
             BindingContext = _viewModel = new RemoteDeviceViewModel(loggingService);
         }
 
+        public RemoteDeviceConnection Connection
+        {
+            get
+            {
+                return _viewModel.Connection;
+            }
+            set
+            {
+                _viewModel.SetConnection(value);
+            }
+        }
+
         protected override void OnSizeAllocated(double width, double height)
         {
             _loggingService.Info($"OnSizeAllocated: {width}/{height}");
@@ -52,12 +64,86 @@ namespace RemoteTelevizor
             RemoteDeviceViewModel.SetViewAbsoluteLayoutBySize(RemoteStackLayout, width, height);
         }
 
+        private async void OnButton0(object sender, EventArgs e)
+        {
+            await Image0.ScaleTo(2, 100);
+            await Image0.ScaleTo(1, 100);
+
+            await _viewModel.SendKey(Android.Views.Keycode.Num0.ToString());
+        }
+
         private async void OnButton1(object sender, EventArgs e)
         {
             await Image0.ScaleTo(2, 100);
             await Image0.ScaleTo(1, 100);
 
-            await _viewModel.SendKey(Android.Views.Keycode.Enter.ToString());
+            await _viewModel.SendKey(Android.Views.Keycode.Num1.ToString());
+        }
+
+        private async void OnButton2(object sender, EventArgs e)
+        {
+            await Image0.ScaleTo(2, 100);
+            await Image0.ScaleTo(1, 100);
+
+            await _viewModel.SendKey(Android.Views.Keycode.Num2.ToString());
+        }
+
+        private async void OnButton3(object sender, EventArgs e)
+        {
+            await Image0.ScaleTo(2, 100);
+            await Image0.ScaleTo(1, 100);
+
+            await _viewModel.SendKey(Android.Views.Keycode.Num3.ToString());
+        }
+
+
+        private async void OnButton4(object sender, EventArgs e)
+        {
+            await Image0.ScaleTo(2, 100);
+            await Image0.ScaleTo(1, 100);
+
+            await _viewModel.SendKey(Android.Views.Keycode.Num4.ToString());
+        }
+
+        private async void OnButton5(object sender, EventArgs e)
+        {
+            await Image0.ScaleTo(2, 100);
+            await Image0.ScaleTo(1, 100);
+
+            await _viewModel.SendKey(Android.Views.Keycode.Num5.ToString());
+        }
+
+        private async void OnButton6(object sender, EventArgs e)
+        {
+            await Image0.ScaleTo(2, 100);
+            await Image0.ScaleTo(1, 100);
+
+            await _viewModel.SendKey(Android.Views.Keycode.Num6.ToString());
+        }
+
+        private async void OnButton7(object sender, EventArgs e)
+        {
+            await Image0.ScaleTo(2, 100);
+            await Image0.ScaleTo(1, 100);
+
+            await _viewModel.SendKey(Android.Views.Keycode.Num7.ToString());
+        }
+
+
+        private async void OnButton8(object sender, EventArgs e)
+        {
+            await Image0.ScaleTo(2, 100);
+            await Image0.ScaleTo(1, 100);
+
+            await _viewModel.SendKey(Android.Views.Keycode.Num8.ToString());
+        }
+
+        private async void OnButton9(object sender, EventArgs e)
+        {
+            await Image0.ScaleTo(2, 100);
+            await Image0.ScaleTo(1, 100);
+
+            await _viewModel.SendKey(Android.Views.Keycode.Num9.ToString());
         }
     }
 }

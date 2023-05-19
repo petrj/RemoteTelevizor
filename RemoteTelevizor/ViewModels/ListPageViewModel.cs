@@ -38,7 +38,7 @@ namespace RemoteTelevizor.ViewModels
             {
                 RemoteDevices.Clear();
 
-                foreach (var device in _appData.LoadConnections())
+                foreach (var device in _appData.Connections)
                 {
                     RemoteDevices.Add(device);
                 }

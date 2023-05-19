@@ -1,4 +1,5 @@
 ﻿using LoggerService;
+using RemoteAccess;
 using RemoteTelevizor.Models;
 using RemoteTelevizor.ViewModels;
 using System;
@@ -28,19 +29,16 @@ namespace RemoteTelevizor
             BindingContext = _viewModel = new RemoteDeviceViewModel(loggingService);
         }
 
-        protected override void OnAppearing()
+        public RemoteDeviceConnection Connection
         {
-            base.OnAppearing();
-
-            NavigationPage.SetHasNavigationBar(this, false);
-
-            _viewModel.SetConnection(new RemoteDeviceConnection()
+            get
             {
-                IP = "192.168.1.163",
-                Port = 49151,
-                Name = "Android TV Box",
-                SecurityKey = "OnlineTelevizor"
-            });
+                return _viewModel.Connection;
+            }
+            set
+            {
+                _viewModel.SetConnection(value);
+            }
         }
 
         private async void OnButtonDown(object sender, EventArgs e)
@@ -81,6 +79,22 @@ namespace RemoteTelevizor
             await ButtonOKFrame.ScaleTo(1, 100);
 
             await _viewModel.SendKey(Android.Views.Keycode.Enter.ToString());
+        }
+
+        private async void OnButtonEscape(object sender, EventArgs e)
+        {
+            await ButtonBackFrame.ScaleTo(2, 100);
+            await ButtonBackFrame.ScaleTo(1, 100);
+
+            await _viewModel.SendKey(Android.Views.Keycode.Escape.ToString());
+        }
+
+        private async void OnButtonMenu(object sender, EventArgs e)
+        {
+            await ButtonMenuFrame.ScaleTo(2, 100);
+            await ButtonMenuFrame.ScaleTo(1, 100);
+
+            await _viewModel.SendKey(Android.Views.Keycode.Menu.ToString());
         }
 
         protected override void OnSizeAllocated(double width, double height)

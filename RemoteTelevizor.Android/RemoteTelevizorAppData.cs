@@ -17,7 +17,55 @@ namespace RemoteTelevizor.Droid
 {
     public class RemoteTelevizorAppData : CustomSharedPreferencesObject, IAppData
     {
-        public void SaveConnections(ObservableCollection<RemoteDeviceConnection> connections)
+        private ObservableCollection<RemoteDeviceConnection> _connections = null;
+
+        public string LastConnectionIP
+        {
+            get
+            {
+                try
+                {
+                    return GetPersistingSettingValue<string>("LastConnectionIP");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+            }
+            set
+            {
+                try
+                {
+                    SavePersistingSettingValue<string>("LastConnectionIP", value);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        public ObservableCollection<RemoteDeviceConnection> Connections
+        {
+            get
+            {
+                if (_connections == null)
+                {
+                    _connections = LoadConnections();
+                }
+
+                return _connections;
+            }
+            set
+            {
+                SaveConnections(value);
+                _connections = value;
+            }
+        }
+
+
+        private void SaveConnections(ObservableCollection<RemoteDeviceConnection> connections)
         {
             try
             {
@@ -31,7 +79,20 @@ namespace RemoteTelevizor.Droid
             }
         }
 
-        public ObservableCollection<RemoteDeviceConnection> LoadConnections()
+        public RemoteDeviceConnection GetConnectionByIP(string ip)
+        {
+            foreach (var connection in Connections)
+            {
+                if (connection.IP == ip)
+                {
+                    return connection;
+                }
+            }
+
+            return null;
+        }
+
+        private ObservableCollection<RemoteDeviceConnection> LoadConnections()
         {
             try
             {

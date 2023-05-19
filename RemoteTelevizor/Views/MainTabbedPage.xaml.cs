@@ -18,9 +18,11 @@ namespace RemoteTelevizor
         {
             InitializeComponent();
 
-            Children.Add(new NavPage(loggingService, appData) { Title = "Navigation" });
-            Children.Add(new NumPage(loggingService, appData) { Title = "Numeric" });
-            Children.Add(new MultiMediaPage(loggingService, appData) { Title = "Multimedia" });
+            var lastConnection = appData.GetConnectionByIP(appData.LastConnectionIP);
+
+            Children.Add(new NavPage(loggingService, appData) { Title = "Navigation", Connection = lastConnection });
+            Children.Add(new NumPage(loggingService, appData) { Title = "Numeric", Connection = lastConnection });
+            Children.Add(new MultiMediaPage(loggingService, appData) { Title = "Multimedia", Connection = lastConnection });
         }
     }
 }

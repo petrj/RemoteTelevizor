@@ -12,6 +12,8 @@ using Plugin.CurrentActivity;
 using Android.Graphics;
 using Xamarin.Essentials;
 using RemoteTelevizor.ViewModels;
+using AndroidX.Lifecycle;
+using RemoteTelevizor.Models;
 
 namespace RemoteTelevizor.Droid
 {
@@ -39,7 +41,32 @@ namespace RemoteTelevizor.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-            LoadApplication(new App(_loggingService, new RemoteTelevizorAppData()));
+            var appData = new RemoteTelevizorAppData();
+
+#if DEBUG
+
+            var connections = appData.Connections;
+
+            var tabletConnection = appData.GetConnectionByIP("10.0.0.231");
+            if (tabletConnection == null)
+            {
+                tabletConnection = new RemoteDeviceConnection()
+                {
+                    IP = "10.0.0.231",
+                    Port = 49152,
+                    Name = "Lenovo Tablet",
+                    SecurityKey = "OnlineTelevizor"
+                };
+
+                connections.Add(tabletConnection);
+
+                appData.Connections = connections;
+            }
+            appData.LastConnectionIP = "10.0.0.231";
+
+#endif
+
+            LoadApplication(new App(_loggingService, appData));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
