@@ -99,16 +99,16 @@ namespace RemoteTelevizor
 
         private async void OnButtonEscape(object sender, EventArgs e)
         {
-            await ButtonBackFrame.ScaleTo(2, 100);
-            await ButtonBackFrame.ScaleTo(1, 100);
+            await ImageBack.ScaleTo(2, 100);
+            await ImageBack.ScaleTo(1, 100);
 
             await _viewModel.SendKey(Android.Views.Keycode.Escape.ToString());
         }
 
         private async void OnButtonMenu(object sender, EventArgs e)
         {
-            await ButtonMenuFrame.ScaleTo(2, 100);
-            await ButtonMenuFrame.ScaleTo(1, 100);
+            await ImageMenu.ScaleTo(2, 100);
+            await ImageMenu.ScaleTo(1, 100);
 
             await _viewModel.SendKey(Android.Views.Keycode.Menu.ToString());
         }

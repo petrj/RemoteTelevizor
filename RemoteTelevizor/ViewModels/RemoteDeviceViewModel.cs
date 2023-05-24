@@ -18,10 +18,18 @@ namespace RemoteTelevizor.ViewModels
         private RemoteDeviceConnection _currentConnection;
         private RemoteAccessService _remoteAccessService;
 
+        public Command MenuCommand { get; set; }
+
         public RemoteDeviceViewModel(ILoggingService loggingService)
         {
             _loggingService = loggingService;
             _remoteAccessService = new RemoteAccessService(loggingService);
+
+            MenuCommand = new Command(async () => await ShowMenu());
+        }
+
+        private async Task ShowMenu()
+        {
         }
 
         public RemoteDeviceConnection Connection
