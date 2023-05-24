@@ -47,21 +47,6 @@ namespace RemoteTelevizor.Droid
 
             var connections = appData.Connections;
 
-            var tabletConnection = appData.GetConnectionByIP("10.0.0.231");
-            if (tabletConnection == null)
-            {
-                tabletConnection = new RemoteDeviceConnection()
-                {
-                    IP = "10.0.0.231",
-                    Port = 49152,
-                    Name = "Lenovo Tablet",
-                    SecurityKey = "OnlineTelevizor"
-                };
-
-                connections.Add(tabletConnection);
-                appData.Connections = connections;
-            }
-
             var TVConnection = appData.GetConnectionByIP("10.0.0.18");
             if (TVConnection == null)
             {
@@ -78,9 +63,25 @@ namespace RemoteTelevizor.Droid
                 appData.Connections = connections;
             }
 
-            appData.LastConnectionIP = "10.0.0.18";
+            var tabletConnection = appData.GetConnectionByIP("10.0.0.231");
+            if (tabletConnection == null)
+            {
+                tabletConnection = new RemoteDeviceConnection()
+                {
+                    IP = "10.0.0.231",
+                    Port = 49152,
+                    Name = "Lenovo Tablet",
+                    SecurityKey = "OnlineTelevizor"
+                };
 
+                connections.Add(tabletConnection);
+                appData.Connections = connections;
+            }
+
+            appData.LastConnectionIP = "10.0.0.231";
 #endif
+
+
 
             LoadApplication(new App(_loggingService, appData));
         }

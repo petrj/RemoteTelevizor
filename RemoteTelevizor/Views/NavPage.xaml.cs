@@ -81,6 +81,22 @@ namespace RemoteTelevizor
             await _viewModel.SendKey(Android.Views.Keycode.Enter.ToString());
         }
 
+        private async void OnButtonVolumeUp(object sender, EventArgs e)
+        {
+            await VolumeUpLabel.ScaleTo(2, 100);
+            await VolumeUpLabel.ScaleTo(1, 100);
+
+            await _viewModel.SendKey(Android.Views.Keycode.VolumeUp.ToString());
+        }
+
+        private async void OnButtonVolumeDown(object sender, EventArgs e)
+        {
+            await VolumeDownLabel.ScaleTo(2, 100);
+            await VolumeDownLabel.ScaleTo(1, 100);
+
+            await _viewModel.SendKey(Android.Views.Keycode.VolumeDown.ToString());
+        }
+
         private async void OnButtonEscape(object sender, EventArgs e)
         {
             await ButtonBackFrame.ScaleTo(2, 100);

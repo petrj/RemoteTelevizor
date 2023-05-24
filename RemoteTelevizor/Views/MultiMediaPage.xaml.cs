@@ -63,5 +63,15 @@ namespace RemoteTelevizor
 
             RemoteDeviceViewModel.SetViewAbsoluteLayoutBySize(RemoteStackLayout, width, height);
         }
+
+        private async void OnButtonTest(object sender, EventArgs e)
+        {
+            await ImageTest.ScaleTo(2, 100);
+            await ImageTest.ScaleTo(1, 100);
+
+            await _viewModel.SendKey(Android.Views.Keycode.VolumeUp.ToString());
+
+            //await _viewModel.SendKey(Android.Views.Keycode.Enter.ToString());
+        }
     }
 }

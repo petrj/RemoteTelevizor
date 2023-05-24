@@ -61,6 +61,16 @@
                     <Label AbsoluteLayout.LayoutBounds="0.8,0.5,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="&#x23E9;" Style="{DynamicResource LabelStyle}" >
                     </Label>
 
+                    <Image x:Name="ImageTest" Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.8,0.2,0.2" AbsoluteLayout.LayoutFlags="All">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnButtonTest" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Label AbsoluteLayout.LayoutBounds="0.5,0.8,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="Test2" Style="{DynamicResource LabelStyle}" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnButtonTest" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
 
                 </AbsoluteLayout>
 
