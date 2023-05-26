@@ -21,6 +21,7 @@ namespace RemoteTelevizor.ViewModels
         public ObservableCollection<RemoteDeviceConnection> RemoteDevices { get; set; } = new ObservableCollection<RemoteDeviceConnection>();
 
         public Command RefreshCommand { get; set; }
+        public Command AddRemoteCommand { get; set; }
 
         public ListPageViewModel(ILoggingService loggingService, IAppData appData)
         {
@@ -34,6 +35,7 @@ namespace RemoteTelevizor.ViewModels
         {
             IsBusy = true;
 
+
             try
             {
                 RemoteDevices.Clear();
@@ -42,23 +44,6 @@ namespace RemoteTelevizor.ViewModels
                 {
                     RemoteDevices.Add(device);
                 }
-
-                /*
-                RemoteDevices.Add(new RemoteDeviceConnection()
-                {
-                    Name = "Evolveo TV Box",
-                    IP = "10.0.0.18",
-                    Port = 49151,
-                    SecurityKey = "OnlineTelevizor"
-                });
-                RemoteDevices.Add(new RemoteDeviceConnection()
-                {
-                    Name = "Lenovo Tablet",
-                    IP = "10.0.0.231",
-                    Port = 49151,
-                    SecurityKey = "OnlineTelevizor"
-                });
-                */
             }
             finally
             {

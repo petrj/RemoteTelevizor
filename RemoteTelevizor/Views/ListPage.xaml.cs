@@ -19,6 +19,8 @@ namespace RemoteTelevizor
         private IAppData _appData;
         private DialogService _dialogService;
 
+        public App ParentPage { get; set; }
+
         public ListPage(ILoggingService loggingService, IAppData appData)
         {
             InitializeComponent();
@@ -30,17 +32,38 @@ namespace RemoteTelevizor
             BindingContext = _viewModel = new ListPageViewModel(loggingService, _appData);
         }
 
+        public RemoteDeviceConnection Connection
+        {
+            get
+            {
+                return _viewModel.SelectedItem;
+            }
+            set
+            {
+                _viewModel.SelectedItem = value;
+            }
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            _viewModel.SelectedItem = null;
             _viewModel.RefreshCommand.Execute(this);
+
+            Device.BeginInvokeOnMainThread(
+                delegate
+                {
+                    // workaround for selecting item in ListView
+                    var item = _viewModel.SelectedItem;
+                    _viewModel.SelectedItem = null;
+                    _viewModel.SelectedItem = item;
+                });
         }
 
         private async void Item_Tapped(object sender, ItemTappedEventArgs e)
         {
-            var selectedConnection = e.Item as RemoteDeviceConnection;
+            ParentPage.Connection = e.Item as RemoteDeviceConnection;
+            ParentPage.AssociatedFlyoutPage.IsPresented = false;
         }
 
         private async void OnButtonEdit(object sender, EventArgs e)
@@ -99,11 +122,8 @@ namespace RemoteTelevizor
 
                 if (remoteDeviceConnectionPage.Confirmed)
                 {
-                    /*
-                    var devices = _appData.LoadConnections();
-                    devices.Add(remoteDeviceConnectionPage.Connection);
-                    _appData.SaveConnections(devices);
-                    */
+                    _appData.Connections.Add(remoteDeviceConnectionPage.Connection);
+                    _viewModel.RefreshCommand.Execute(null);
                 }
             };
 

@@ -9,18 +9,51 @@ namespace RemoteTelevizor
 {
     public partial class App : Application
     {
+        private ListPage _listPage;
+        private MainTabbedPage _tabbedPage;
+        private FlyoutPage _flyoutPage;
+
         public App(ILoggingService loggingService, IAppData appData)
         {
             InitializeComponent();
 
-            var flyoutPage = new FlyoutPage()
+            _flyoutPage = new FlyoutPage()
             {
                 Title = "Remote Televizor"
             };
-            flyoutPage.Flyout = new ListPage(loggingService, appData);
-            flyoutPage.Detail = new MainTabbedPage(loggingService, appData);
 
-            MainPage = new NavigationPage(flyoutPage);
+            _listPage = new ListPage(loggingService, appData);
+            _tabbedPage = new MainTabbedPage(loggingService, appData);
+            _listPage.ParentPage = this;
+
+            _flyoutPage.Flyout = _listPage;
+            _flyoutPage.Detail = _tabbedPage;
+
+            // setting last connection
+            Connection = appData.GetConnectionByIP(appData.LastConnectionIP);
+
+            MainPage = new NavigationPage(_flyoutPage);
+        }
+
+        public FlyoutPage AssociatedFlyoutPage
+        {
+            get
+            {
+                return _flyoutPage;
+            }
+        }
+
+        public RemoteDeviceConnection Connection
+        {
+            get
+            {
+                return _tabbedPage.Connection;
+            }
+            set
+            {
+                _listPage.Connection = value;
+                _tabbedPage.Connection = value;
+            }
         }
 
         protected override void OnStart()

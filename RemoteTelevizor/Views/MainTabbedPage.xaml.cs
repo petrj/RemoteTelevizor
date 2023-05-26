@@ -14,15 +14,35 @@ namespace RemoteTelevizor
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainTabbedPage : TabbedPage
     {
+        private NavPage _navPage;
+        private NumPage _numPage;
+        private MultiMediaPage _multiMediaPage;
+
         public MainTabbedPage(ILoggingService loggingService, IAppData appData)
         {
             InitializeComponent();
 
-            var lastConnection = appData.GetConnectionByIP(appData.LastConnectionIP);
+            _navPage = new NavPage(loggingService, appData) { Title = "Navigation"};
+            _numPage = new NumPage(loggingService, appData) { Title = "Numeric"};
+            _multiMediaPage = new MultiMediaPage(loggingService, appData) { Title = "Multimedia" };
 
-            Children.Add(new NavPage(loggingService, appData) { Title = "Navigation", Connection = lastConnection });
-            Children.Add(new NumPage(loggingService, appData) { Title = "Numeric", Connection = lastConnection });
-            Children.Add(new MultiMediaPage(loggingService, appData) { Title = "Multimedia", Connection = lastConnection });
+            Children.Add(_navPage);
+            Children.Add(_numPage);
+            Children.Add(_multiMediaPage);
+        }
+
+        public RemoteDeviceConnection Connection
+        {
+            get
+            {
+                return _navPage.Connection;
+            }
+            set
+            {
+                _navPage.Connection = value;
+                _numPage.Connection = value;
+                _multiMediaPage.Connection = value;
+            }
         }
     }
 }

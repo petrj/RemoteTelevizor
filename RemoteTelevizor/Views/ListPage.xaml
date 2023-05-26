@@ -40,7 +40,7 @@
                 <Setter Property="CornerRadius" Value="90"/>
                 <Setter Property="BackgroundColor" Value="Blue"/>
                 <Setter Property="Padding" Value="10"/>
-                <Setter Property="Margin" Value="0,0,0,0"/>
+                <Setter Property="Margin" Value="0,5,5,0"/>
                 <Setter Property="HorizontalOptions" Value="End"/>
             </Style>
 
@@ -61,9 +61,27 @@
 
     <StackLayout BackgroundColor="#333333">
 
-        <Frame Style="{DynamicResource TitleFrameStyle}">
-            <Label Text="Devices" Style="{DynamicResource CaptionStyle}"/>
-        </Frame>
+            <Grid Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60*" />
+                    <ColumnDefinition Width="40*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0"  Text="Devices" Style="{DynamicResource CaptionStyle}"/>
+
+                <Frame Grid.Row="0" Grid.Column="1" x:Name="ButtonAddFrame"  Style="{DynamicResource ActionButtonFrameStyle}">
+                    <Label Text="Add" Style="{DynamicResource ButtonLabelStyle}"/>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnButtonAdd" NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
+
+                </Frame>
+
+        </Grid>
 
             <ListView
                 AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
@@ -100,7 +118,7 @@
 
             </ListView>
 
-        <Grid Margin="10,10,10,10" HorizontalOptions="End">
+        <!--Grid Margin="10,10,10,10" HorizontalOptions="End">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
@@ -138,9 +156,7 @@
 
             </Frame>
 
-        </Grid>
-
-
+        </Grid-->
 
     </StackLayout>
 
