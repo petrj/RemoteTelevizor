@@ -1,5 +1,6 @@
 ﻿using LoggerService;
 using RemoteTelevizor.Models;
+using RemoteTelevizor.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,11 @@ namespace RemoteTelevizor
         {
             InitializeComponent();
 
-            _navPage = new NavPage(loggingService, appData) { Title = "Navigation"};
-            _numPage = new NumPage(loggingService, appData) { Title = "Numeric"};
-            _multiMediaPage = new MultiMediaPage(loggingService, appData) { Title = "Multimedia" };
+            var dialogService = new DialogService(this);
+
+            _navPage = new NavPage(loggingService, appData, dialogService) { Title = "Navigation"};
+            _numPage = new NumPage(loggingService, appData, dialogService) { Title = "Numeric"};
+            _multiMediaPage = new MultiMediaPage(loggingService, appData, dialogService) { Title = "Multimedia" };
 
             Children.Add(_navPage);
             Children.Add(_numPage);

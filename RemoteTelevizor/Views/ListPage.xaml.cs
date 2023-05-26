@@ -3,11 +3,6 @@ using RemoteTelevizor.Models;
 using RemoteTelevizor.Services;
 using RemoteTelevizor.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RemoteTelevizor
@@ -29,7 +24,7 @@ namespace RemoteTelevizor
 
             _dialogService = new DialogService(this);
 
-            BindingContext = _viewModel = new ListPageViewModel(loggingService, _appData);
+            BindingContext = _viewModel = new ListPageViewModel(loggingService, _appData, _dialogService);
         }
 
         public RemoteDeviceConnection Connection
@@ -101,10 +96,13 @@ namespace RemoteTelevizor
             }
         }
 
+        private async void OnButtonShowMenu(object sender, EventArgs e)
+        {
+            _viewModel.MenuCommand.Execute(null);
+        }
+
         private async void OnButtonAdd(object sender, EventArgs e)
         {
-            await ButtonAddFrame.ScaleTo(2, 100);
-            await ButtonAddFrame.ScaleTo(1, 100);
 
             var remoteDeviceConnectionPage = new RemoteDeviceConnectionPage(_loggingService);
 

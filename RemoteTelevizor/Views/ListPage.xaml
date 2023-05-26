@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RemoteTelevizor.ListPage"
              BackgroundColor="Black"
-             Title="Remote devices">
+             Title="Remote devices"
+             xmlns:lc="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:lb="clr-namespace:XLabs.Forms.Behaviors;assembly=XLabs.Forms">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -38,10 +40,11 @@
 
             <Style x:Key="ActionButtonFrameStyle" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="90"/>
-                <Setter Property="BackgroundColor" Value="Blue"/>
-                <Setter Property="Padding" Value="10"/>
-                <Setter Property="Margin" Value="0,5,5,0"/>
-                <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="BackgroundColor" Value="Green"/>
+                <Setter Property="Opacity" Value="1"/>
+                <Setter Property="Padding" Value="5,5,5,5"/>
+                <Setter Property="Margin" Value="5,10,10,5"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
             </Style>
 
             <Style x:Key="ButtonLabelStyle" TargetType="Label">
@@ -61,25 +64,25 @@
 
     <StackLayout BackgroundColor="#333333">
 
-            <Grid Margin="0,0,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60*" />
-                    <ColumnDefinition Width="40*" />
-                </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80*" />
+                <ColumnDefinition Width="20*" />
+            </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0"  Text="Devices" Style="{DynamicResource CaptionStyle}"/>
+            <Label Grid.Row="0" Grid.Column="0" Text="Devices" Style="{DynamicResource CaptionStyle}"/>
 
-                <Frame Grid.Row="0" Grid.Column="1" x:Name="ButtonAddFrame"  Style="{DynamicResource ActionButtonFrameStyle}">
-                    <Label Text="Add" Style="{DynamicResource ButtonLabelStyle}"/>
+            <Frame Grid.Row="0" Grid.Column="1" x:Name="ButtonaDDFrame"  Style="{DynamicResource ActionButtonFrameStyle}">
+                <Label Text="&#xA0;&#xA0;+&#xA0;&#xA0;" Style="{DynamicResource ButtonLabelStyle}"/>
 
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnButtonAdd" NumberOfTapsRequired="1" />
-                    </Frame.GestureRecognizers>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnButtonShowMenu" NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
 
-                </Frame>
+            </Frame>
 
         </Grid>
 
@@ -87,7 +90,6 @@
                 AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
                 x:Name="RemoteDeviceConnectionListView"
                 ItemsSource="{Binding RemoteDevices}"
-                ItemTapped="Item_Tapped"
                 CachingStrategy="RecycleElement"
                 IsPullToRefreshEnabled="True"
                 RefreshCommand="{Binding RefreshCommand}"
@@ -99,17 +101,25 @@
                     <DataTemplate>
                         <ViewCell Height="50">
                             <ViewCell.View>
-                                <Grid>
-                                    <Grid.RowDefinitions>
+                            <Grid>
+
+                                <Grid.RowDefinitions>
                                         <RowDefinition Height="50" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="80*" />
+                                        <ColumnDefinition Width="20*" />
                                     </Grid.ColumnDefinitions>
 
-                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" Style="{DynamicResource LabelStyle}"/>
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" Style="{DynamicResource LabelStyle}"/>
 
-                                </Grid>
+                                    <Label Grid.Row="0" Grid.Column="1" Text="&#xA0;&#xA0;&#x22EE;&#xA0;&#xA0;" Style="{DynamicResource LabelStyle}">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnButtonShowMenu" NumberOfTapsRequired="1" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+
+                            </Grid>
 
                             </ViewCell.View>
                         </ViewCell>
@@ -118,45 +128,9 @@
 
             </ListView>
 
-        <!--Grid Margin="10,10,10,10" HorizontalOptions="End">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
-            </Grid.ColumnDefinitions>
+        <Button Text ="Test">
 
-
-            <Frame Grid.Row="0" Grid.Column="0" x:Name="ButtonAddFrame"  Style="{DynamicResource ActionButtonFrameStyle}">
-                <Label Text="Add" Style="{DynamicResource ButtonLabelStyle}"/>
-
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnButtonAdd" NumberOfTapsRequired="1" />
-                </Frame.GestureRecognizers>
-
-            </Frame>
-
-            <Frame Grid.Row="0" Grid.Column="1" x:Name="ButtonEditFrame"  Style="{DynamicResource ActionButtonFrameStyle}" IsVisible="{Binding EditButtonVisible}">
-                <Label Text="Edit" Style="{DynamicResource ButtonLabelStyle}"/>
-
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnButtonEdit" NumberOfTapsRequired="1" />
-                </Frame.GestureRecognizers>
-
-            </Frame>
-
-            <Frame Grid.Row="0" Grid.Column="2" x:Name="ButtonDeleteFrame"  Style="{DynamicResource ActionButtonFrameStyle}" IsVisible="{Binding DeleteButtonVisible}">
-                <Label Text="Delete" Style="{DynamicResource ButtonLabelStyle}"/>
-
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnButtonDelete" NumberOfTapsRequired="1" />
-                </Frame.GestureRecognizers>
-
-            </Frame>
-
-        </Grid-->
+        </Button>
 
     </StackLayout>
 

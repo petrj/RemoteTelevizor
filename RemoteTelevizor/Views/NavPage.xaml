@@ -126,8 +126,4 @@
 
     </AbsoluteLayout>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="&#x22EE;"  Command="{Binding MenuCommand}"/>
-    </ContentPage.ToolbarItems>
-
 </ContentPage>

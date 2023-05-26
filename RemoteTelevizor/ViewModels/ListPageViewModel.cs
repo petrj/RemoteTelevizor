@@ -5,6 +5,7 @@ using RemoteTelevizor.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.Design;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,18 +18,45 @@ namespace RemoteTelevizor.ViewModels
         private ILoggingService _loggingService;
         private RemoteDeviceConnection _selectedItem;
         private IAppData _appData;
+        private DialogService _dialogService;
 
         public ObservableCollection<RemoteDeviceConnection> RemoteDevices { get; set; } = new ObservableCollection<RemoteDeviceConnection>();
 
         public Command RefreshCommand { get; set; }
         public Command AddRemoteCommand { get; set; }
+        public Command MenuCommand { get; set; }
 
-        public ListPageViewModel(ILoggingService loggingService, IAppData appData)
+        public Command LongPressCommand { get; set; }
+        public Command ShortPressCommand { get; set; }
+
+        public ListPageViewModel(ILoggingService loggingService, IAppData appData, DialogService dialogService)
         {
             _loggingService = loggingService;
             _appData = appData;
+            _dialogService = dialogService;
 
             RefreshCommand = new Command(async () => await Refresh());
+
+            MenuCommand = new Command(async () => await ShowMenu());
+            LongPressCommand = new Command(LongPress);
+            ShortPressCommand = new Command(ShortPress);
+        }
+
+        private void LongPress(object item)
+        {
+        }
+
+        private void ShortPress(object item)
+        {
+        }
+
+        private async Task ShowMenu()
+        {
+            var actions = new List<string>();
+            actions.Add("Edit");
+            actions.Add("Delete");
+
+            var selectedvalue = await _dialogService.Select(actions, _selectedItem.Name);
         }
 
         private async Task Refresh()

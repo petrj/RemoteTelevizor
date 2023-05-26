@@ -9,27 +9,23 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using static Android.Icu.Text.CaseMap;
 
 namespace RemoteTelevizor.ViewModels
 {
     public class RemoteDeviceViewModel : BaseViewModel
     {
         private ILoggingService _loggingService;
+        private DialogService _dialogService;
+
         private RemoteDeviceConnection _currentConnection;
         private RemoteAccessService _remoteAccessService;
 
-        public Command MenuCommand { get; set; }
-
-        public RemoteDeviceViewModel(ILoggingService loggingService)
+        public RemoteDeviceViewModel(ILoggingService loggingService, DialogService dialogService)
         {
             _loggingService = loggingService;
             _remoteAccessService = new RemoteAccessService(loggingService);
-
-            MenuCommand = new Command(async () => await ShowMenu());
-        }
-
-        private async Task ShowMenu()
-        {
+            _dialogService = dialogService;
         }
 
         public RemoteDeviceConnection Connection

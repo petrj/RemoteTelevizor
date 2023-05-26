@@ -1,5 +1,6 @@
 ﻿using LoggerService;
 using RemoteTelevizor.Models;
+using RemoteTelevizor.Services;
 using RemoteTelevizor.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -20,14 +21,14 @@ namespace RemoteTelevizor
         private IAppData _appData;
         private Size _lastAllocatedSize = new Size(-1, -1);
 
-        public NumPage(ILoggingService loggingService, IAppData appData)
+        public NumPage(ILoggingService loggingService, IAppData appData, DialogService dialogService)
         {
             InitializeComponent();
 
             _loggingService = loggingService;
             _appData = appData;
 
-            BindingContext = _viewModel = new RemoteDeviceViewModel(loggingService);
+            BindingContext = _viewModel = new RemoteDeviceViewModel(loggingService, dialogService);
         }
 
         public RemoteDeviceConnection Connection
