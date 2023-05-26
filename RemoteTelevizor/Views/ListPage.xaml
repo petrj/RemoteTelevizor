@@ -4,8 +4,7 @@
              x:Class="RemoteTelevizor.ListPage"
              BackgroundColor="Black"
              Title="Remote devices"
-             xmlns:lc="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
-             xmlns:lb="clr-namespace:XLabs.Forms.Behaviors;assembly=XLabs.Forms">
+             xmlns:local2="clr-namespace:RemoteTelevizor">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -65,6 +64,7 @@
     <StackLayout BackgroundColor="#333333">
 
         <Grid>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
@@ -101,7 +101,17 @@
                     <DataTemplate>
                         <ViewCell Height="50">
                             <ViewCell.View>
-                            <Grid>
+                            <Grid
+
+                                 local2:PressedEffect.LongPressCommand="{Binding Source={x:Reference RemoteDeviceConnectionListView}, Path=BindingContext.LongPressCommand}"
+                                    local2:PressedEffect.LongPressCommandParameter="{Binding .}"
+                                    local2:PressedEffect.ShortPressCommand="{Binding Source={x:Reference RemoteDeviceConnectionListView}, Path=BindingContext.ShortPressCommand}"
+                                    local2:PressedEffect.ShortPressCommandParameter="{Binding .}"
+                                    RowSpacing="0">
+
+                                <Grid.Effects>
+                                    <local2:PressedEffect />
+                                </Grid.Effects>
 
                                 <Grid.RowDefinitions>
                                         <RowDefinition Height="50" />

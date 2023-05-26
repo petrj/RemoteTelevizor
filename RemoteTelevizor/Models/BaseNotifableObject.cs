@@ -9,6 +9,9 @@ namespace RemoteTelevizor.Models
     public class BaseViewModel : INotifyPropertyChanged
     {
         public const string MSG_ToastMessage = "ToastMessage";
+        public const string MSG_HideFlyoutPage = "HideFlyoutPage";
+        public const string MSG_SelectRemoteDevice = "SelectRemoteDevice";
+
 
         private bool _isBusy = false;
 

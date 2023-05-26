@@ -4,6 +4,7 @@ using RemoteTelevizor;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using RemoteTelevizor.ViewModels;
 
 namespace RemoteTelevizor
 {
@@ -17,6 +18,16 @@ namespace RemoteTelevizor
         {
             InitializeComponent();
 
+            MessagingCenter.Subscribe<RemoteDeviceConnection>(this, RemoteDeviceViewModel.MSG_SelectRemoteDevice, (device) =>
+            {
+                Connection = device;
+            });
+
+            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_HideFlyoutPage, (msg) =>
+            {
+                AssociatedFlyoutPage.IsPresented = false;
+            });
+
             _flyoutPage = new FlyoutPage()
             {
                 Title = "Remote Televizor"
@@ -24,7 +35,7 @@ namespace RemoteTelevizor
 
             _listPage = new ListPage(loggingService, appData);
             _tabbedPage = new MainTabbedPage(loggingService, appData);
-            _listPage.ParentPage = this;
+
 
             _flyoutPage.Flyout = _listPage;
             _flyoutPage.Detail = _tabbedPage;

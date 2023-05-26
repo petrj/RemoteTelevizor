@@ -42,12 +42,19 @@ namespace RemoteTelevizor.ViewModels
             ShortPressCommand = new Command(ShortPress);
         }
 
-        private void LongPress(object item)
+        private async void LongPress(object item)
         {
+            SelectedItem = item as RemoteDeviceConnection;
+            MessagingCenter.Send(SelectedItem, BaseViewModel.MSG_SelectRemoteDevice);
+            await ShowMenu();
         }
 
-        private void ShortPress(object item)
+        private async void ShortPress(object item)
         {
+            SelectedItem = item as RemoteDeviceConnection;
+
+            MessagingCenter.Send(SelectedItem, BaseViewModel.MSG_SelectRemoteDevice);
+            MessagingCenter.Send(string.Empty, BaseViewModel.MSG_HideFlyoutPage);
         }
 
         private async Task ShowMenu()

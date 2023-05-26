@@ -14,8 +14,6 @@ namespace RemoteTelevizor
         private IAppData _appData;
         private DialogService _dialogService;
 
-        public App ParentPage { get; set; }
-
         public ListPage(ILoggingService loggingService, IAppData appData)
         {
             InitializeComponent();
@@ -53,12 +51,6 @@ namespace RemoteTelevizor
                     _viewModel.SelectedItem = null;
                     _viewModel.SelectedItem = item;
                 });
-        }
-
-        private async void Item_Tapped(object sender, ItemTappedEventArgs e)
-        {
-            ParentPage.Connection = e.Item as RemoteDeviceConnection;
-            ParentPage.AssociatedFlyoutPage.IsPresented = false;
         }
 
         private async void OnButtonEdit(object sender, EventArgs e)
