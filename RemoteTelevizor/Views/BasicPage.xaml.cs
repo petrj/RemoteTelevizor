@@ -17,19 +17,29 @@ namespace RemoteTelevizor
     {
         private ILoggingService _loggingService;
         private RemoteDeviceViewModel _viewModel;
-        private IAppData _appData;
-        private Size _lastAllocatedSize = new Size(-1, -1);
-        private DialogService _dialogService;
 
         public BasicPage(ILoggingService loggingService, IAppData appData, DialogService dialogService)
         {
             InitializeComponent();
 
             _loggingService = loggingService;
-            _appData = appData;
-            _dialogService = dialogService;
+
+            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_AnimeButton, (buttonName) =>
+            {
+                Task.Run(async () => { await AnimeButton(buttonName); });
+            });
 
             BindingContext = _viewModel = new RemoteDeviceViewModel(loggingService, dialogService);
+        }
+
+        private async Task AnimeButton(string buttonName)
+        {
+            var img = this.FindByName<Image>(buttonName);
+            if (img != null)
+            {
+                await img.ScaleTo(2, 100);
+                await img.ScaleTo(1, 100);
+            }
         }
 
         public RemoteDeviceConnection Connection
@@ -76,14 +86,6 @@ namespace RemoteTelevizor
             await _viewModel.SendKey(Android.Views.Keycode.DpadRight.ToString());
         }
 
-        private async void OnButtonOK(object sender, EventArgs e)
-        {
-            await ButtonOKFrame.ScaleTo(2, 100);
-            await ButtonOKFrame.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.Enter.ToString());
-        }
-
         private async void OnButtonVolumeUp(object sender, EventArgs e)
         {
             await VolumeUpLabel.ScaleTo(2, 100);
@@ -100,34 +102,42 @@ namespace RemoteTelevizor
             await _viewModel.SendKey(Android.Views.Keycode.VolumeDown.ToString());
         }
 
-        private async void OnButtonEscape(object sender, EventArgs e)
-        {
-            await ImageBack.ScaleTo(2, 100);
-            await ImageBack.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.Escape.ToString());
-        }
-
         protected override void OnSizeAllocated(double width, double height)
         {
-            _loggingService.Info($"OnSizeAllocated: {width}/{height}");
-
             base.OnSizeAllocated(width, height);
 
             if (_viewModel == null)
                 return;
 
-            if (_lastAllocatedSize.Width == width &&
-                _lastAllocatedSize.Height == height)
+            if (_viewModel.LastAllocatedSizeChanged(width, height))
             {
-                // no size changed
+                _viewModel.SetViewAbsoluteLayoutBySize(RemoteStackLayout);
+                RefreshGUI();
+            }
+        }
+
+        public void RefreshGUI()
+        {
+            _loggingService.Info($"RefreshGUI");
+
+            if (_viewModel == null)
                 return;
+
+            // button up
+
+            var width = 0.75;
+            var height = 0.75;
+
+            if (_viewModel.Portrait)
+            {
+                height = width * _viewModel.Ratio;
             }
 
-            _lastAllocatedSize.Width = width;
-            _lastAllocatedSize.Height = height;
-
-            RemoteDeviceViewModel.SetViewAbsoluteLayoutBySize(RemoteStackLayout, width, height);
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                AbsoluteLayout.SetLayoutFlags(AbsoluteLayoutArrows, AbsoluteLayoutFlags.All);
+                AbsoluteLayout.SetLayoutBounds(AbsoluteLayoutArrows, new Rectangle(0.5, 0.5, width, height));
+            });
         }
 
     }

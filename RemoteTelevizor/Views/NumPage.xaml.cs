@@ -62,7 +62,7 @@ namespace RemoteTelevizor
             _lastAllocatedSize.Width = width;
             _lastAllocatedSize.Height = height;
 
-            RemoteDeviceViewModel.SetViewAbsoluteLayoutBySize(RemoteStackLayout, width, height);
+            _viewModel.SetViewAbsoluteLayoutBySize(RemoteStackLayout);
         }
 
         private async void OnButton0(object sender, EventArgs e)

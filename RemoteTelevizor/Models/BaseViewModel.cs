@@ -12,6 +12,8 @@ namespace RemoteTelevizor.Models
         public const string MSG_HideFlyoutPage = "HideFlyoutPage";
         public const string MSG_SelectRemoteDevice = "SelectRemoteDevice";
 
+        public const string MSG_AnimeButton = "AnimeButton";
+
         public const string MSG_EditRemoteDevice = "EditRemoteDevice";
 
         private bool _isBusy = false;
