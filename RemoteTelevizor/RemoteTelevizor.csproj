@@ -29,8 +29,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\NavPage.xaml.cs">
-      <DependentUpon>NavPage.xaml</DependentUpon>
+    <Compile Update="Views\BasicPage.xaml.cs">
+      <DependentUpon>BasicPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\SpecialPage.xaml.cs">
+      <DependentUpon>SpecialPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\RemoteDeviceConnectionPage.xaml.cs">
       <DependentUpon>RemoteDeviceConnectionPage.xaml</DependentUpon>
@@ -44,7 +47,7 @@
     <EmbeddedResource Update="Views\MainTabbedPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MultiMediaPage.xaml">
+    <EmbeddedResource Update="Views\SpecialPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\NumPage.xaml">

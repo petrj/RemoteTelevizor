@@ -14,14 +14,14 @@ using Xamarin.Forms.Xaml;
 namespace RemoteTelevizor
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MultiMediaPage : ContentPage
+    public partial class SpecialPage : ContentPage
     {
         private ILoggingService _loggingService;
         private RemoteDeviceViewModel _viewModel;
         private IAppData _appData;
         private Size _lastAllocatedSize = new Size(-1, -1);
 
-        public MultiMediaPage(ILoggingService loggingService, IAppData appData, DialogService dialogService)
+        public SpecialPage(ILoggingService loggingService, IAppData appData, DialogService dialogService)
         {
             InitializeComponent();
 
@@ -41,6 +41,22 @@ namespace RemoteTelevizor
             {
                 _viewModel.SetConnection(value);
             }
+        }
+
+        private async void OnButtonMenu(object sender, EventArgs e)
+        {
+            await ImageMenu.ScaleTo(2, 100);
+            await ImageMenu.ScaleTo(1, 100);
+
+            await _viewModel.SendKey(Android.Views.Keycode.Menu.ToString());
+        }
+
+        private async void OnButtonMute(object sender, EventArgs e)
+        {
+            await ImageMute.ScaleTo(2, 100);
+            await ImageMute.ScaleTo(1, 100);
+
+            await _viewModel.SendKey(Android.Views.Keycode.Mute.ToString());
         }
 
         protected override void OnSizeAllocated(double width, double height)

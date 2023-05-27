@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RemoteTelevizor.NavPage">
+             x:Class="RemoteTelevizor.BasicPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -92,29 +92,23 @@
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Image x:Name="ImageBack" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.0,0.15,0.3,0.15" AbsoluteLayout.LayoutFlags="All" />
-                <Label AbsoluteLayout.LayoutBounds="0.0,0.15,0.3,0.15" AbsoluteLayout.LayoutFlags="All"  Text="Back" Style="{DynamicResource LabelStyle}" >
+                <Image x:Name="ImageBack" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.05,0.125,0.2,0.15" AbsoluteLayout.LayoutFlags="All" />
+                <Label AbsoluteLayout.LayoutBounds="0.05,0.125,0.2,0.15" AbsoluteLayout.LayoutFlags="All"  Text="&#x232B;" Style="{DynamicResource LabelStyle}" >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnButtonEscape" NumberOfTapsRequired="1" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Image x:Name="ImageMenu" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.95,0.15,0.3,0.15" AbsoluteLayout.LayoutFlags="All" />
-                <Label AbsoluteLayout.LayoutBounds="0.95,0.15,0.3,0.15" AbsoluteLayout.LayoutFlags="All"  Text="Menu" Style="{DynamicResource LabelStyle}" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnButtonMenu" NumberOfTapsRequired="1" />
-                    </Label.GestureRecognizers>
-                </Label>
 
-                <Image x:Name="ImageVolumeUp" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.95,0.95,0.15,0.4" AbsoluteLayout.LayoutFlags="All" />
-                <Label AbsoluteLayout.LayoutBounds="0.95,0.95,0.15,0.4" AbsoluteLayout.LayoutFlags="All"  Text="Vol" Style="{DynamicResource LabelStyle}" />
+                <Image x:Name="ImageVolumeUp" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.95,1,0.15,0.4" AbsoluteLayout.LayoutFlags="All" />
+                <Label AbsoluteLayout.LayoutBounds="0.95,1,0.15,0.4" AbsoluteLayout.LayoutFlags="All"  Text="Vol" Style="{DynamicResource LabelStyle}" />
 
-                <Label x:Name="VolumeUpLabel" AbsoluteLayout.LayoutBounds="0.95,0.75,0.15,0.3" AbsoluteLayout.LayoutFlags="All"  Text="+" Style="{DynamicResource LabelStyle}" >
+                <Label x:Name="VolumeUpLabel" AbsoluteLayout.LayoutBounds="0.95,0.80,0.15,0.3" AbsoluteLayout.LayoutFlags="All"  Text="+" Style="{DynamicResource LabelStyle}" >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnButtonVolumeUp" NumberOfTapsRequired="1" />
                     </Label.GestureRecognizers>
                 </Label>
-                <Label x:Name="VolumeDownLabel" AbsoluteLayout.LayoutBounds="0.95,1.0,0.15,0.3" AbsoluteLayout.LayoutFlags="All"  Text="-" Style="{DynamicResource LabelStyle}" >
+                <Label x:Name="VolumeDownLabel" AbsoluteLayout.LayoutBounds="0.95,1.05,0.15,0.3" AbsoluteLayout.LayoutFlags="All"  Text="-" Style="{DynamicResource LabelStyle}" >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnButtonVolumeDown" NumberOfTapsRequired="1" />
                     </Label.GestureRecognizers>

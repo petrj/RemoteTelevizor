@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RemoteTelevizor.MultiMediaPage">
+             x:Class="RemoteTelevizor.SpecialPage">
 
 
     <ContentPage.Resources>
@@ -71,6 +71,21 @@
                             <TapGestureRecognizer Tapped="OnButtonTest" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
+
+                    <Image x:Name="ImageMenu" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.95,0.125,0.3,0.15" AbsoluteLayout.LayoutFlags="All" />
+                    <Label AbsoluteLayout.LayoutBounds="0.95,0.125,0.3,0.15" AbsoluteLayout.LayoutFlags="All"  Text="Menu" Style="{DynamicResource LabelStyle}" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnButtonMenu" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Image x:Name="ImageMute"  Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.7,0.95,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
+                    <Label AbsoluteLayout.LayoutBounds="0.7,0.95,0.15,0.15" AbsoluteLayout.LayoutFlags="All"  Text="&#x1F507;" Style="{DynamicResource LabelStyle}" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnButtonMute" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
 
                 </AbsoluteLayout>
 

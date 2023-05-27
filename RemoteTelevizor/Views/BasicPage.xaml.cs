@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace RemoteTelevizor
 {
-    public partial class NavPage : ContentPage
+    public partial class BasicPage : ContentPage
     {
         private ILoggingService _loggingService;
         private RemoteDeviceViewModel _viewModel;
@@ -21,7 +21,7 @@ namespace RemoteTelevizor
         private Size _lastAllocatedSize = new Size(-1, -1);
         private DialogService _dialogService;
 
-        public NavPage(ILoggingService loggingService, IAppData appData, DialogService dialogService)
+        public BasicPage(ILoggingService loggingService, IAppData appData, DialogService dialogService)
         {
             InitializeComponent();
 
@@ -106,14 +106,6 @@ namespace RemoteTelevizor
             await ImageBack.ScaleTo(1, 100);
 
             await _viewModel.SendKey(Android.Views.Keycode.Escape.ToString());
-        }
-
-        private async void OnButtonMenu(object sender, EventArgs e)
-        {
-            await ImageMenu.ScaleTo(2, 100);
-            await ImageMenu.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.Menu.ToString());
         }
 
         protected override void OnSizeAllocated(double width, double height)
