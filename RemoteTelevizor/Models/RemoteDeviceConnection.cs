@@ -1,17 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace RemoteTelevizor.Models
 {
-    public class RemoteDeviceConnection
+    public class RemoteDeviceConnection : BaseNotifableObject
     {
         public string Name { get; set; }
 
         public string IP { get; set; }
         public int Port { get; set; }
         public string SecurityKey { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Name} ({IP}:{Port})";
+        }
 
         public static RemoteDeviceConnection CloneFrom(RemoteDeviceConnection remoteDeviceConnection)
         {
@@ -30,6 +36,14 @@ namespace RemoteTelevizor.Models
             IP = remoteDeviceConnection.IP;
             Port = remoteDeviceConnection.Port;
             SecurityKey = remoteDeviceConnection.SecurityKey;
+        }
+
+        public void NotifyPropertyChange()
+        {
+            OnPropertyChanged(nameof(Name));
+            OnPropertyChanged(nameof(IP));
+            OnPropertyChanged(nameof(Port));
+            OnPropertyChanged(nameof(SecurityKey));
         }
     }
 }

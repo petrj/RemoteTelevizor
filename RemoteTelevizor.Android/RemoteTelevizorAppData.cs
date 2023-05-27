@@ -59,16 +59,16 @@ namespace RemoteTelevizor.Droid
             }
             set
             {
-                SaveConnections(value);
                 _connections = value;
+                SaveConnections();
             }
         }
 
-        private void SaveConnections(ObservableCollection<RemoteDeviceConnection> connections)
+        public void SaveConnections()
         {
             try
             {
-                var devicesString = JsonConvert.SerializeObject(connections);
+                var devicesString = JsonConvert.SerializeObject(_connections);
 
                 SavePersistingSettingValue<string>("RemoteDeviceConnections", devicesString);
             }

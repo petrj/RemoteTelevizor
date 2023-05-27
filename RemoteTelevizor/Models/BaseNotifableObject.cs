@@ -6,16 +6,8 @@ using System.Text;
 
 namespace RemoteTelevizor.Models
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseNotifableObject : INotifyPropertyChanged
     {
-        public const string MSG_ToastMessage = "ToastMessage";
-        public const string MSG_HideFlyoutPage = "HideFlyoutPage";
-        public const string MSG_SelectRemoteDevice = "SelectRemoteDevice";
-
-        public const string MSG_EditRemoteDevice = "EditRemoteDevice";
-
-        private bool _isBusy = false;
-
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",
             Action onChanged = null)
@@ -29,17 +21,7 @@ namespace RemoteTelevizor.Models
             return true;
         }
 
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set
-            {
-                OnPropertyChanged(nameof(IsBusy));
-            }
-        }
-
         #region INotifyPropertyChanged
-
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
@@ -49,7 +31,6 @@ namespace RemoteTelevizor.Models
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         #endregion
     }
 }

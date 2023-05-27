@@ -49,8 +49,8 @@ namespace RemoteTelevizor.ViewModels
         private async Task LongPress(object item)
         {
             SelectedItem = item as RemoteDeviceConnection;
-
             MessagingCenter.Send(SelectedItem, BaseViewModel.MSG_SelectRemoteDevice);
+
             await ShowMenu(SelectedItem);
         }
 
@@ -65,6 +65,8 @@ namespace RemoteTelevizor.ViewModels
         private async Task ShowMenu(object item)
         {
             SelectedItem = item as RemoteDeviceConnection;
+
+            MessagingCenter.Send(SelectedItem, BaseViewModel.MSG_SelectRemoteDevice);
 
             var actions = new List<string>();
             actions.Add("Edit");
@@ -90,32 +92,30 @@ namespace RemoteTelevizor.ViewModels
                 {
                     await _semaphoreSlim.WaitAsync();
 
-                    Device.BeginInvokeOnMainThread(delegate { SelectedItem = null; });
-
                     //RemoteDevices.Remove(remoteDeviceConnection);
                     _appData.Connections.Remove(remoteDeviceConnection);
-                }
+                    _appData.SaveConnections();
+                    }
                 finally
                 {
                     _semaphoreSlim.Release();
 
                     await Refresh();
 
-                    if (RemoteDevices.Count > 0)
-                    {
-                        Device.BeginInvokeOnMainThread(delegate { SelectedItem = RemoteDevices[0]; });
-                    }
-
                     MessagingCenter.Send(SelectedItem, BaseViewModel.MSG_SelectRemoteDevice);
                 }
             }
         }
 
-        private async Task Refresh()
+        public async Task Refresh()
         {
             try
             {
                 await _semaphoreSlim.WaitAsync();
+
+                string selectedDevice = SelectedItem == null ? null : SelectedItem.ToString();
+                SelectedItem = null;
+                RemoteDeviceConnection first = null;
 
                 IsBusy = true;
 
@@ -123,14 +123,30 @@ namespace RemoteTelevizor.ViewModels
 
                 foreach (var device in _appData.Connections)
                 {
+                    if (first == null)
+                    {
+                        first = device;
+                    }
                     RemoteDevices.Add(device);
+
+                    if (device.ToString() == selectedDevice)
+                    {
+                        SelectedItem = device;
+                    }
+                }
+
+                if (SelectedItem == null)
+                {
+                    SelectedItem = first;
                 }
             }
             finally
             {
+                _semaphoreSlim.Release();
+
                 IsBusy = false;
 
-                _semaphoreSlim.Release();
+                OnPropertyChanged(nameof(RemoteDevices));
             }
         }
 
@@ -161,6 +177,10 @@ namespace RemoteTelevizor.ViewModels
                  _selectedItem = value;
 
                 OnPropertyChanged(nameof(SelectedItem));
+                if (SelectedItem != null)
+                {
+                    SelectedItem.NotifyPropertyChange();
+                }
 
                 OnPropertyChanged(nameof(EditButtonVisible));
                 OnPropertyChanged(nameof(DeleteButtonVisible));

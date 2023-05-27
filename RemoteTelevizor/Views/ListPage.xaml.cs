@@ -25,7 +25,7 @@ namespace RemoteTelevizor
 
             MessagingCenter.Subscribe<RemoteDeviceConnection>(this, RemoteDeviceViewModel.MSG_EditRemoteDevice, (device) =>
             {
-                Task.Run(async () => await EditRemoteDvice(device));
+                Task.Run(async () => await EditRemoteDevice(device));
             });
 
             BindingContext = _viewModel = new ListPageViewModel(loggingService, _appData, _dialogService);
@@ -59,27 +59,23 @@ namespace RemoteTelevizor
                 });
         }
 
-        private async Task EditRemoteDvice(RemoteDeviceConnection remoteDeviceConnection)
+        private async Task EditRemoteDevice(RemoteDeviceConnection remoteDeviceConnection)
         {
             var remoteDeviceConnectionPage = new RemoteDeviceConnectionPage(_loggingService);
 
             remoteDeviceConnectionPage.Connection = RemoteDeviceConnection.CloneFrom(remoteDeviceConnection);
 
-            remoteDeviceConnectionPage.Disappearing += delegate
+            remoteDeviceConnectionPage.Disappearing += async delegate
             {
                 _loggingService.Info("RemoteDeviceConnectionPage Disappearing");
 
                 if (remoteDeviceConnectionPage.Confirmed)
                 {
                     remoteDeviceConnection.UpdateFrom(remoteDeviceConnectionPage.Connection);
-                    //_appData.Connections.Add
-                    //_appData.Connections = _viewModel.RemoteDevices;
-                } else
-                {
+                    _appData.SaveConnections();
 
+                    MessagingCenter.Send(remoteDeviceConnection, BaseViewModel.MSG_SelectRemoteDevice);
                 }
-
-                _viewModel.RefreshCommand.Execute(this);
             };
 
             Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(remoteDeviceConnectionPage));
@@ -104,7 +100,10 @@ namespace RemoteTelevizor
                 if (remoteDeviceConnectionPage.Confirmed)
                 {
                     _appData.Connections.Add(remoteDeviceConnectionPage.Connection);
+                    _appData.SaveConnections();
+                    _viewModel.SelectedItem = remoteDeviceConnectionPage.Connection;
                     _viewModel.RefreshCommand.Execute(null);
+                    MessagingCenter.Send(remoteDeviceConnectionPage.Connection, BaseViewModel.MSG_SelectRemoteDevice);
                 }
             };
 
