@@ -3,6 +3,7 @@ using RemoteTelevizor.Models;
 using RemoteTelevizor.Services;
 using RemoteTelevizor.ViewModels;
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace RemoteTelevizor
@@ -21,6 +22,11 @@ namespace RemoteTelevizor
             _appData = appData;
 
             _dialogService = new DialogService(this);
+
+            MessagingCenter.Subscribe<RemoteDeviceConnection>(this, RemoteDeviceViewModel.MSG_EditRemoteDevice, (device) =>
+            {
+                Task.Run(async () => await EditRemoteDvice(device));
+            });
 
             BindingContext = _viewModel = new ListPageViewModel(loggingService, _appData, _dialogService);
         }
@@ -53,11 +59,11 @@ namespace RemoteTelevizor
                 });
         }
 
-        private async void OnButtonEdit(object sender, EventArgs e)
+        private async Task EditRemoteDvice(RemoteDeviceConnection remoteDeviceConnection)
         {
             var remoteDeviceConnectionPage = new RemoteDeviceConnectionPage(_loggingService);
 
-            remoteDeviceConnectionPage.Connection = _viewModel.SelectedItem;
+            remoteDeviceConnectionPage.Connection = RemoteDeviceConnection.CloneFrom(remoteDeviceConnection);
 
             remoteDeviceConnectionPage.Disappearing += delegate
             {
@@ -65,37 +71,22 @@ namespace RemoteTelevizor
 
                 if (remoteDeviceConnectionPage.Confirmed)
                 {
-                    _appData.Connections = _viewModel.RemoteDevices;
+                    remoteDeviceConnection.UpdateFrom(remoteDeviceConnectionPage.Connection);
+                    //_appData.Connections.Add
+                    //_appData.Connections = _viewModel.RemoteDevices;
                 } else
                 {
-                    _viewModel.SelectedItem = null;
-                    _viewModel.RefreshCommand.Execute(this);
+
                 }
+
+                _viewModel.RefreshCommand.Execute(this);
             };
 
             Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(remoteDeviceConnectionPage));
         }
 
-        private async void OnButtonDelete(object sender, EventArgs e)
-        {
-            if (await _dialogService.Confirm($"Are you sure to delete selected remote device?"))
-            {
-                _viewModel.RemoteDevices.Remove(_viewModel.SelectedItem);
-                _appData.Connections = _viewModel.RemoteDevices;
-
-                _viewModel.SelectedItem = null;
-                _viewModel.RefreshCommand.Execute(this);
-            }
-        }
-
-        private async void OnButtonShowMenu(object sender, EventArgs e)
-        {
-            _viewModel.MenuCommand.Execute(null);
-        }
-
         private async void OnButtonAdd(object sender, EventArgs e)
         {
-
             var remoteDeviceConnectionPage = new RemoteDeviceConnectionPage(_loggingService);
 
             remoteDeviceConnectionPage.Connection = new RemoteDeviceConnection()

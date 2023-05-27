@@ -71,7 +71,7 @@
         </Grid>
 
         <Frame x:Name="AddButtonFrame"  Style="{DynamicResource ActionButtonFrameStyle}" HorizontalOptions="End">
-                <Label Text="Add" Style="{DynamicResource ButtonLabelStyle}"/>
+                <Label Text="Save" Style="{DynamicResource ButtonLabelStyle}"/>
 
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnButtonAdd" NumberOfTapsRequired="1" />

@@ -64,7 +64,6 @@ namespace RemoteTelevizor.Droid
             }
         }
 
-
         private void SaveConnections(ObservableCollection<RemoteDeviceConnection> connections)
         {
             try

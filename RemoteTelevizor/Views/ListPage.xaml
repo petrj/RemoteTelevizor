@@ -75,11 +75,11 @@
 
             <Label Grid.Row="0" Grid.Column="0" Text="Devices" Style="{DynamicResource CaptionStyle}"/>
 
-            <Frame Grid.Row="0" Grid.Column="1" x:Name="ButtonaDDFrame"  Style="{DynamicResource ActionButtonFrameStyle}">
+            <Frame Grid.Row="0" Grid.Column="1" x:Name="ButtonaAddFrame"  Style="{DynamicResource ActionButtonFrameStyle}">
                 <Label Text="&#xA0;&#xA0;+&#xA0;&#xA0;" Style="{DynamicResource ButtonLabelStyle}"/>
 
                 <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnButtonShowMenu" NumberOfTapsRequired="1" />
+                    <TapGestureRecognizer Tapped="OnButtonAdd" NumberOfTapsRequired="1" />
                 </Frame.GestureRecognizers>
 
             </Frame>
@@ -125,7 +125,7 @@
 
                                     <Label Grid.Row="0" Grid.Column="1" Text="&#xA0;&#xA0;&#x22EE;&#xA0;&#xA0;" Style="{DynamicResource LabelStyle}">
                                         <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnButtonShowMenu" NumberOfTapsRequired="1" />
+                                        <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding Source={x:Reference RemoteDeviceConnectionListView}, Path=BindingContext.MenuCommand}" CommandParameter="{Binding .}" />
                                         </Label.GestureRecognizers>
                                     </Label>
 
@@ -135,13 +135,7 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-
             </ListView>
-
-        <Button Text ="Test">
-
-        </Button>
-
     </StackLayout>
 
 </ContentPage>
