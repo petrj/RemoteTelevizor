@@ -34,5 +34,10 @@ namespace RemoteTelevizor.Services
             var dp = DialogPage == null ? Application.Current.MainPage : DialogPage;
             return await dp.DisplayActionSheet(title, cancel, null, options.ToArray());
         }
+
+        public async Task<string> GetText(string message, string title, string defaultValue = "")
+        {
+            return await DialogPage.DisplayPromptAsync(title, message, initialValue: defaultValue, keyboard: Xamarin.Forms.Keyboard.Text);
+        }
     }
 }

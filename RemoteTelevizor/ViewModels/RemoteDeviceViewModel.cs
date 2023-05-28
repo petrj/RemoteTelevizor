@@ -1,5 +1,6 @@
 ﻿using Android.Content.Res;
 using Android.InputMethodServices;
+using Android.Views;
 using LoggerService;
 using RemoteAccess;
 using RemoteTelevizor.Models;
@@ -184,7 +185,34 @@ namespace RemoteTelevizor.ViewModels
                     MessagingCenter.Send("ImageBlue", BaseViewModel.MSG_AnimeButton);
                     await SendKey(Android.Views.Keycode.ProgBlue.ToString());
                     break;
+
+                case "Txt":
+                    MessagingCenter.Send("ImageText", BaseViewModel.MSG_AnimeButton);
+                    await SendText();
+                    break;
             }
+        }
+
+        private async Task SendText()
+        {
+            if (_currentConnection == null)
+            {
+                return;
+            }
+
+            var txt = await _dialogService.GetText("ABC", "Send text");
+
+            var msg = new RemoteAccessMessage()
+            {
+                command = "sendText",
+                commandArg1 = txt
+            };
+
+#if DEBUG
+            MessagingCenter.Send($"Sending text: {txt}", RemoteDeviceViewModel.MSG_ToastMessage);
+#endif
+
+            await Task.Run(() => { _remoteAccessService.SendMessage(msg); });
         }
 
         public RemoteDeviceConnection Connection
@@ -206,7 +234,6 @@ namespace RemoteTelevizor.ViewModels
             _remoteAccessService.SetConnection(connection.IP, connection.Port, connection.SecurityKey);
 
             OnPropertyChanged(nameof(DeviceName));
-            OnPropertyChanged(nameof(IPPort));
         }
 
         public string DeviceName
@@ -219,19 +246,6 @@ namespace RemoteTelevizor.ViewModels
                 }
 
                 return _currentConnection.Name;
-            }
-        }
-
-        public string IPPort
-        {
-            get
-            {
-                if (_currentConnection == null)
-                {
-                    return "";
-                }
-
-                return _currentConnection.IP + ":" + _currentConnection.Port.ToString();
             }
         }
 
@@ -255,7 +269,7 @@ namespace RemoteTelevizor.ViewModels
             await Task.Run(() => { _remoteAccessService.SendMessage(msg); });
         }
 
-        public void SetViewAbsoluteLayoutBySize(View view)
+        public void SetViewAbsoluteLayoutBySize(Xamarin.Forms.View view)
         {
 
             if (Portrait)

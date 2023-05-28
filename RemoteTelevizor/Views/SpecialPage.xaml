@@ -63,11 +63,17 @@
                         </Label.GestureRecognizers>
                     </Label>
 
-
                     <Image x:Name="ImageInfoButton" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.5,0.5,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
                     <Label AbsoluteLayout.LayoutBounds="0.5,0.5,0.15,0.15" AbsoluteLayout.LayoutFlags="All"  Text="&#x24d8;" Style="{DynamicResource LabelStyle}" >
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Info" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Image x:Name="ImageText" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.5,0.7,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
+                    <Label AbsoluteLayout.LayoutBounds="0.5,0.7,0.15,0.15" AbsoluteLayout.LayoutFlags="All"  Text="&#x270D;" Style="{DynamicResource LabelStyle}" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Txt" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
 
