@@ -28,7 +28,22 @@ namespace RemoteTelevizor
             _loggingService = loggingService;
             _appData = appData;
 
+            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_AnimeButton, (buttonName) =>
+            {
+                Task.Run(async () => { await AnimeButton(buttonName); });
+            });
+
             BindingContext = _viewModel = new RemoteDeviceViewModel(loggingService, dialogService);
+        }
+
+        private async Task AnimeButton(string buttonName)
+        {
+            var img = this.FindByName<Image>(buttonName);
+            if (img != null)
+            {
+                await img.ScaleTo(2, 100);
+                await img.ScaleTo(1, 100);
+            }
         }
 
         public RemoteDeviceConnection Connection
@@ -41,22 +56,6 @@ namespace RemoteTelevizor
             {
                 _viewModel.SetConnection(value);
             }
-        }
-
-        private async void OnButtonMenu(object sender, EventArgs e)
-        {
-            await ImageMenu.ScaleTo(2, 100);
-            await ImageMenu.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.Menu.ToString());
-        }
-
-        private async void OnButtonMute(object sender, EventArgs e)
-        {
-            await ImageMute.ScaleTo(2, 100);
-            await ImageMute.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.Mute.ToString());
         }
 
         protected override void OnSizeAllocated(double width, double height)
@@ -81,14 +80,6 @@ namespace RemoteTelevizor
             _viewModel.SetViewAbsoluteLayoutBySize(RemoteStackLayout);
         }
 
-        private async void OnButtonTest(object sender, EventArgs e)
-        {
-            await ImageTest.ScaleTo(2, 100);
-            await ImageTest.ScaleTo(1, 100);
 
-            await _viewModel.SendKey(Android.Views.Keycode.VolumeUp.ToString());
-
-            //await _viewModel.SendKey(Android.Views.Keycode.Enter.ToString());
-        }
     }
 }

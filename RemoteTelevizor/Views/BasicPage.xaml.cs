@@ -54,54 +54,6 @@ namespace RemoteTelevizor
             }
         }
 
-        private async void OnButtonDown(object sender, EventArgs e)
-        {
-            await ButtonDownFrame.ScaleTo(2, 100);
-            await ButtonDownFrame.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.DpadDown.ToString());
-        }
-
-        private async void OnButtonUp(object sender, EventArgs e)
-        {
-            await ButtonUpFrame.ScaleTo(2, 100);
-            await ButtonUpFrame.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.DpadUp.ToString());
-        }
-
-        private async void OnButtonLeft(object sender, EventArgs e)
-        {
-            await ButtonLeftFrame.ScaleTo(2, 100);
-            await ButtonLeftFrame.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.DpadLeft.ToString());
-        }
-
-        private async void OnButtonRight(object sender, EventArgs e)
-        {
-            await ButtonRightFrame.ScaleTo(2, 100);
-            await ButtonRightFrame.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.DpadRight.ToString());
-        }
-
-        private async void OnButtonVolumeUp(object sender, EventArgs e)
-        {
-            await VolumeUpLabel.ScaleTo(2, 100);
-            await VolumeUpLabel.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.VolumeUp.ToString());
-        }
-
-        private async void OnButtonVolumeDown(object sender, EventArgs e)
-        {
-            await VolumeDownLabel.ScaleTo(2, 100);
-            await VolumeDownLabel.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.VolumeDown.ToString());
-        }
-
         protected override void OnSizeAllocated(double width, double height)
         {
             base.OnSizeAllocated(width, height);
@@ -125,8 +77,8 @@ namespace RemoteTelevizor
 
             // button up
 
-            var width = 0.75;
-            var height = 0.75;
+            var width = 0.5;
+            var height = 0.5;
 
             if (_viewModel.Portrait)
             {

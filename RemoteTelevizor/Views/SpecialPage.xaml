@@ -40,12 +40,6 @@
 
                 <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
 
-                    <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.2,0.2,0.2" AbsoluteLayout.LayoutFlags="All" />
-
-                    <Label AbsoluteLayout.LayoutBounds="0.5,0.2,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="&#x25B6;" Style="{DynamicResource LabelStyle}" >
-                    </Label>
-
-
                     <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.5,0.2,0.2" AbsoluteLayout.LayoutFlags="All" />
 
                     <Label AbsoluteLayout.LayoutBounds="0.5,0.5,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="&#x23F9;" Style="{DynamicResource LabelStyle}" >
@@ -61,28 +55,26 @@
                     <Label AbsoluteLayout.LayoutBounds="0.8,0.5,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="&#x23E9;" Style="{DynamicResource LabelStyle}" >
                     </Label>
 
-                    <Image x:Name="ImageTest" Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.8,0.2,0.2" AbsoluteLayout.LayoutFlags="All">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButtonTest" NumberOfTapsRequired="1" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                    <Label AbsoluteLayout.LayoutBounds="0.5,0.8,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="Test2" Style="{DynamicResource LabelStyle}" >
+
+
+                    <Image x:Name="ImageInfoButton" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.05,0.1,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
+                    <Label AbsoluteLayout.LayoutBounds="0.05,0.1,0.15,0.15" AbsoluteLayout.LayoutFlags="All"  Text="Info" Style="{DynamicResource LabelStyle}" >
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButtonTest" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Info" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
 
-                    <Image x:Name="ImageMenu" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.95,0.125,0.3,0.15" AbsoluteLayout.LayoutFlags="All" />
-                    <Label AbsoluteLayout.LayoutBounds="0.95,0.125,0.3,0.15" AbsoluteLayout.LayoutFlags="All"  Text="Menu" Style="{DynamicResource LabelStyle}" >
+                    <Image x:Name="ImagePageUp" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.05,0.75,0.3,0.15" AbsoluteLayout.LayoutFlags="All" />
+                    <Label AbsoluteLayout.LayoutBounds="0.05,0.75,0.3,0.15" AbsoluteLayout.LayoutFlags="All"  Text="PageUp" Style="{DynamicResource LabelStyle}" >
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButtonMenu" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="PageUp" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
 
-                    <Image x:Name="ImageMute"  Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.7,0.95,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
-                    <Label AbsoluteLayout.LayoutBounds="0.7,0.95,0.15,0.15" AbsoluteLayout.LayoutFlags="All"  Text="&#x1F507;" Style="{DynamicResource LabelStyle}" >
+                    <Image x:Name="ImagePagDown" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.05,0.95,0.3,0.15" AbsoluteLayout.LayoutFlags="All" />
+                    <Label AbsoluteLayout.LayoutBounds="0.05,0.95,0.3,0.15" AbsoluteLayout.LayoutFlags="All"  Text="PageDown" Style="{DynamicResource LabelStyle}" >
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButtonMute" NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="PageDown" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
 

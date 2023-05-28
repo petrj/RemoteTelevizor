@@ -107,6 +107,48 @@ namespace RemoteTelevizor.ViewModels
                     MessagingCenter.Send("ImageOK", BaseViewModel.MSG_AnimeButton);
                     await SendKey(Android.Views.Keycode.Enter.ToString());
                     break;
+
+                case "Up":
+                    MessagingCenter.Send("ImageUp", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.DpadUp.ToString());
+                    break;
+                case "Down":
+                    MessagingCenter.Send("ImageDown", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.DpadDown.ToString());
+                    break;
+                case "Left":
+                    MessagingCenter.Send("ImageLeft", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.DpadLeft.ToString());
+                    break;
+                case "Right":
+                    MessagingCenter.Send("ImageRight", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.DpadRight.ToString());
+                    break;
+
+                case "VolUp":
+                    MessagingCenter.Send("ImageVolume", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.VolumeUp.ToString());
+                    break;
+
+                case "VolDown":
+                    MessagingCenter.Send("ImageVolume", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.VolumeDown.ToString());
+                    break;
+
+                case "Play":
+                    MessagingCenter.Send("ImagePlay", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.MediaPlay.ToString());
+                    break;
+
+                case "PageUp":
+                    MessagingCenter.Send("ImagePageUp", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.PageUp.ToString());
+                    break;
+
+                case "PageDown":
+                    MessagingCenter.Send("ImagePageDown", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.PageDown.ToString());
+                    break;
             }
         }
 
