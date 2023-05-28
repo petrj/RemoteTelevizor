@@ -19,13 +19,13 @@ namespace RemoteTelevizor.Droid
     {
         private ObservableCollection<RemoteDeviceConnection> _connections = null;
 
-        public string LastConnectionIP
+        public string LastConnectionIpAndPort
         {
             get
             {
                 try
                 {
-                    return GetPersistingSettingValue<string>("LastConnectionIP");
+                    return GetPersistingSettingValue<string>("LastConnectionIpAndPort");
                 }
                 catch (Exception ex)
                 {
@@ -37,7 +37,7 @@ namespace RemoteTelevizor.Droid
             {
                 try
                 {
-                    SavePersistingSettingValue<string>("LastConnectionIP", value);
+                    SavePersistingSettingValue<string>("LastConnectionIpAndPort", value);
                 }
                 catch (Exception ex)
                 {
@@ -78,17 +78,22 @@ namespace RemoteTelevizor.Droid
             }
         }
 
-        public RemoteDeviceConnection GetConnectionByIP(string ip)
+        public RemoteDeviceConnection GetConnectionByIPAndPort(string ipAndPort)
         {
             foreach (var connection in Connections)
             {
-                if (connection.IP == ip)
+                if (connection.IpAndPort == ipAndPort)
                 {
                     return connection;
                 }
             }
 
             return null;
+        }
+
+        public RemoteDeviceConnection GetConnectionByIPAndPort(string ip, int port)
+        {
+            return GetConnectionByIPAndPort($"{ip}:{port}");
         }
 
         private ObservableCollection<RemoteDeviceConnection> LoadConnections()

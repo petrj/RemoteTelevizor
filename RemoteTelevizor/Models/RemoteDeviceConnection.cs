@@ -19,6 +19,14 @@ namespace RemoteTelevizor.Models
             return $"{Name} ({IP}:{Port})";
         }
 
+        public string IpAndPort
+        {
+            get
+            {
+                return $"{IP}:{Port}";
+            }
+        }
+
         public static RemoteDeviceConnection CloneFrom(RemoteDeviceConnection remoteDeviceConnection)
         {
             var newRemoteDeviceConnection = new RemoteDeviceConnection();

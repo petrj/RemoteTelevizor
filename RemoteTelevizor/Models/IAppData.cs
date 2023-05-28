@@ -9,7 +9,8 @@ namespace RemoteTelevizor.Models
     {
         ObservableCollection<RemoteDeviceConnection> Connections { get; set; }
         void SaveConnections();
-        string LastConnectionIP { get; set; }
-        RemoteDeviceConnection GetConnectionByIP(string ip);
+        string LastConnectionIpAndPort { get; set; }
+        RemoteDeviceConnection GetConnectionByIPAndPort(string ip, int port);
+        RemoteDeviceConnection GetConnectionByIPAndPort(string ipAndPort);
     }
 }

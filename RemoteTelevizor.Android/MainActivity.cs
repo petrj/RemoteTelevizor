@@ -47,7 +47,7 @@ namespace RemoteTelevizor.Droid
 
             var connections = appData.Connections;
 
-            var TVConnection = appData.GetConnectionByIP("10.0.0.18");
+            var TVConnection = appData.GetConnectionByIPAndPort("10.0.0.18", 49152);
             if (TVConnection == null)
             {
                 TVConnection = new RemoteDeviceConnection()
@@ -63,7 +63,7 @@ namespace RemoteTelevizor.Droid
                 appData.Connections = connections;
             }
 
-            var tabletConnection = appData.GetConnectionByIP("10.0.0.231");
+            var tabletConnection = appData.GetConnectionByIPAndPort("10.0.0.231", 49152);
             if (tabletConnection == null)
             {
                 tabletConnection = new RemoteDeviceConnection()
@@ -78,7 +78,6 @@ namespace RemoteTelevizor.Droid
                 appData.Connections = connections;
             }
 
-            appData.LastConnectionIP = "10.0.0.231";
 #endif
 
 

@@ -113,7 +113,7 @@ namespace RemoteTelevizor.ViewModels
             {
                 await _semaphoreSlim.WaitAsync();
 
-                string selectedDevice = SelectedItem == null ? null : SelectedItem.ToString();
+                string selectedDevice = SelectedItem == null ? null : SelectedItem.IpAndPort;
                 SelectedItem = null;
                 RemoteDeviceConnection first = null;
 
@@ -129,7 +129,7 @@ namespace RemoteTelevizor.ViewModels
                     }
                     RemoteDevices.Add(device);
 
-                    if (device.ToString() == selectedDevice)
+                    if (device.IpAndPort == selectedDevice)
                     {
                         SelectedItem = device;
                     }
