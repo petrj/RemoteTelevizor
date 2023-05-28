@@ -141,13 +141,48 @@ namespace RemoteTelevizor.ViewModels
                     break;
 
                 case "PageUp":
-                    MessagingCenter.Send("ImagePageUp", BaseViewModel.MSG_AnimeButton);
+                    MessagingCenter.Send("ImagePageUpDown", BaseViewModel.MSG_AnimeButton);
                     await SendKey(Android.Views.Keycode.PageUp.ToString());
                     break;
 
                 case "PageDown":
-                    MessagingCenter.Send("ImagePageDown", BaseViewModel.MSG_AnimeButton);
+                    MessagingCenter.Send("ImagePageUpDown", BaseViewModel.MSG_AnimeButton);
                     await SendKey(Android.Views.Keycode.PageDown.ToString());
+                    break;
+
+                case "Home":
+                    MessagingCenter.Send("ImageHomeEnd", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.MoveHome.ToString());
+                    break;
+                case "End":
+                    MessagingCenter.Send("ImageHomeEnd", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.MoveEnd.ToString());
+                    break;
+
+                case "PlayPause":
+                    MessagingCenter.Send("ImagePlayPause", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.MediaPlayPause.ToString());
+                    break;
+                case "Stop":
+                    MessagingCenter.Send("ImageStop", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.MediaStop.ToString());
+                    break;
+
+                case "Red":
+                    MessagingCenter.Send("ImageRed", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.ProgRed.ToString());
+                    break;
+                case "Yellow":
+                    MessagingCenter.Send("ImageYellow", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.ProgYellow.ToString());
+                    break;
+                case "Green":
+                    MessagingCenter.Send("ImageGreen", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.ProgGreen.ToString());
+                    break;
+                case "Blue":
+                    MessagingCenter.Send("ImageBlue", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.ProgBlue.ToString());
                     break;
             }
         }
@@ -212,6 +247,10 @@ namespace RemoteTelevizor.ViewModels
                 command = "keyDown",
                 commandArg1 = keyCode
             };
+
+#if DEBUG
+            MessagingCenter.Send($"Sending key: {keyCode}", RemoteDeviceViewModel.MSG_ToastMessage);
+#endif
 
             await Task.Run(() => { _remoteAccessService.SendMessage(msg); });
         }

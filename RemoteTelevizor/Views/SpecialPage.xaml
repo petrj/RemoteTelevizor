@@ -13,10 +13,19 @@
                 <Setter Property="Margin" Value="0,0,0,0"/>
             </Style>
 
-            <Style x:Key="CaptionStyle" TargetType="Label">
+            <Style x:Key="TitleStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="#41b3ff"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+
+            <Style x:Key="CaptionStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="12"/>
             </Style>
 
             <Style x:Key="LabelStyle" TargetType="Label">
@@ -24,7 +33,7 @@
                 <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
-                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontSize" Value="16"/>
             </Style>
 
         </ResourceDictionary>
@@ -34,49 +43,86 @@
 
         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
 
-            <!--BoxView AbsoluteLayout.LayoutBounds="0.5,0.5,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="RemoteStackLayout" BackgroundColor="LightGray" /-->
-
             <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="RemoteStackLayout" BackgroundColor="Black">
 
                 <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
 
-                    <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.5,0.2,0.2" AbsoluteLayout.LayoutFlags="All" />
+                    <Label AbsoluteLayout.LayoutBounds="0.0,0.0,1,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding DeviceName}" Style="{DynamicResource TitleStyle}"/>
 
-                    <Label AbsoluteLayout.LayoutBounds="0.5,0.5,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="&#x23F9;" Style="{DynamicResource LabelStyle}" >
+                    <Image x:Name="ImagePlayPause" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.4,0.1,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
+                    <Label AbsoluteLayout.LayoutBounds="0.4,0.1,0.15,0.15" AbsoluteLayout.LayoutFlags="All"  Text="&#9199;" Style="{DynamicResource LabelStyle}" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="PlayPause" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
                     </Label>
 
-                    <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.2,0.5,0.2,0.2" AbsoluteLayout.LayoutFlags="All" />
-
-                    <Label AbsoluteLayout.LayoutBounds="0.2,0.5,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="&#x23EA;" Style="{DynamicResource LabelStyle}" >
-                    </Label>
-
-                    <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.8,0.5,0.2,0.2" AbsoluteLayout.LayoutFlags="All" />
-
-                    <Label AbsoluteLayout.LayoutBounds="0.8,0.5,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="&#x23E9;" Style="{DynamicResource LabelStyle}" >
+                    <Image x:Name="ImageStop" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.6,0.1,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
+                    <Label AbsoluteLayout.LayoutBounds="0.6,0.1,0.15,0.15" AbsoluteLayout.LayoutFlags="All"  Text="&#9632;" Style="{DynamicResource LabelStyle}" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Stop" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
                     </Label>
 
 
-
-                    <Image x:Name="ImageInfoButton" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.05,0.1,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
-                    <Label AbsoluteLayout.LayoutBounds="0.05,0.1,0.15,0.15" AbsoluteLayout.LayoutFlags="All"  Text="Info" Style="{DynamicResource LabelStyle}" >
+                    <Image x:Name="ImageInfoButton" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.5,0.5,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
+                    <Label AbsoluteLayout.LayoutBounds="0.5,0.5,0.15,0.15" AbsoluteLayout.LayoutFlags="All"  Text="&#x24d8;" Style="{DynamicResource LabelStyle}" >
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Info" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
 
-                    <Image x:Name="ImagePageUp" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.05,0.75,0.3,0.15" AbsoluteLayout.LayoutFlags="All" />
-                    <Label AbsoluteLayout.LayoutBounds="0.05,0.75,0.3,0.15" AbsoluteLayout.LayoutFlags="All"  Text="PageUp" Style="{DynamicResource LabelStyle}" >
+                    <Image x:Name="ImageHomeEnd" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.95,0.5,0.2,0.4" AbsoluteLayout.LayoutFlags="All" />
+                    <Label AbsoluteLayout.LayoutBounds="0.95,0.5,0.2,0.4" AbsoluteLayout.LayoutFlags="All"  Text="" Style="{DynamicResource LabelStyle}" />
+
+                    <Label x:Name="LabelHome" AbsoluteLayout.LayoutBounds="0.95,0.375,0.2,0.3" AbsoluteLayout.LayoutFlags="All"  Text="Home" Style="{DynamicResource LabelStyle}" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Home" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label x:Name="LabelEnd" AbsoluteLayout.LayoutBounds="0.95,0.628,0.2,0.3" AbsoluteLayout.LayoutFlags="All"  Text="End" Style="{DynamicResource LabelStyle}" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="End" NumberOfTapsRequired="1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Image x:Name="ImagePageUpDown" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.05,0.5,0.2,0.4" AbsoluteLayout.LayoutFlags="All" />
+                    <Label AbsoluteLayout.LayoutBounds="0.05,0.5,0.2,0.4" AbsoluteLayout.LayoutFlags="All"  Text="Page" Style="{DynamicResource CaptionStyle}" />
+
+                    <Label x:Name="LabelPageUp" AbsoluteLayout.LayoutBounds="0.05,0.375,0.2,0.3" AbsoluteLayout.LayoutFlags="All"  Text="Up" Style="{DynamicResource LabelStyle}" >
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="PageUp" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
-
-                    <Image x:Name="ImagePagDown" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.05,0.95,0.3,0.15" AbsoluteLayout.LayoutFlags="All" />
-                    <Label AbsoluteLayout.LayoutBounds="0.05,0.95,0.3,0.15" AbsoluteLayout.LayoutFlags="All"  Text="PageDown" Style="{DynamicResource LabelStyle}" >
+                    <Label x:Name="LabelPageDown" AbsoluteLayout.LayoutBounds="0.05,0.625,0.2,0.3" AbsoluteLayout.LayoutFlags="All"  Text="Down" Style="{DynamicResource LabelStyle}" >
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="PageDown" NumberOfTapsRequired="1" />
                         </Label.GestureRecognizers>
                     </Label>
+
+                    <Image x:Name="ImageRed" Source="ButtonRed" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.2,1.0,0.15,0.15" AbsoluteLayout.LayoutFlags="All">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Red" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Image x:Name="ImageGreen" Source="ButtonGreen" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.4,1.0,0.15,0.15" AbsoluteLayout.LayoutFlags="All">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Green" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Image x:Name="ImageYellow" Source="ButtonYellow" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.6,1.0,0.15,0.15" AbsoluteLayout.LayoutFlags="All">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Yellow" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Image x:Name="ImageBlue" Source="ButtonBlue" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.8,1.0,0.15,0.15" AbsoluteLayout.LayoutFlags="All">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Blue" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
 
 
                 </AbsoluteLayout>

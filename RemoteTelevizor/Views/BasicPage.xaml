@@ -12,12 +12,21 @@
                 <Setter Property="Margin" Value="0,0,0,0"/>
             </Style>
 
-            <Style x:Key="CaptionStyle" TargetType="Label">
+            <Style x:Key="TitleStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="#41b3ff"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="FontSize" Value="18"/>
             </Style>
+
+            <Style x:Key="CaptionStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="12"/>
+            </Style>
+
 
             <Style x:Key="LabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
@@ -38,7 +47,7 @@
 
             <AbsoluteLayout x:Name="AbsoluteLayoutButtons"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
 
-                <Label AbsoluteLayout.LayoutBounds="0.0,0.0,1,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding DeviceName}" Style="{DynamicResource CaptionStyle}"/>
+                <Label AbsoluteLayout.LayoutBounds="0.0,0.0,1,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding DeviceName}" Style="{DynamicResource TitleStyle}"/>
                 <!--Label AbsoluteLayout.LayoutBounds="0.0,1.0,1,0.05" AbsoluteLayout.LayoutFlags="All"  Text="{Binding IPPort}" Style="{DynamicResource LabelStyle}"/-->
 
                 <AbsoluteLayout AbsoluteLayout.LayoutBounds="0.5,0.5,0.5,0.5" AbsoluteLayout.LayoutFlags="All"  x:Name="AbsoluteLayoutArrows"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
@@ -103,15 +112,15 @@
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Image x:Name="ImageVolume" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.95,1,0.15,0.4" AbsoluteLayout.LayoutFlags="All" />
-                <Label AbsoluteLayout.LayoutBounds="0.95,1,0.15,0.4" AbsoluteLayout.LayoutFlags="All"  Text="Vol" Style="{DynamicResource LabelStyle}" />
+                <Image x:Name="ImageVolume" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.95,1,0.2,0.4" AbsoluteLayout.LayoutFlags="All" />
+                <Label AbsoluteLayout.LayoutBounds="0.95,1,0.2,0.4" AbsoluteLayout.LayoutFlags="All"  Text="Vol" Style="{DynamicResource CaptionStyle}" />
 
-                <Label x:Name="VolumeUpLabel" AbsoluteLayout.LayoutBounds="0.95,0.80,0.15,0.3" AbsoluteLayout.LayoutFlags="All"  Text="+" Style="{DynamicResource LabelStyle}" >
+                <Label x:Name="VolumeUpLabel" AbsoluteLayout.LayoutBounds="0.95,0.80,0.2,0.3" AbsoluteLayout.LayoutFlags="All"  Text="+" Style="{DynamicResource LabelStyle}" >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="VolUp" NumberOfTapsRequired="1" />
                     </Label.GestureRecognizers>
                 </Label>
-                <Label x:Name="VolumeDownLabel" AbsoluteLayout.LayoutBounds="0.95,1.05,0.15,0.3" AbsoluteLayout.LayoutFlags="All"  Text="-" Style="{DynamicResource LabelStyle}" >
+                <Label x:Name="VolumeDownLabel" AbsoluteLayout.LayoutBounds="0.95,1.05,0.2,0.3" AbsoluteLayout.LayoutFlags="All"  Text="-" Style="{DynamicResource LabelStyle}" >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="VolDown" NumberOfTapsRequired="1" />
                     </Label.GestureRecognizers>

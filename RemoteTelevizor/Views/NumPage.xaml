@@ -12,6 +12,13 @@
                 <Setter Property="Margin" Value="0,0,0,0"/>
             </Style>
 
+            <Style x:Key="TitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#41b3ff"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+
             <Style x:Key="CaptionStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="#41b3ff"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
@@ -38,7 +45,7 @@
 
                 <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
 
-                    <Label AbsoluteLayout.LayoutBounds="0.0,0.0,1,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding DeviceName}" Style="{DynamicResource CaptionStyle}"/>
+                    <Label AbsoluteLayout.LayoutBounds="0.0,0.0,1,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding DeviceName}" Style="{DynamicResource TitleStyle}"/>
 
                     <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.2,0.15,0.2,0.2" AbsoluteLayout.LayoutFlags="All" x:Name="Image0" />
                     <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.15,0.2,0.2" AbsoluteLayout.LayoutFlags="All" />
