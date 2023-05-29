@@ -205,7 +205,8 @@ namespace RemoteTelevizor.ViewModels
             var msg = new RemoteAccessMessage()
             {
                 command = "sendText",
-                commandArg1 = txt
+                commandArg1 = txt,
+                sender = DeviceFriendlyName
             };
 
 #if DEBUG
@@ -259,7 +260,8 @@ namespace RemoteTelevizor.ViewModels
             var msg = new RemoteAccessMessage()
             {
                 command = "keyDown",
-                commandArg1 = keyCode
+                commandArg1 = keyCode,
+                sender = DeviceFriendlyName
             };
 
 #if DEBUG

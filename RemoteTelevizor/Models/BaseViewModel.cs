@@ -26,5 +26,13 @@ namespace RemoteTelevizor.Models
                 OnPropertyChanged(nameof(IsBusy));
             }
         }
+
+        public static string DeviceFriendlyName
+        {
+            get
+            {
+                return $"{Xamarin.Essentials.DeviceInfo.Manufacturer} {Xamarin.Essentials.DeviceInfo.Model}";
+            }
+        }
     }
 }
