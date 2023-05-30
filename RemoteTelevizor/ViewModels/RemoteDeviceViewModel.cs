@@ -207,32 +207,6 @@ namespace RemoteTelevizor.ViewModels
             }
         }
 
-        private async Task SendText()
-        {
-            if (_currentConnection == null)
-            {
-                return;
-            }
-
-            var txt = await _dialogService.GetText("", "Send text");
-
-            if (txt == null)
-            {
-                return;
-            }
-
-            var msg = new RemoteAccessMessage()
-            {
-                command = "sendText",
-                commandArg1 = txt,
-                sender = DeviceFriendlyName
-            };
-
-            _loggingService.Info($"Sending text: {txt}");
-
-            await Task.Run(() => { _remoteAccessService.SendMessage(msg); });
-        }
-
         public RemoteDeviceConnection Connection
         {
             get
@@ -270,6 +244,7 @@ namespace RemoteTelevizor.ViewModels
         {
             if (_currentConnection == null)
             {
+                MessagingCenter.Send("No device selected", BaseViewModel.MSG_ToastMessage);
                 return;
             }
 
@@ -282,7 +257,56 @@ namespace RemoteTelevizor.ViewModels
 
             _loggingService.Info($"Sending key: {keyCode}");
 
-            await Task.Run(() => { _remoteAccessService.SendMessage(msg); });
+            var res = await _remoteAccessService.SendMessage(msg);
+
+            if (res == null)
+            {
+                MessagingCenter.Send("Timeout", BaseViewModel.MSG_ToastMessage);
+                return;
+            }
+
+            if (res.command != "responseStatus" || res.commandArg1 != "OK")
+            {
+                MessagingCenter.Send("Error", BaseViewModel.MSG_ToastMessage);
+            }
+        }
+
+        private async Task SendText()
+        {
+            if (_currentConnection == null)
+            {
+                MessagingCenter.Send("No device selected", BaseViewModel.MSG_ToastMessage);
+                return;
+            }
+
+            var txt = await _dialogService.GetText("", "Send text");
+
+            if (txt == null)
+            {
+                return;
+            }
+
+            var msg = new RemoteAccessMessage()
+            {
+                command = "sendText",
+                commandArg1 = txt,
+                sender = DeviceFriendlyName
+            };
+
+            _loggingService.Info($"Sending text: {txt}");
+
+            var res = await _remoteAccessService.SendMessage(msg);
+
+            if (res == null)
+            {
+                MessagingCenter.Send("Timeout", BaseViewModel.MSG_ToastMessage);
+                return;
+            }
+
+            if (res.command != "responseStatus" || res.commandArg1 != "OK")
+            {
+                MessagingCenter.Send("Error", BaseViewModel.MSG_ToastMessage);
+            }
         }
     }
 }
