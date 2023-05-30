@@ -25,22 +25,12 @@ namespace RemoteTelevizor
 
             _loggingService = loggingService;
 
-            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_AnimeButton, (buttonName) =>
+            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_AnimeFrame, (name) =>
             {
-                Task.Run(async () => { await AnimeButton(buttonName); });
+                Task.Run(async () => { await BaseViewModel.Anime<Frame>(name, this); });
             });
 
             BindingContext = _viewModel = new RemoteDeviceViewModel(loggingService, dialogService);
-        }
-
-        private async Task AnimeButton(string buttonName)
-        {
-            var img = this.FindByName<Image>(buttonName);
-            if (img != null)
-            {
-                await img.ScaleTo(2, 100);
-                await img.ScaleTo(1, 100);
-            }
         }
 
         public RemoteDeviceConnection Connection

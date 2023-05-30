@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using static Java.Util.Jar.Attributes;
 
 namespace RemoteTelevizor
 {
@@ -24,22 +25,17 @@ namespace RemoteTelevizor
 
             _loggingService = loggingService;
 
-            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_AnimeButton, (buttonName) =>
+            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_AnimeButton, (name) =>
             {
-                Task.Run(async () => { await AnimeButton(buttonName); });
+                Task.Run(async () => { await BaseViewModel.Anime<Image>(name, this); });
+            });
+
+            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_AnimeFrame, (name) =>
+            {
+                Task.Run(async () => { await BaseViewModel.Anime<Frame>(name, this); });
             });
 
             BindingContext = _viewModel = new RemoteDeviceViewModel(loggingService, dialogService);
-        }
-
-        private async Task AnimeButton(string buttonName)
-        {
-            var img = this.FindByName<Image>(buttonName);
-            if (img != null)
-            {
-                await img.ScaleTo(2, 100);
-                await img.ScaleTo(1, 100);
-            }
         }
 
         public RemoteDeviceConnection Connection
@@ -63,34 +59,33 @@ namespace RemoteTelevizor
 
             if (_viewModel.LastAllocatedSizeChanged(width, height))
             {
-                RefreshGUI();
+                ResizeArrows(0.5,0.4,0.6,0.6);
             }
         }
 
-        public void RefreshGUI()
+        public void ResizeArrows(double posX, double posY, double width, double height)
         {
             _loggingService.Info($"RefreshGUI");
 
             if (_viewModel == null)
                 return;
 
-            // button up
-
-            var width = 0.5;
-            var height = 0.5;
-
-            if (_viewModel.Portrait)
-            {
-                height = width * _viewModel.Ratio;
-            } else
-            {
-                width = height * _viewModel.Ratio;
-            }
-
             Device.BeginInvokeOnMainThread(() =>
             {
+                if (FrameRemote.Width> FrameRemote.Height && FrameRemote.Width > 0)
+                {
+                    // landscape
+                    width = width * (FrameRemote.Height) / (FrameRemote.Width);
+                }
+
+                if (FrameRemote.Height > FrameRemote.Width && FrameRemote.Height > 0)
+                {
+                    // portrait
+                    height = height * (FrameRemote.Width) / (FrameRemote.Height);
+                }
+
                 AbsoluteLayout.SetLayoutFlags(AbsoluteLayoutArrows, AbsoluteLayoutFlags.All);
-                AbsoluteLayout.SetLayoutBounds(AbsoluteLayoutArrows, new Rectangle(0.5, 0.5, width, height));
+                AbsoluteLayout.SetLayoutBounds(AbsoluteLayoutArrows, new Rectangle(posX, posY, width, height));
             });
         }
 

@@ -21,6 +21,8 @@ namespace RemoteAccess
 
         private const int BufferSize = 1024;
         private const int ConnectTimeoutMS = 2000;
+        private const int ReceiveTimeoutMS = 2000;
+        private const int SendTimeoutMS = 2000;
         private const string TerminateString = "b9fb065b-dee4-4b1e-b8b4-b0c82556380c";
         private string _ip;
         private int _port;
@@ -128,6 +130,8 @@ namespace RemoteAccess
                                     var response = JsonConvert.SerializeObject(responseMessage);
                                     var responseEncrypted = CryptographyService.EncryptString(_securityKey, response);
 
+                                    handler.SendTimeout = SendTimeoutMS;
+
                                     handler.Send(Encoding.ASCII.GetBytes(responseEncrypted));
                                     handler.Send(Encoding.ASCII.GetBytes(TerminateString));
                                 }
@@ -204,7 +208,7 @@ namespace RemoteAccess
 
         public async Task<RemoteAccessMessage> SendMessage(RemoteAccessMessage message)
         {
-            _loggingService.Info($"Sending: {message}");
+            _loggingService.Info($"[RAS] Sending: {message}");
 
             var bytes = new Byte[BufferSize];
 
@@ -230,6 +234,8 @@ namespace RemoteAccess
 
                         // Receive response
 
+                        sender.ReceiveTimeout = ReceiveTimeoutMS;
+
                         string data = null;
 
                         while (true)
@@ -252,7 +258,7 @@ namespace RemoteAccess
 
                             responseMessage = JsonConvert.DeserializeObject<RemoteAccessMessage>(decryptedData);
 
-                            _loggingService.Info($"Response: {responseMessage}");
+                            _loggingService.Info($"[RAS] Response: {responseMessage}");
 
                         }
                         catch (Exception ex)
@@ -268,7 +274,7 @@ namespace RemoteAccess
                     else
                     {
                         // Connection attempt timed out
-                        _loggingService.Info($"Timeout");
+                        _loggingService.Info($"[RAS] Timeout");
                         return null;
                     }
 

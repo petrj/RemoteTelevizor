@@ -27,22 +27,12 @@ namespace RemoteTelevizor
             _loggingService = loggingService;
             _appData = appData;
 
-            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_AnimeButton, (buttonName) =>
+            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_AnimeFrame, (name) =>
             {
-                Task.Run(async () => { await AnimeButton(buttonName); });
+                Task.Run(async () => { await BaseViewModel.Anime<Frame>(name, this); });
             });
 
             BindingContext = _viewModel = new RemoteDeviceViewModel(loggingService, dialogService);
-        }
-
-        private async Task AnimeButton(string buttonName)
-        {
-            var img = this.FindByName<Image>(buttonName);
-            if (img != null)
-            {
-                await img.ScaleTo(2, 100);
-                await img.ScaleTo(1, 100);
-            }
         }
 
         public RemoteDeviceConnection Connection
@@ -66,20 +56,34 @@ namespace RemoteTelevizor
 
             if (_viewModel.LastAllocatedSizeChanged(width, height))
             {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    if (_viewModel.Portrait)
-                    {
-                        AbsoluteLayout.SetLayoutFlags(NumGrid, AbsoluteLayoutFlags.All);
-                        AbsoluteLayout.SetLayoutBounds(NumGrid, new Rectangle(0.5, 0.5, 0.8, 0.8));
-                    }
-                    else
-                    {
-                        AbsoluteLayout.SetLayoutFlags(NumGrid, AbsoluteLayoutFlags.All);
-                        AbsoluteLayout.SetLayoutBounds(NumGrid, new Rectangle(0.5, 0.5, 0.8 * _viewModel.Ratio, 0.8));
-                    }
-                });
+                ResizeGrid(0.5, 0.5, 0.8, 0.8);
             }
+        }
+
+        public void ResizeGrid(double posX, double posY, double width, double height)
+        {
+            _loggingService.Info($"RefreshGUI");
+
+            if (_viewModel == null)
+                return;
+
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                if (FrameRemote.Width > FrameRemote.Height && FrameRemote.Width > 0)
+                {
+                    // landscape
+                    width = width * (FrameRemote.Height) / (FrameRemote.Width);
+                }
+
+                if (FrameRemote.Height > FrameRemote.Width && FrameRemote.Height > 0)
+                {
+                    // portrait
+                    height = height * (FrameRemote.Width) / (FrameRemote.Height);
+                }
+
+                AbsoluteLayout.SetLayoutFlags(NumGrid, AbsoluteLayoutFlags.All);
+                AbsoluteLayout.SetLayoutBounds(NumGrid, new Rectangle(posX, posY, width, height));
+            });
         }
     }
 }

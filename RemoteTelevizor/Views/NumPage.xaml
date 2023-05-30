@@ -1,15 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RemoteTelevizor.NumPage">
+             x:Class="RemoteTelevizor.NumPage"
+             BackgroundColor="Black">
 
     <ContentPage.Resources>
         <ResourceDictionary>
+
 
             <Style x:Key="ButtonFrameStyle" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="Margin" Value="0,0,0,0"/>
+                <Setter Property="BorderColor" Value="Transparent"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+
+            <Style x:Key="RemoteFrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#222222"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Margin" Value="25,0,25,25"/>
+                <Setter Property="BorderColor" Value="DarkGray"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+            </Style>
+
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="Blue"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="Padding" Value="0"/>
             </Style>
 
             <Style x:Key="TitleStyle" TargetType="Label">
@@ -17,14 +41,20 @@
                 <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="FontSize" Value="18"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Margin" Value="0,5,0,0"/>
             </Style>
 
             <Style x:Key="CaptionStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="#41b3ff"/>
+                <Setter Property="TextColor" Value="White"/>
                 <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+                <Setter Property="Padding" Value="0"/>
             </Style>
+
 
             <Style x:Key="LabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
@@ -32,103 +62,154 @@
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+                <Setter Property="Padding" Value="0"/>
             </Style>
+
 
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
 
-        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
+        <StackLayout>
 
-            <Label AbsoluteLayout.LayoutBounds="0.0,0.0,1,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding DeviceName}" Style="{DynamicResource TitleStyle}"/>
+            <Label Text="{Binding DeviceName}" Style="{DynamicResource TitleStyle}"/>
 
-            <Grid Margin="0,0,0,0" AbsoluteLayout.LayoutBounds="0.5,0.5,0.8,0.8"  AbsoluteLayout.LayoutFlags="All" BackgroundColor="Black" x:Name="NumGrid">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="25*" />
-                    <RowDefinition Height="25*" />
-                    <RowDefinition Height="25*" />
-                    <RowDefinition Height="25*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="33*" />
-                    <ColumnDefinition Width="34*" />
-                    <ColumnDefinition Width="33*" />
-                </Grid.ColumnDefinitions>
+            <Frame Style="{DynamicResource RemoteFrameStyle}" x:Name="FrameRemote">
 
-                <Image Grid.Row="0" Grid.Column="0"  Source="Button" x:Name="Image1" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Grid.Row="0" Grid.Column="0"  Text="1" Style="{DynamicResource LabelStyle}" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="1" NumberOfTapsRequired="1" />
-                    </Label.GestureRecognizers>
-                </Label>
+                <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
 
-                <Image Grid.Row="0" Grid.Column="1"  Source="Button" x:Name="Image2" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Grid.Row="0" Grid.Column="1"  Text="2" Style="{DynamicResource LabelStyle}" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="2" NumberOfTapsRequired="1" />
-                    </Label.GestureRecognizers>
-                </Label>
+                    <Grid Margin="0,0,0,0" AbsoluteLayout.LayoutBounds="0.5,0.5,0.8,0.8"  AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent" x:Name="NumGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25*" />
+                            <RowDefinition Height="25*" />
+                            <RowDefinition Height="25*" />
+                            <RowDefinition Height="25*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="33*" />
+                            <ColumnDefinition Width="34*" />
+                            <ColumnDefinition Width="33*" />
+                        </Grid.ColumnDefinitions>
 
-                <Image Grid.Row="0" Grid.Column="2"  Source="Button" x:Name="Image3" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Grid.Row="0" Grid.Column="2"  Text="3" Style="{DynamicResource LabelStyle}" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="3" NumberOfTapsRequired="1" />
-                    </Label.GestureRecognizers>
-                </Label>
+                        <Frame Grid.Row="0" Grid.Column="0" x:Name="Frame1" Style="{DynamicResource FrameStyle}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="1"  NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+                            <Label Text="1" Style="{DynamicResource LabelStyle}" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="1" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
 
-                <Image Grid.Row="1" Grid.Column="0"  Source="Button" x:Name="Image4" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Grid.Row="1" Grid.Column="0"  Text="4" Style="{DynamicResource LabelStyle}" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="4" NumberOfTapsRequired="1" />
-                    </Label.GestureRecognizers>
-                </Label>
+                        <Frame Grid.Row="0" Grid.Column="1" x:Name="Frame2" Style="{DynamicResource FrameStyle}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="2"  NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+                            <Label Text="2" Style="{DynamicResource LabelStyle}" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="2" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
 
-                <Image Grid.Row="1" Grid.Column="1"  Source="Button" x:Name="Image5" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Grid.Row="1" Grid.Column="1"  Text="5" Style="{DynamicResource LabelStyle}" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="5" NumberOfTapsRequired="1" />
-                    </Label.GestureRecognizers>
-                </Label>
+                        <Frame Grid.Row="0" Grid.Column="2" x:Name="Frame3" Style="{DynamicResource FrameStyle}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="3"  NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+                            <Label Text="3" Style="{DynamicResource LabelStyle}" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="3" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
 
-                <Image Grid.Row="1" Grid.Column="2"  Source="Button" x:Name="Image6" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Grid.Row="1" Grid.Column="2"  Text="6" Style="{DynamicResource LabelStyle}" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="6" NumberOfTapsRequired="1" />
-                    </Label.GestureRecognizers>
-                </Label>
+                        <Frame Grid.Row="1" Grid.Column="0" x:Name="Frame4" Style="{DynamicResource FrameStyle}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="4"  NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+                            <Label Text="4" Style="{DynamicResource LabelStyle}" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="4" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
 
-                <Image Grid.Row="2" Grid.Column="0"  Source="Button" x:Name="Image7" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Grid.Row="2" Grid.Column="0"  Text="7" Style="{DynamicResource LabelStyle}" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="7" NumberOfTapsRequired="1" />
-                    </Label.GestureRecognizers>
-                </Label>
+                        <Frame Grid.Row="1" Grid.Column="1" x:Name="Frame5" Style="{DynamicResource FrameStyle}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="5"  NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+                            <Label Text="5" Style="{DynamicResource LabelStyle}" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="5" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
 
-                <Image Grid.Row="2" Grid.Column="1"  Source="Button" x:Name="Image8" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Grid.Row="2" Grid.Column="1"  Text="8" Style="{DynamicResource LabelStyle}" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="8" NumberOfTapsRequired="1" />
-                    </Label.GestureRecognizers>
-                </Label>
+                        <Frame Grid.Row="1" Grid.Column="2" x:Name="Frame6" Style="{DynamicResource FrameStyle}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="6"  NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+                            <Label Text="6" Style="{DynamicResource LabelStyle}" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="6" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
 
-                <Image Grid.Row="2" Grid.Column="2"  Source="Button" x:Name="Image9" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Grid.Row="2" Grid.Column="2"  Text="9" Style="{DynamicResource LabelStyle}" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="9" NumberOfTapsRequired="1" />
-                    </Label.GestureRecognizers>
-                </Label>
+                        <Frame Grid.Row="2" Grid.Column="0" x:Name="Frame7" Style="{DynamicResource FrameStyle}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="7"  NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+                            <Label Text="7" Style="{DynamicResource LabelStyle}" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="7" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
 
-                <Image Grid.Row="3" Grid.Column="1"  Source="Button" x:Name="Image0" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Grid.Row="3" Grid.Column="1"  Text="0" Style="{DynamicResource LabelStyle}" >
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="0" NumberOfTapsRequired="1" />
-                    </Label.GestureRecognizers>
-                </Label>
+                        <Frame Grid.Row="2" Grid.Column="1" x:Name="Frame8" Style="{DynamicResource FrameStyle}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="8"  NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+                            <Label Text="8" Style="{DynamicResource LabelStyle}" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="8" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
 
-            </Grid>
+                        <Frame Grid.Row="2" Grid.Column="2" x:Name="Frame9" Style="{DynamicResource FrameStyle}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="9"  NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+                            <Label Text="9" Style="{DynamicResource LabelStyle}" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="9" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
 
-        </AbsoluteLayout>
+                        <Frame Grid.Row="3" Grid.Column="1" x:Name="Frame0" Style="{DynamicResource FrameStyle}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="0"  NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+                            <Label Text="0" Style="{DynamicResource LabelStyle}" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="0" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Frame>
+
+                    </Grid>
+
+                </AbsoluteLayout>
+
+            </Frame>
+
+        </StackLayout>
 
     </ContentPage.Content>
 </ContentPage>

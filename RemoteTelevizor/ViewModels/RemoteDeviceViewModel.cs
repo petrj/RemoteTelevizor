@@ -82,7 +82,7 @@ namespace RemoteTelevizor.ViewModels
                 {
                     if (_lastAllocatedSize.Width != 0)
                     {
-                        return _lastAllocatedSize.Height / _lastAllocatedSize.Width;
+                        return (_lastAllocatedSize.Height-50) / _lastAllocatedSize.Width;
                     }
                 }
 
@@ -97,18 +97,6 @@ namespace RemoteTelevizor.ViewModels
 
             switch (parameter.ToString())
             {
-                case "Info":
-                    MessagingCenter.Send("ImageInfoButton", BaseViewModel.MSG_AnimeButton);
-                    await SendKey(Android.Views.Keycode.Guide.ToString());
-                    break;
-                case "Back":
-                    MessagingCenter.Send("ImageBack", BaseViewModel.MSG_AnimeButton);
-                    await SendKey(Android.Views.Keycode.Back.ToString());
-                    break;
-                case "OK":
-                    MessagingCenter.Send("ImageOK", BaseViewModel.MSG_AnimeButton);
-                    await SendKey(Android.Views.Keycode.Enter.ToString());
-                    break;
 
                 case "Up":
                     MessagingCenter.Send("ImageUp", BaseViewModel.MSG_AnimeButton);
@@ -126,69 +114,80 @@ namespace RemoteTelevizor.ViewModels
                     MessagingCenter.Send("ImageRight", BaseViewModel.MSG_AnimeButton);
                     await SendKey(Android.Views.Keycode.DpadRight.ToString());
                     break;
+                case "OK":
+                    MessagingCenter.Send("ImageOK", BaseViewModel.MSG_AnimeButton);
+                    await SendKey(Android.Views.Keycode.Enter.ToString());
+                    break;
+
 
                 case "VolUp":
-                    MessagingCenter.Send("ImageVolume", BaseViewModel.MSG_AnimeButton);
+                    MessagingCenter.Send("FrameVolume", BaseViewModel.MSG_AnimeFrame);
                     await SendKey(Android.Views.Keycode.VolumeUp.ToString());
                     break;
 
                 case "VolDown":
-                    MessagingCenter.Send("ImageVolume", BaseViewModel.MSG_AnimeButton);
+                    MessagingCenter.Send("FrameVolume", BaseViewModel.MSG_AnimeFrame);
                     await SendKey(Android.Views.Keycode.VolumeDown.ToString());
                     break;
 
-                case "Play":
-                    MessagingCenter.Send("ImagePlay", BaseViewModel.MSG_AnimeButton);
-                    await SendKey(Android.Views.Keycode.MediaPlay.ToString());
+                case "Back":
+                    MessagingCenter.Send("FrameBack", BaseViewModel.MSG_AnimeFrame);
+                    await SendKey(Android.Views.Keycode.Back.ToString());
+                    break;
+
+
+                case "Info":
+                    MessagingCenter.Send("FrameInfo", BaseViewModel.MSG_AnimeFrame);
+                    await SendKey(Android.Views.Keycode.Guide.ToString());
                     break;
 
                 case "PageUp":
-                    MessagingCenter.Send("ImagePageUpDown", BaseViewModel.MSG_AnimeButton);
+                    MessagingCenter.Send("FramePageUpDown", BaseViewModel.MSG_AnimeFrame);
                     await SendKey(Android.Views.Keycode.PageUp.ToString());
                     break;
 
                 case "PageDown":
-                    MessagingCenter.Send("ImagePageUpDown", BaseViewModel.MSG_AnimeButton);
+                    MessagingCenter.Send("FramePageUpDown", BaseViewModel.MSG_AnimeFrame);
                     await SendKey(Android.Views.Keycode.PageDown.ToString());
                     break;
 
                 case "Home":
-                    MessagingCenter.Send("ImageHomeEnd", BaseViewModel.MSG_AnimeButton);
+                    MessagingCenter.Send("FrameHomeEnd", BaseViewModel.MSG_AnimeFrame);
                     await SendKey(Android.Views.Keycode.MoveHome.ToString());
                     break;
                 case "End":
-                    MessagingCenter.Send("ImageHomeEnd", BaseViewModel.MSG_AnimeButton);
+                    MessagingCenter.Send("FrameHomeEnd", BaseViewModel.MSG_AnimeFrame);
                     await SendKey(Android.Views.Keycode.MoveEnd.ToString());
                     break;
 
                 case "PlayPause":
-                    MessagingCenter.Send("ImagePlayPause", BaseViewModel.MSG_AnimeButton);
+                    MessagingCenter.Send("FramePlayPause", BaseViewModel.MSG_AnimeFrame);
                     await SendKey(Android.Views.Keycode.MediaPlayPause.ToString());
                     break;
                 case "Stop":
-                    MessagingCenter.Send("ImageStop", BaseViewModel.MSG_AnimeButton);
+                    MessagingCenter.Send("FrameStop", BaseViewModel.MSG_AnimeFrame);
                     await SendKey(Android.Views.Keycode.MediaStop.ToString());
                     break;
 
                 case "Red":
-                    MessagingCenter.Send("ImageRed", BaseViewModel.MSG_AnimeButton);
+                    MessagingCenter.Send("FrameRed", BaseViewModel.MSG_AnimeFrame);
                     await SendKey(Android.Views.Keycode.ProgRed.ToString());
                     break;
                 case "Yellow":
-                    MessagingCenter.Send("ImageYellow", BaseViewModel.MSG_AnimeButton);
+                    MessagingCenter.Send("FrameYellow", BaseViewModel.MSG_AnimeFrame);
                     await SendKey(Android.Views.Keycode.ProgYellow.ToString());
                     break;
                 case "Green":
-                    MessagingCenter.Send("ImageGreen", BaseViewModel.MSG_AnimeButton);
+                    MessagingCenter.Send("FrameGreen", BaseViewModel.MSG_AnimeFrame);
                     await SendKey(Android.Views.Keycode.ProgGreen.ToString());
                     break;
                 case "Blue":
-                    MessagingCenter.Send("ImageBlue", BaseViewModel.MSG_AnimeButton);
+                    MessagingCenter.Send("FrameBlue", BaseViewModel.MSG_AnimeFrame);
                     await SendKey(Android.Views.Keycode.ProgBlue.ToString());
                     break;
 
                 case "Txt":
-                    MessagingCenter.Send("ImageText", BaseViewModel.MSG_AnimeButton);
+                    MessagingCenter.Send("FrameTxt", BaseViewModel.MSG_AnimeFrame);
                     await SendText();
                     break;
             }
@@ -199,7 +198,7 @@ namespace RemoteTelevizor.ViewModels
                 var num = i.ToString();
                 if (num == parameter.ToString())
                 {
-                    MessagingCenter.Send("Image" + num, BaseViewModel.MSG_AnimeButton);
+                    MessagingCenter.Send("Frame" + num, BaseViewModel.MSG_AnimeFrame);
                     var keyCode = Enum.Parse(typeof(Android.Views.Keycode), "Num" + num);
                     await SendKey(keyCode.ToString());
                     break;
@@ -261,13 +260,14 @@ namespace RemoteTelevizor.ViewModels
 
             if (res == null)
             {
-                MessagingCenter.Send("Timeout", BaseViewModel.MSG_ToastMessage);
+                MessagingCenter.Send("No response", BaseViewModel.MSG_ToastMessage);
                 return;
             }
 
-            if (res.command != "responseStatus" || res.commandArg1 != "OK")
+            if ((res.command != "responseStatus") || (res.commandArg1 != "OK"))
             {
-                MessagingCenter.Send("Error", BaseViewModel.MSG_ToastMessage);
+                MessagingCenter.Send("Invalid response", BaseViewModel.MSG_ToastMessage);
+                return;
             }
         }
 
