@@ -243,13 +243,12 @@ namespace RemoteTelevizor.ViewModels
 
         public void SetConnection(RemoteDeviceConnection connection)
         {
-            if (connection == null)
-            {
-                return;
-            }
-
             _currentConnection = connection;
-            _remoteAccessService.SetConnection(connection.IP, connection.Port, connection.SecurityKey);
+
+            if (connection != null)
+            {
+                _remoteAccessService.SetConnection(connection.IP, connection.Port, connection.SecurityKey);
+            }
 
             OnPropertyChanged(nameof(DeviceName));
         }
@@ -260,7 +259,7 @@ namespace RemoteTelevizor.ViewModels
             {
                 if (_currentConnection == null)
                 {
-                    return "No device selected";
+                    return "No remote device";
                 }
 
                 return _currentConnection.Name;

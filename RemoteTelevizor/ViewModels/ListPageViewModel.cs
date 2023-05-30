@@ -46,10 +46,21 @@ namespace RemoteTelevizor.ViewModels
             ShortPressCommand = new Command<object>(async (o) => await ShortPress(o));
         }
 
+        private void NotifySelectgedRemoteDeviceChange()
+        {
+            if (SelectedItem == null)
+            {
+                MessagingCenter.Send(String.Empty, BaseViewModel.MSG_SelectNoRemoteDevice);
+            } else
+            {
+                MessagingCenter.Send(SelectedItem, BaseViewModel.MSG_SelectRemoteDevice);
+            }
+        }
+
         private async Task LongPress(object item)
         {
             SelectedItem = item as RemoteDeviceConnection;
-            MessagingCenter.Send(SelectedItem, BaseViewModel.MSG_SelectRemoteDevice);
+            NotifySelectgedRemoteDeviceChange();
 
             await ShowMenu(SelectedItem);
         }
@@ -58,7 +69,7 @@ namespace RemoteTelevizor.ViewModels
         {
             SelectedItem = item as RemoteDeviceConnection;
 
-            MessagingCenter.Send(SelectedItem, BaseViewModel.MSG_SelectRemoteDevice);
+            NotifySelectgedRemoteDeviceChange();
             MessagingCenter.Send(string.Empty, BaseViewModel.MSG_HideFlyoutPage);
         }
 
@@ -66,7 +77,10 @@ namespace RemoteTelevizor.ViewModels
         {
             SelectedItem = item as RemoteDeviceConnection;
 
-            MessagingCenter.Send(SelectedItem, BaseViewModel.MSG_SelectRemoteDevice);
+            NotifySelectgedRemoteDeviceChange();
+
+            if (SelectedItem == null)
+                return;
 
             var actions = new List<string>();
             actions.Add("Edit");
@@ -102,7 +116,7 @@ namespace RemoteTelevizor.ViewModels
 
                     await Refresh();
 
-                    MessagingCenter.Send(SelectedItem, BaseViewModel.MSG_SelectRemoteDevice);
+                    NotifySelectgedRemoteDeviceChange();
                 }
             }
         }

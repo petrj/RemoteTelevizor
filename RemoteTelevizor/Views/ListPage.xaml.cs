@@ -61,6 +61,11 @@ namespace RemoteTelevizor
 
         private async Task EditRemoteDevice(RemoteDeviceConnection remoteDeviceConnection)
         {
+            if (remoteDeviceConnection == null)
+            {
+                return;
+            }
+
             var remoteDeviceConnectionPage = new RemoteDeviceConnectionPage(_loggingService);
 
             remoteDeviceConnectionPage.Connection = RemoteDeviceConnection.CloneFrom(remoteDeviceConnection);

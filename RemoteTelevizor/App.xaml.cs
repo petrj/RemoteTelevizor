@@ -28,6 +28,11 @@ namespace RemoteTelevizor
                 Connection = device;
             });
 
+            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_SelectNoRemoteDevice, (device) =>
+            {
+                Connection = null;
+            });
+
             MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_HideFlyoutPage, (msg) =>
             {
                 AssociatedFlyoutPage.IsPresented = false;

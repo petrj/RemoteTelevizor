@@ -41,6 +41,8 @@
 
         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
 
+            <Label AbsoluteLayout.LayoutBounds="0.0,0.0,1,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding DeviceName}" Style="{DynamicResource TitleStyle}"/>
+
             <Grid Margin="0,0,0,0" AbsoluteLayout.LayoutBounds="0.5,0.5,0.8,0.8"  AbsoluteLayout.LayoutFlags="All" BackgroundColor="Black" x:Name="NumGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25*" />
