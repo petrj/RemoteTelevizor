@@ -43,10 +43,6 @@
 
         <!--BoxView AbsoluteLayout.LayoutBounds="0.5,0.5,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="RemoteStackLayout" BackgroundColor="LightGray" /-->
 
-        <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="RemoteStackLayout" BackgroundColor="Black">
-
-            <AbsoluteLayout x:Name="AbsoluteLayoutButtons"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
-
                 <Label AbsoluteLayout.LayoutBounds="0.0,0.0,1,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding DeviceName}" Style="{DynamicResource TitleStyle}"/>
                 <!--Label AbsoluteLayout.LayoutBounds="0.0,1.0,1,0.05" AbsoluteLayout.LayoutFlags="All"  Text="{Binding IPPort}" Style="{DynamicResource LabelStyle}"/-->
 
@@ -125,10 +121,6 @@
                         <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="VolDown" NumberOfTapsRequired="1" />
                     </Label.GestureRecognizers>
                 </Label>
-
-            </AbsoluteLayout>
-
-        </StackLayout>
 
     </AbsoluteLayout>
 

@@ -43,10 +43,6 @@
 
         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
 
-            <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="RemoteStackLayout" BackgroundColor="Black">
-
-                <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
-
                     <Label AbsoluteLayout.LayoutBounds="0.0,0.0,1,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding DeviceName}" Style="{DynamicResource TitleStyle}"/>
 
                     <Image x:Name="ImagePlayPause" Source="Button" Aspect="Fill" AbsoluteLayout.LayoutBounds="0.4,0.1,0.15,0.15" AbsoluteLayout.LayoutFlags="All" />
@@ -129,14 +125,7 @@
                         </Image.GestureRecognizers>
                     </Image>
 
-
-
                 </AbsoluteLayout>
-
-            </StackLayout>
-
-        </AbsoluteLayout>
-
 
     </ContentPage.Content>
 

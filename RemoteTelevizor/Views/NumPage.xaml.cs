@@ -19,7 +19,6 @@ namespace RemoteTelevizor
         private ILoggingService _loggingService;
         private RemoteDeviceViewModel _viewModel;
         private IAppData _appData;
-        private Size _lastAllocatedSize = new Size(-1, -1);
 
         public NumPage(ILoggingService loggingService, IAppData appData, DialogService dialogService)
         {
@@ -28,7 +27,22 @@ namespace RemoteTelevizor
             _loggingService = loggingService;
             _appData = appData;
 
+            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_AnimeButton, (buttonName) =>
+            {
+                Task.Run(async () => { await AnimeButton(buttonName); });
+            });
+
             BindingContext = _viewModel = new RemoteDeviceViewModel(loggingService, dialogService);
+        }
+
+        private async Task AnimeButton(string buttonName)
+        {
+            var img = this.FindByName<Image>(buttonName);
+            if (img != null)
+            {
+                await img.ScaleTo(2, 100);
+                await img.ScaleTo(1, 100);
+            }
         }
 
         public RemoteDeviceConnection Connection
@@ -45,106 +59,27 @@ namespace RemoteTelevizor
 
         protected override void OnSizeAllocated(double width, double height)
         {
-            _loggingService.Info($"OnSizeAllocated: {width}/{height}");
-
             base.OnSizeAllocated(width, height);
 
             if (_viewModel == null)
                 return;
 
-            if (_lastAllocatedSize.Width == width &&
-                _lastAllocatedSize.Height == height)
+            if (_viewModel.LastAllocatedSizeChanged(width, height))
             {
-                // no size changed
-                return;
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    if (_viewModel.Portrait)
+                    {
+                        AbsoluteLayout.SetLayoutFlags(NumGrid, AbsoluteLayoutFlags.All);
+                        AbsoluteLayout.SetLayoutBounds(NumGrid, new Rectangle(0.5, 0.5, 0.8, 0.8));
+                    }
+                    else
+                    {
+                        AbsoluteLayout.SetLayoutFlags(NumGrid, AbsoluteLayoutFlags.All);
+                        AbsoluteLayout.SetLayoutBounds(NumGrid, new Rectangle(0.5, 0.5, 0.8 * _viewModel.Ratio, 0.8));
+                    }
+                });
             }
-
-            _lastAllocatedSize.Width = width;
-            _lastAllocatedSize.Height = height;
-
-            _viewModel.SetViewAbsoluteLayoutBySize(RemoteStackLayout);
-        }
-
-        private async void OnButton0(object sender, EventArgs e)
-        {
-            await Image0.ScaleTo(2, 100);
-            await Image0.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.Num0.ToString());
-        }
-
-        private async void OnButton1(object sender, EventArgs e)
-        {
-            await Image0.ScaleTo(2, 100);
-            await Image0.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.Num1.ToString());
-        }
-
-        private async void OnButton2(object sender, EventArgs e)
-        {
-            await Image0.ScaleTo(2, 100);
-            await Image0.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.Num2.ToString());
-        }
-
-        private async void OnButton3(object sender, EventArgs e)
-        {
-            await Image0.ScaleTo(2, 100);
-            await Image0.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.Num3.ToString());
-        }
-
-
-        private async void OnButton4(object sender, EventArgs e)
-        {
-            await Image0.ScaleTo(2, 100);
-            await Image0.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.Num4.ToString());
-        }
-
-        private async void OnButton5(object sender, EventArgs e)
-        {
-            await Image0.ScaleTo(2, 100);
-            await Image0.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.Num5.ToString());
-        }
-
-        private async void OnButton6(object sender, EventArgs e)
-        {
-            await Image0.ScaleTo(2, 100);
-            await Image0.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.Num6.ToString());
-        }
-
-        private async void OnButton7(object sender, EventArgs e)
-        {
-            await Image0.ScaleTo(2, 100);
-            await Image0.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.Num7.ToString());
-        }
-
-
-        private async void OnButton8(object sender, EventArgs e)
-        {
-            await Image0.ScaleTo(2, 100);
-            await Image0.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.Num8.ToString());
-        }
-
-        private async void OnButton9(object sender, EventArgs e)
-        {
-            await Image0.ScaleTo(2, 100);
-            await Image0.ScaleTo(1, 100);
-
-            await _viewModel.SendKey(Android.Views.Keycode.Num9.ToString());
         }
     }
 }

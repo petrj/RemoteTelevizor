@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using static Android.Icu.Text.CaseMap;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace RemoteTelevizor.ViewModels
 {
@@ -191,6 +192,19 @@ namespace RemoteTelevizor.ViewModels
                     await SendText();
                     break;
             }
+
+            // num keys 0 .. 9
+            for (var i=0; i<=9;i++)
+            {
+                var num = i.ToString();
+                if (num == parameter.ToString())
+                {
+                    MessagingCenter.Send("Image" + num, BaseViewModel.MSG_AnimeButton);
+                    var keyCode = Enum.Parse(typeof(Android.Views.Keycode), "Num" + num);
+                    await SendKey(keyCode.ToString());
+                    break;
+                }
+            }
         }
 
         private async Task SendText()
@@ -200,7 +214,12 @@ namespace RemoteTelevizor.ViewModels
                 return;
             }
 
-            var txt = await _dialogService.GetText("ABC", "Send text");
+            var txt = await _dialogService.GetText("", "Send text");
+
+            if (txt == null)
+            {
+                return;
+            }
 
             var msg = new RemoteAccessMessage()
             {
@@ -209,9 +228,7 @@ namespace RemoteTelevizor.ViewModels
                 sender = DeviceFriendlyName
             };
 
-#if DEBUG
-            MessagingCenter.Send($"Sending text: {txt}", RemoteDeviceViewModel.MSG_ToastMessage);
-#endif
+            _loggingService.Info($"Sending text: {txt}");
 
             await Task.Run(() => { _remoteAccessService.SendMessage(msg); });
         }
@@ -264,25 +281,9 @@ namespace RemoteTelevizor.ViewModels
                 sender = DeviceFriendlyName
             };
 
-#if DEBUG
-            MessagingCenter.Send($"Sending key: {keyCode}", RemoteDeviceViewModel.MSG_ToastMessage);
-#endif
+            _loggingService.Info($"Sending key: {keyCode}");
 
             await Task.Run(() => { _remoteAccessService.SendMessage(msg); });
-        }
-
-        public void SetViewAbsoluteLayoutBySize(Xamarin.Forms.View view)
-        {
-
-            if (Portrait)
-            {
-                AbsoluteLayout.SetLayoutBounds(view, new Rectangle(0, 0, 1, 1));
-            } else
-            {
-                AbsoluteLayout.SetLayoutBounds(view, new Rectangle(0.5, 0.5, Ratio, 1));
-            }
-
-            AbsoluteLayout.SetLayoutFlags(view, AbsoluteLayoutFlags.All);
         }
     }
 }

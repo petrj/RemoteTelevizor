@@ -63,7 +63,6 @@ namespace RemoteTelevizor
 
             if (_viewModel.LastAllocatedSizeChanged(width, height))
             {
-                _viewModel.SetViewAbsoluteLayoutBySize(RemoteStackLayout);
                 RefreshGUI();
             }
         }
@@ -83,6 +82,9 @@ namespace RemoteTelevizor
             if (_viewModel.Portrait)
             {
                 height = width * _viewModel.Ratio;
+            } else
+            {
+                width = height * _viewModel.Ratio;
             }
 
             Device.BeginInvokeOnMainThread(() =>

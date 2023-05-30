@@ -41,83 +41,90 @@
 
         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
 
-            <StackLayout AbsoluteLayout.LayoutBounds="0.5,0.5,0.3,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="RemoteStackLayout" BackgroundColor="Black">
+            <Grid Margin="0,0,0,0" AbsoluteLayout.LayoutBounds="0.5,0.5,0.8,0.8"  AbsoluteLayout.LayoutFlags="All" BackgroundColor="Black" x:Name="NumGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25*" />
+                    <RowDefinition Height="25*" />
+                    <RowDefinition Height="25*" />
+                    <RowDefinition Height="25*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="33*" />
+                    <ColumnDefinition Width="34*" />
+                    <ColumnDefinition Width="33*" />
+                </Grid.ColumnDefinitions>
 
-                <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
+                <Image Grid.Row="0" Grid.Column="0"  Source="Button" x:Name="Image1" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Row="0" Grid.Column="0"  Text="1" Style="{DynamicResource LabelStyle}" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="1" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-                    <Label AbsoluteLayout.LayoutBounds="0.0,0.0,1,0.1" AbsoluteLayout.LayoutFlags="All"  Text="{Binding DeviceName}" Style="{DynamicResource TitleStyle}"/>
+                <Image Grid.Row="0" Grid.Column="1"  Source="Button" x:Name="Image2" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Row="0" Grid.Column="1"  Text="2" Style="{DynamicResource LabelStyle}" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="2" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-                    <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.2,0.15,0.2,0.2" AbsoluteLayout.LayoutFlags="All" x:Name="Image0" />
-                    <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.15,0.2,0.2" AbsoluteLayout.LayoutFlags="All" />
-                    <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.8,0.15,0.2,0.2" AbsoluteLayout.LayoutFlags="All" />
+                <Image Grid.Row="0" Grid.Column="2"  Source="Button" x:Name="Image3" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Row="0" Grid.Column="2"  Text="3" Style="{DynamicResource LabelStyle}" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="3" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-                    <Label AbsoluteLayout.LayoutBounds="0.2,0.15,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="1" Style="{DynamicResource LabelStyle}" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton1" NumberOfTapsRequired="1" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <Label AbsoluteLayout.LayoutBounds="0.5,0.15,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="2" Style="{DynamicResource LabelStyle}" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton2" NumberOfTapsRequired="1" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <Label AbsoluteLayout.LayoutBounds="0.8,0.15,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="3" Style="{DynamicResource LabelStyle}" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton3" NumberOfTapsRequired="1" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                <Image Grid.Row="1" Grid.Column="0"  Source="Button" x:Name="Image4" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Row="1" Grid.Column="0"  Text="4" Style="{DynamicResource LabelStyle}" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="4" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-                    <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.2,0.4,0.2,0.2" AbsoluteLayout.LayoutFlags="All" />
-                    <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.4,0.2,0.2" AbsoluteLayout.LayoutFlags="All" />
-                    <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.8,0.4,0.2,0.2" AbsoluteLayout.LayoutFlags="All" />
+                <Image Grid.Row="1" Grid.Column="1"  Source="Button" x:Name="Image5" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Row="1" Grid.Column="1"  Text="5" Style="{DynamicResource LabelStyle}" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="5" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-                    <Label AbsoluteLayout.LayoutBounds="0.2,0.4,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="4" Style="{DynamicResource LabelStyle}" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton4" NumberOfTapsRequired="1" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <Label AbsoluteLayout.LayoutBounds="0.5,0.4,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="5" Style="{DynamicResource LabelStyle}" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton5" NumberOfTapsRequired="1" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <Label AbsoluteLayout.LayoutBounds="0.8,0.4,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="6" Style="{DynamicResource LabelStyle}" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton6" NumberOfTapsRequired="1" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                <Image Grid.Row="1" Grid.Column="2"  Source="Button" x:Name="Image6" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Row="1" Grid.Column="2"  Text="6" Style="{DynamicResource LabelStyle}" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="6" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-                    <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.2,0.65,0.2,0.2" AbsoluteLayout.LayoutFlags="All" />
-                    <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.65,0.2,0.2" AbsoluteLayout.LayoutFlags="All" />
-                    <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.8,0.65,0.2,0.2" AbsoluteLayout.LayoutFlags="All" />
+                <Image Grid.Row="2" Grid.Column="0"  Source="Button" x:Name="Image7" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Row="2" Grid.Column="0"  Text="7" Style="{DynamicResource LabelStyle}" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="7" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-                    <Label AbsoluteLayout.LayoutBounds="0.2,0.65,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="7" Style="{DynamicResource LabelStyle}" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton7" NumberOfTapsRequired="1" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <Label AbsoluteLayout.LayoutBounds="0.5,0.65,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="8" Style="{DynamicResource LabelStyle}" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton8" NumberOfTapsRequired="1" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                    <Label AbsoluteLayout.LayoutBounds="0.8,0.65,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="9" Style="{DynamicResource LabelStyle}" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton9" NumberOfTapsRequired="1" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                <Image Grid.Row="2" Grid.Column="1"  Source="Button" x:Name="Image8" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Row="2" Grid.Column="1"  Text="8" Style="{DynamicResource LabelStyle}" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="8" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-                    <Image Source="Button" Aspect="AspectFit" AbsoluteLayout.LayoutBounds="0.5,0.9,0.2,0.2" AbsoluteLayout.LayoutFlags="All" />
+                <Image Grid.Row="2" Grid.Column="2"  Source="Button" x:Name="Image9" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Row="2" Grid.Column="2"  Text="9" Style="{DynamicResource LabelStyle}" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="9" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-                    <Label AbsoluteLayout.LayoutBounds="0.5,0.9,0.2,0.2" AbsoluteLayout.LayoutFlags="All"  Text="0" Style="{DynamicResource LabelStyle}" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnButton0" NumberOfTapsRequired="1" />
-                        </Label.GestureRecognizers>
-                    </Label>
+                <Image Grid.Row="3" Grid.Column="1"  Source="Button" x:Name="Image0" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Grid.Row="3" Grid.Column="1"  Text="0" Style="{DynamicResource LabelStyle}" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="0" NumberOfTapsRequired="1" />
+                    </Label.GestureRecognizers>
+                </Label>
 
-                </AbsoluteLayout>
-
-            </StackLayout>
+            </Grid>
 
         </AbsoluteLayout>
 
