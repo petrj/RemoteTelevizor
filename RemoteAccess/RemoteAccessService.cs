@@ -23,6 +23,8 @@ namespace RemoteAccess
         private const int ConnectTimeoutMS = 2000;
         private const int ReceiveTimeoutMS = 2000;
         private const int SendTimeoutMS = 2000;
+        private const int MaxMessageSize = 1000000;
+
         private const string TerminateString = "b9fb065b-dee4-4b1e-b8b4-b0c82556380c";
         private string _ip;
         private int _port;
@@ -88,6 +90,10 @@ namespace RemoteAccess
                                 int bytesRec = handler.Receive(bytes);
                                 data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
                                 if (data.IndexOf(TerminateString) > -1)
+                                {
+                                    break;
+                                }
+                                if (data.Length > MaxMessageSize)
                                 {
                                     break;
                                 }
@@ -249,6 +255,10 @@ namespace RemoteAccess
                             }
                             data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
                             if (data.IndexOf(TerminateString) > -1)
+                            {
+                                break;
+                            }
+                            if (data.Length > MaxMessageSize)
                             {
                                 break;
                             }
