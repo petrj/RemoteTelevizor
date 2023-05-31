@@ -59,7 +59,7 @@ namespace RemoteTelevizor
 
             if (_viewModel.LastAllocatedSizeChanged(width, height))
             {
-                ResizeArrows(0.5,0.4,0.6,0.6);
+                ResizeArrows(0.5,0.3,0.6,0.6);
             }
         }
 
