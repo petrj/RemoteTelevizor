@@ -48,12 +48,6 @@ namespace RemoteTelevizor.Models
                 {
                     await visualElement.ScaleTo(1.5, 100);
                     await visualElement.ScaleTo(1, 100);
-
-                    //await visualElement.TranslateTo(10, 5);
-                    //await visualElement.TranslateTo(-10, -5);
-
-                    //await visualElement.FadeTo(0.0, 150);
-                    //await visualElement.FadeTo(1.0, 150);
                 });
             }
         }

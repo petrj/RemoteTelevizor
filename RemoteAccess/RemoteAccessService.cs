@@ -242,6 +242,11 @@ namespace RemoteAccess
                         {
                             bytes = new byte[BufferSize];
                             int bytesRec = sender.Receive(bytes);
+                            if (bytesRec == 0)
+                            {
+                                _loggingService.Info($"[RAS] No byte received!");
+                                break;
+                            }
                             data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
                             if (data.IndexOf(TerminateString) > -1)
                             {
@@ -250,20 +255,23 @@ namespace RemoteAccess
                         }
 
                         RemoteAccessMessage responseMessage = null;
-                        try
+                        if (data != null)
                         {
-                            var messageString = data.Substring(0, data.Length - TerminateString.Length);
+                            try
+                            {
+                                var messageString = data.Substring(0, data.Length - TerminateString.Length);
 
-                            var decryptedData = CryptographyService.DecryptString(_securityKey, messageString);
+                                var decryptedData = CryptographyService.DecryptString(_securityKey, messageString);
 
-                            responseMessage = JsonConvert.DeserializeObject<RemoteAccessMessage>(decryptedData);
+                                responseMessage = JsonConvert.DeserializeObject<RemoteAccessMessage>(decryptedData);
 
-                            _loggingService.Info($"[RAS] Response: {responseMessage}");
+                                _loggingService.Info($"[RAS] Response: {responseMessage}");
 
-                        }
-                        catch (Exception ex)
-                        {
-                            _loggingService.Error(ex, "[RAS]: error reading message response");
+                            }
+                            catch (Exception ex)
+                            {
+                                _loggingService.Error(ex, "[RAS]: error reading message response");
+                            }
                         }
 
                         sender.Shutdown(SocketShutdown.Both);

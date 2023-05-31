@@ -81,7 +81,7 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="PlayPause"  NumberOfTapsRequired="1" />
                         </Frame.GestureRecognizers>
-                        <Label Text="&#9199;" Style="{DynamicResource LabelStyle}" >
+                        <Label Text="&#x25B6;" Style="{DynamicResource LabelStyle}" >
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="PlayPause" NumberOfTapsRequired="1" />
                             </Label.GestureRecognizers>
@@ -144,22 +144,24 @@
                     </Frame>
 
 
-                    <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.15,0.15" AbsoluteLayout.LayoutFlags="All" x:Name="FrameInfo"  Style="{DynamicResource FrameStyle}">
+                    <Frame AbsoluteLayout.LayoutBounds="0.5,0.4,0.15,0.15" AbsoluteLayout.LayoutFlags="All" x:Name="FrameInfo"  Style="{DynamicResource FrameStyle}">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Info"  NumberOfTapsRequired="1" />
                         </Frame.GestureRecognizers>
-                        <Label Text="&#x24d8;" Style="{DynamicResource LabelStyle}" >
+
+                        <Label Text="Info" Style="{DynamicResource LabelStyle}" >
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Info" NumberOfTapsRequired="1" />
                             </Label.GestureRecognizers>
                         </Label>
+
                     </Frame>
 
-                    <Frame AbsoluteLayout.LayoutBounds="0.5,0.7,0.15,0.15" AbsoluteLayout.LayoutFlags="All" x:Name="FrameTxt"  Style="{DynamicResource FrameStyle}">
+                    <Frame AbsoluteLayout.LayoutBounds="0.5,0.6,0.15,0.15" AbsoluteLayout.LayoutFlags="All" x:Name="FrameTxt"  Style="{DynamicResource FrameStyle}">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Txt"  NumberOfTapsRequired="1" />
                         </Frame.GestureRecognizers>
-                        <Label Text="&#x270D;" Style="{DynamicResource LabelStyle}" >
+                        <Label Text="Text" Style="{DynamicResource LabelStyle}" >
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Txt" NumberOfTapsRequired="1" />
                             </Label.GestureRecognizers>
