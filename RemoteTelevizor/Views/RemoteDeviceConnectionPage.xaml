@@ -23,7 +23,7 @@
 
             <Style x:Key="ActionButtonFrameStyle" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="90"/>
-                <Setter Property="BackgroundColor" Value="Blue"/>
+                <Setter Property="BackgroundColor" Value="Green"/>
                 <Setter Property="Padding" Value="10"/>
                 <Setter Property="Margin" Value="0,20,0,0"/>
                 <Setter Property="BorderColor" Value="White"/>

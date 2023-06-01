@@ -100,16 +100,15 @@ namespace RemoteTelevizor.ViewModels
 
         private async Task Delete(RemoteDeviceConnection remoteDeviceConnection)
         {
-            if (await _dialogService.Confirm($"Are you sure to delete selected remote device?"))
+            if (await _dialogService.Confirm($"Are you sure to delete selected device {remoteDeviceConnection.Name}?"))
             {
                 try
                 {
                     await _semaphoreSlim.WaitAsync();
 
-                    //RemoteDevices.Remove(remoteDeviceConnection);
                     _appData.Connections.Remove(remoteDeviceConnection);
                     _appData.SaveConnections();
-                    }
+                }
                 finally
                 {
                     _semaphoreSlim.Release();
@@ -117,6 +116,11 @@ namespace RemoteTelevizor.ViewModels
                     await Refresh();
 
                     NotifySelectgedRemoteDeviceChange();
+
+                    if (RemoteDevices.Count==0)
+                    {
+                        MessagingCenter.Send(string.Empty, BaseViewModel.MSG_HideFlyoutPage);
+                    }
                 }
             }
         }

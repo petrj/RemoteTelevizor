@@ -89,7 +89,7 @@ namespace RemoteTelevizor
                 }
             };
 
-            await Device.InvokeOnMainThreadAsync(async () => await Navigation.PushAsync(remoteDeviceConnectionPage));
+            await Device.InvokeOnMainThreadAsync(async () => await Navigation.PushModalAsync(remoteDeviceConnectionPage));
         }
 
         private async Task AddRemoteDevice()
@@ -118,7 +118,7 @@ namespace RemoteTelevizor
                 }
             };
 
-            await Device.InvokeOnMainThreadAsync(async () => await Navigation.PushAsync(remoteDeviceConnectionPage));
+            await Device.InvokeOnMainThreadAsync(async () => await Navigation.PushModalAsync(remoteDeviceConnectionPage));
         }
 
         private async void OnButtonAdd(object sender, EventArgs e)
