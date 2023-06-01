@@ -43,45 +43,6 @@ namespace RemoteTelevizor.Droid
 
             var appData = new RemoteTelevizorAppData();
 
-#if DEBUG
-
-            var connections = appData.Connections;
-
-            var TVConnection = appData.GetConnectionByIPAndPort("10.0.0.18", 49152);
-            if (TVConnection == null)
-            {
-                TVConnection = new RemoteDeviceConnection()
-                {
-                    IP = "10.0.0.18",
-                    Port = 49152,
-                    Name = "TV",
-                    SecurityKey = "OnlineTelevizor"
-                };
-
-                connections.Add(TVConnection);
-
-                appData.Connections = connections;
-            }
-
-            var tabletConnection = appData.GetConnectionByIPAndPort("10.0.0.231", 49152);
-            if (tabletConnection == null)
-            {
-                tabletConnection = new RemoteDeviceConnection()
-                {
-                    IP = "10.0.0.231",
-                    Port = 49152,
-                    Name = "Lenovo Tablet",
-                    SecurityKey = "OnlineTelevizor"
-                };
-
-                connections.Add(tabletConnection);
-                appData.Connections = connections;
-            }
-
-#endif
-
-
-
             LoadApplication(new App(_loggingService, appData));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

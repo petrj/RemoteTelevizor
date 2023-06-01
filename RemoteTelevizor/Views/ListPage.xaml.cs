@@ -5,6 +5,7 @@ using RemoteTelevizor.ViewModels;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using static Java.Util.Jar.Attributes;
 
 namespace RemoteTelevizor
 {
@@ -23,9 +24,14 @@ namespace RemoteTelevizor
 
             _dialogService = new DialogService(this);
 
-            MessagingCenter.Subscribe<RemoteDeviceConnection>(this, RemoteDeviceViewModel.MSG_EditRemoteDevice, (device) =>
+            MessagingCenter.Subscribe<RemoteDeviceConnection>(this, BaseViewModel.MSG_EditRemoteDevice, async (device) =>
             {
-                Task.Run(async () => await EditRemoteDevice(device));
+                await EditRemoteDevice(device);
+            });
+
+            MessagingCenter.Subscribe<string>(this, BaseViewModel.MSG_AddRemoteDevice, async (sender) =>
+            {
+                await AddRemoteDevice();
             });
 
             BindingContext = _viewModel = new ListPageViewModel(loggingService, _appData, _dialogService);
@@ -83,19 +89,19 @@ namespace RemoteTelevizor
                 }
             };
 
-            Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(remoteDeviceConnectionPage));
+            await Device.InvokeOnMainThreadAsync(async () => await Navigation.PushAsync(remoteDeviceConnectionPage));
         }
 
-        private async void OnButtonAdd(object sender, EventArgs e)
+        private async Task AddRemoteDevice()
         {
             var remoteDeviceConnectionPage = new RemoteDeviceConnectionPage(_loggingService);
 
             remoteDeviceConnectionPage.Connection = new RemoteDeviceConnection()
             {
-                 Name = "New remote device",
-                 IP = "192.168.1.42",
-                 Port = 49151,
-                 SecurityKey = "OnlineTelevizor"
+                Name = "New remote device",
+                IP = "192.168.1.42",
+                Port = 49151,
+                SecurityKey = "OnlineTelevizor"
             };
 
             remoteDeviceConnectionPage.Disappearing += delegate
@@ -112,7 +118,12 @@ namespace RemoteTelevizor
                 }
             };
 
-            Device.BeginInvokeOnMainThread(async () => await Navigation.PushAsync(remoteDeviceConnectionPage));
+            await Device.InvokeOnMainThreadAsync(async () => await Navigation.PushAsync(remoteDeviceConnectionPage));
+        }
+
+        private async void OnButtonAdd(object sender, EventArgs e)
+        {
+            await AddRemoteDevice();
         }
     }
 }

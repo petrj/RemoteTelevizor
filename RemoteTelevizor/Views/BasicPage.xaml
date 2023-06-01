@@ -22,6 +22,8 @@
                 <Setter Property="BorderColor" Value="DarkGray"/>
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
             </Style>
 
             <Style x:Key="FrameStyle" TargetType="Frame">
@@ -31,6 +33,22 @@
                 <Setter Property="CornerRadius" Value="20"/>
                 <Setter Property="BorderColor" Value="White"/>
                 <Setter Property="Padding" Value="0"/>
+            </Style>
+
+            <Style x:Key="ActionButtonFrameStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="90"/>
+                <Setter Property="BackgroundColor" Value="Green"/>
+                <Setter Property="Opacity" Value="1"/>
+                <Setter Property="Padding" Value="5,5,5,5"/>
+                <Setter Property="Margin" Value="5,10,10,5"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="Opacity" Value="1.0"/>
+                <Setter Property="BorderColor" Value="White"/>
+            </Style>
+
+            <Style x:Key="AddNewButtonFrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="Black"/>
+                <Setter Property="Opacity" Value="0.75"/>
             </Style>
 
             <Style x:Key="TitleStyle" TargetType="Label">
@@ -52,6 +70,13 @@
                 <Setter Property="Padding" Value="0"/>
             </Style>
 
+            <Style x:Key="ButtonLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
 
             <Style x:Key="LabelStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="White"/>
@@ -160,6 +185,14 @@
 
                     </AbsoluteLayout>
 
+                </Frame>
+
+                <Frame AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Style="{DynamicResource AddNewButtonFrameStyle}" IsVisible="{Binding AddNewDeviceButtonVisible}" />
+                <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.5,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonaAddFrame" Style="{DynamicResource ActionButtonFrameStyle}" IsVisible="{Binding AddNewDeviceButtonVisible}">
+                    <Label Text="Add new remote device" Style="{DynamicResource ButtonLabelStyle}"/>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding AddNewRemoteCommand}" />
+                    </Frame.GestureRecognizers>
                 </Frame>
 
             </AbsoluteLayout>

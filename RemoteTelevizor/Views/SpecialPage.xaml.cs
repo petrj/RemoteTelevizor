@@ -25,9 +25,9 @@ namespace RemoteTelevizor
 
             _loggingService = loggingService;
 
-            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_AnimeFrame, (name) =>
+            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_AnimeFrame, async (name) =>
             {
-                Task.Run(async () => { await BaseViewModel.Anime<Frame>(name, this); });
+                await BaseViewModel.Anime<Frame>(name, this);
             });
 
             BindingContext = _viewModel = new RemoteDeviceViewModel(loggingService, dialogService);

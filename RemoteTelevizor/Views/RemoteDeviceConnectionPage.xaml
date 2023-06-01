@@ -17,7 +17,7 @@
             </Style>
 
             <Style x:Key="CaptionStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="TextColor" Value="#41b3ff"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
             </Style>
 
@@ -26,6 +26,7 @@
                 <Setter Property="BackgroundColor" Value="Blue"/>
                 <Setter Property="Padding" Value="10"/>
                 <Setter Property="Margin" Value="0,20,0,0"/>
+                <Setter Property="BorderColor" Value="White"/>
             </Style>
 
             <Style x:Key="ButtonLabelStyle" TargetType="Label">
@@ -77,7 +78,7 @@
                     <TapGestureRecognizer Tapped="OnButtonAdd" NumberOfTapsRequired="1" />
                 </Frame.GestureRecognizers>
 
-            </Frame>
+        </Frame>
 
         </StackLayout>
 

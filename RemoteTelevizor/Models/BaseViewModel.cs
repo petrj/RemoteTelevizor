@@ -19,6 +19,7 @@ namespace RemoteTelevizor.Models
         public const string MSG_AnimeFrame= "AnimeFrame";
 
         public const string MSG_EditRemoteDevice = "EditRemoteDevice";
+        public const string MSG_AddRemoteDevice = "AddRemoteDevice";
 
         private bool _isBusy = false;
 

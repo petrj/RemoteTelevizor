@@ -25,6 +25,7 @@ namespace RemoteTelevizor.ViewModels
         private RemoteAccessService _remoteAccessService;
 
         public Command OnButtonPressedCommand { get; set; }
+        public Command AddNewRemoteCommand { get; set; }
 
         public RemoteDeviceViewModel(ILoggingService loggingService, DialogService dialogService)
         {
@@ -33,6 +34,20 @@ namespace RemoteTelevizor.ViewModels
             _dialogService = dialogService;
 
             OnButtonPressedCommand = new Command<object>(async (parameter) => await OnButtonPressed(parameter));
+            AddNewRemoteCommand = new Command(async () => await AddNewRemote());
+        }
+
+        public bool AddNewDeviceButtonVisible
+        {
+            get
+            {
+                return _currentConnection == null;
+            }
+        }
+
+        private async Task AddNewRemote()
+        {
+            MessagingCenter.Send(String.Empty, BaseViewModel.MSG_AddRemoteDevice);
         }
 
         public bool LastAllocatedSizeChanged(double width, double height)
@@ -50,44 +65,6 @@ namespace RemoteTelevizor.ViewModels
             _lastAllocatedSize.Height = height;
 
             return true;
-        }
-
-        public Size LastAllocatedSize
-        {
-            get
-            {
-                return _lastAllocatedSize;
-            }
-        }
-
-        public bool Portrait
-        {
-            get
-            {
-                return _lastAllocatedSize.Height> _lastAllocatedSize.Width;
-            }
-        }
-
-        public double Ratio
-        {
-            get
-            {
-                if (Portrait)
-                {
-                    if (_lastAllocatedSize.Height != 0)
-                    {
-                        return _lastAllocatedSize.Width / _lastAllocatedSize.Height;
-                    }
-                } else
-                {
-                    if (_lastAllocatedSize.Width != 0)
-                    {
-                        return (_lastAllocatedSize.Height-50) / _lastAllocatedSize.Width;
-                    }
-                }
-
-                return 1;
-            }
         }
 
         private async Task OnButtonPressed(object parameter)
@@ -224,6 +201,7 @@ namespace RemoteTelevizor.ViewModels
             }
 
             OnPropertyChanged(nameof(DeviceName));
+            OnPropertyChanged(nameof(AddNewDeviceButtonVisible));
         }
 
         public string DeviceName
