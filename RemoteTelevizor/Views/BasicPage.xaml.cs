@@ -76,15 +76,11 @@ namespace RemoteTelevizor
                     ResizeArrows(0.5, 0.3, 0.6, 0.6);
                     ResizeButtonFrame(FrameVolume, 0.9, 0.95, 0.2, 0.4);
                     ResizeButtonFrame(FrameBack, 0.1, 0.05, 0.15, 0.15);
-
-                    //ResizeButtonFrame(ButtonaAddFrame, 0.5, 0.5, 0.5, 0.3);
                 } else
                 {
                     ResizeArrows(0.5, 0.5, 0.8, 0.8);
                     ResizeButtonFrame(FrameVolume, 0.95, 0.5, 0.1, 0.6);
                     ResizeButtonFrame(FrameBack, 0.1, 0.2, 0.15, 0.15);
-
-                    //ResizeButtonFrame(ButtonaAddFrame, 0.5, 0.5, 0.8, 0.4);
                 }
             });
         }

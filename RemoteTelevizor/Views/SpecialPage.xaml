@@ -19,7 +19,7 @@
             <Style x:Key="RemoteFrameStyle" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="#222222"/>
                 <Setter Property="Padding" Value="0"/>
-                <Setter Property="Margin" Value="25,0,25,25"/>
+                <Setter Property="Margin" Value="25,0,25,0"/>
                 <Setter Property="BorderColor" Value="DarkGray"/>
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="CornerRadius" Value="20"/>

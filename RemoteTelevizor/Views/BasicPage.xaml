@@ -17,7 +17,7 @@
 
             <Style x:Key="RemoteFrameStyle" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="#222222"/>
-                <Setter Property="Margin" Value="25,0,25,25"/>
+                <Setter Property="Margin" Value="25,0,25,0"/>
                 <Setter Property="BorderColor" Value="DarkGray"/>
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="CornerRadius" Value="20"/>
@@ -82,6 +82,17 @@
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+
+            <Style x:Key="BigLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="Margin" Value="0,0,0,0"/>
                 <Setter Property="Padding" Value="0"/>
             </Style>
@@ -156,7 +167,7 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Back"  NumberOfTapsRequired="1" />
                         </Frame.GestureRecognizers>
-                        <Label x:Name="LabelBack" Text="&#x21BA;" Style="{DynamicResource LabelStyle}" FontAttributes="Bold" >
+                        <Label x:Name="LabelBack" Text="&#x21BA;" Style="{DynamicResource BigLabelStyle}" >
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Back" NumberOfTapsRequired="1" />
                             </Label.GestureRecognizers>
@@ -167,7 +178,7 @@
 
                         <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
 
-                            <Label AbsoluteLayout.LayoutBounds="0.5,0.0,1.0,0.4" AbsoluteLayout.LayoutFlags="All" x:Name="LabelVolumeUp" Text="+" Style="{DynamicResource LabelStyle}" >
+                        <Label AbsoluteLayout.LayoutBounds="0.5,0.0,1.0,0.4" AbsoluteLayout.LayoutFlags="All" x:Name="LabelVolumeUp" Text="+" Style="{DynamicResource BigLabelStyle}" >
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="VolUp" NumberOfTapsRequired="1" />
                                 </Label.GestureRecognizers>
@@ -175,7 +186,7 @@
 
                             <Label AbsoluteLayout.LayoutBounds="0.5,0.5,1.0,0.3" AbsoluteLayout.LayoutFlags="All"  Text="Vol" Style="{DynamicResource CaptionStyle}" />
 
-                            <Label AbsoluteLayout.LayoutBounds="0.5,1.0,1.0,0.4" AbsoluteLayout.LayoutFlags="All"  x:Name="LabelVolumeDown" Text="-" Style="{DynamicResource LabelStyle}" >
+                        <Label AbsoluteLayout.LayoutBounds="0.5,1.0,1.0,0.4" AbsoluteLayout.LayoutFlags="All"  x:Name="LabelVolumeDown" Text="-" Style="{DynamicResource BigLabelStyle}" >
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="VolDown" NumberOfTapsRequired="1" />
                                 </Label.GestureRecognizers>
