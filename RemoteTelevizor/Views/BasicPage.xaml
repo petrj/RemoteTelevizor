@@ -156,7 +156,7 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Back"  NumberOfTapsRequired="1" />
                         </Frame.GestureRecognizers>
-                        <Label x:Name="LabelBack" Text="&#x232B;" Style="{DynamicResource LabelStyle}" >
+                        <Label x:Name="LabelBack" Text="&#x21BA;" Style="{DynamicResource LabelStyle}" FontAttributes="Bold" >
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Back" NumberOfTapsRequired="1" />
                             </Label.GestureRecognizers>
