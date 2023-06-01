@@ -17,7 +17,7 @@ using RemoteTelevizor.Models;
 
 namespace RemoteTelevizor.Droid
 {
-    [Activity(Label = "RemoteTelevizor", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, Exported = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
+    [Activity(Label = "Remote Televizor", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = false, Exported = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         private ILoggingService _loggingService;
@@ -27,7 +27,11 @@ namespace RemoteTelevizor.Droid
         {
             base.OnCreate(savedInstanceState);
 
+#if DEBUG
             _loggingService = new NLogLoggingService(GetType().Assembly, "RemoteTelevizor.Droid");
+#else
+            _loggingService = new DummyLoggingService();
+#endif
 
             _loggingService.Info("Starting activity");
 
