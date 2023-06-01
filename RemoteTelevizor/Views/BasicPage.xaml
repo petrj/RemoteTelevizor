@@ -17,7 +17,6 @@
 
             <Style x:Key="RemoteFrameStyle" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="#222222"/>
-                <Setter Property="Padding" Value="0"/>
                 <Setter Property="Margin" Value="25,0,25,25"/>
                 <Setter Property="BorderColor" Value="DarkGray"/>
                 <Setter Property="Padding" Value="0"/>
@@ -25,14 +24,12 @@
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
                 <Setter Property="VerticalOptions" Value="FillAndExpand"/>
             </Style>
-
             <Style x:Key="FrameStyle" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="Blue"/>
                 <Setter Property="Padding" Value="0"/>
                 <Setter Property="Margin" Value="0,0,0,0"/>
                 <Setter Property="CornerRadius" Value="20"/>
                 <Setter Property="BorderColor" Value="White"/>
-                <Setter Property="Padding" Value="0"/>
             </Style>
 
             <Style x:Key="ActionButtonFrameStyle" TargetType="Frame">
@@ -97,105 +94,105 @@
 
         <Frame Style="{DynamicResource RemoteFrameStyle}" x:Name="FrameRemote">
 
-            <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
 
-                <AbsoluteLayout AbsoluteLayout.LayoutBounds="0.5,0.3,0.6,0.6" AbsoluteLayout.LayoutFlags="All" x:Name="AbsoluteLayoutArrows"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                    <AbsoluteLayout AbsoluteLayout.LayoutBounds="0.5,0.3,0.6,0.6" AbsoluteLayout.LayoutFlags="All" x:Name="AbsoluteLayoutArrows"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
 
-                    <Frame AbsoluteLayout.LayoutBounds="0.5,0,0.75,0.25" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonUpFrame" Style="{DynamicResource ButtonFrameStyle}">
-                        <Image Source="ButtonUp" x:Name="ImageUp" Aspect="AspectFit"/>
+                        <Frame AbsoluteLayout.LayoutBounds="0.5,0,0.75,0.25" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonUpFrame" Style="{DynamicResource ButtonFrameStyle}">
+                            <Image Source="ButtonUp" x:Name="ImageUp" Aspect="AspectFit"/>
 
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Up" NumberOfTapsRequired="1" />
-                        </Frame.GestureRecognizers>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Up" NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
 
-                    </Frame>
+                        </Frame>
 
-                    <Frame AbsoluteLayout.LayoutBounds="0.5,1,0.75,0.25" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonDownFrame"  Style="{DynamicResource ButtonFrameStyle}">
-                        <Image Source="ButtonDown" x:Name="ImageDown" Aspect="AspectFit"/>
+                        <Frame AbsoluteLayout.LayoutBounds="0.5,1,0.75,0.25" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonDownFrame"  Style="{DynamicResource ButtonFrameStyle}">
+                            <Image Source="ButtonDown" x:Name="ImageDown" Aspect="AspectFit"/>
 
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Down"  NumberOfTapsRequired="1" />
-                        </Frame.GestureRecognizers>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Down"  NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
 
-                    </Frame>
+                        </Frame>
 
-                    <Frame AbsoluteLayout.LayoutBounds="0,0.5,0.25,0.75" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonLeftFrame"  Style="{DynamicResource ButtonFrameStyle}">
-                        <Image Source="ButtonLeft" x:Name="ImageLeft" Aspect="AspectFit"/>
+                        <Frame AbsoluteLayout.LayoutBounds="0,0.5,0.25,0.75" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonLeftFrame"  Style="{DynamicResource ButtonFrameStyle}">
+                            <Image Source="ButtonLeft" x:Name="ImageLeft" Aspect="AspectFit"/>
 
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Left"  NumberOfTapsRequired="1" />
-                        </Frame.GestureRecognizers>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Left"  NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
 
-                    </Frame>
+                        </Frame>
 
-                    <Frame AbsoluteLayout.LayoutBounds="1,0.5,0.25,0.75" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonRightFrame"  Style="{DynamicResource ButtonFrameStyle}">
-                        <Image Source="ButtonRight" x:Name="ImageRight" Aspect="AspectFit"/>
+                        <Frame AbsoluteLayout.LayoutBounds="1,0.5,0.25,0.75" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonRightFrame"  Style="{DynamicResource ButtonFrameStyle}">
+                            <Image Source="ButtonRight" x:Name="ImageRight" Aspect="AspectFit"/>
 
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Right"  NumberOfTapsRequired="1" />
-                        </Frame.GestureRecognizers>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Right"  NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
 
-                    </Frame>
+                        </Frame>
 
-                    <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.4,0.4" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonOKFrame"  Style="{DynamicResource ButtonFrameStyle}">
-                        <Image Source="ButtonOK"  Aspect="AspectFit" x:Name="ImageOK"/>
+                        <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.4,0.4" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonOKFrame"  Style="{DynamicResource ButtonFrameStyle}">
+                            <Image Source="ButtonOK"  Aspect="AspectFit" x:Name="ImageOK"/>
 
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="OK"  NumberOfTapsRequired="1" />
-                        </Frame.GestureRecognizers>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="OK"  NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
 
-                    </Frame>
+                        </Frame>
 
-                    <Label AbsoluteLayout.LayoutBounds="0.5,0.5,0.4,0.4" AbsoluteLayout.LayoutFlags="All"  Text="OK" Style="{DynamicResource LabelStyle}" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="OK"  NumberOfTapsRequired="1" />
-                        </Label.GestureRecognizers>
-                    </Label>
-
-                </AbsoluteLayout>
-
-                <Frame AbsoluteLayout.LayoutBounds="0.1,0.05,0.15,0.15" AbsoluteLayout.LayoutFlags="All" x:Name="FrameBack"  Style="{DynamicResource FrameStyle}">
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Back"  NumberOfTapsRequired="1" />
-                    </Frame.GestureRecognizers>
-                    <Label x:Name="LabelBack" Text="&#x232B;" Style="{DynamicResource LabelStyle}" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Back" NumberOfTapsRequired="1" />
-                        </Label.GestureRecognizers>
-                    </Label>
-                </Frame>
-
-                <Frame AbsoluteLayout.LayoutBounds="0.9,0.95,0.2,0.4" AbsoluteLayout.LayoutFlags="All" x:Name="FrameVolume"  Style="{DynamicResource FrameStyle}">
-
-                    <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
-
-                        <Label AbsoluteLayout.LayoutBounds="0.5,0.0,1.0,0.4" AbsoluteLayout.LayoutFlags="All" x:Name="LabelVolumeUp" Text="+" Style="{DynamicResource LabelStyle}" >
+                        <Label AbsoluteLayout.LayoutBounds="0.5,0.5,0.4,0.4" AbsoluteLayout.LayoutFlags="All"  Text="OK" Style="{DynamicResource LabelStyle}" >
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="VolUp" NumberOfTapsRequired="1" />
-                            </Label.GestureRecognizers>
-                        </Label>
-
-                        <Label AbsoluteLayout.LayoutBounds="0.5,0.5,1.0,0.3" AbsoluteLayout.LayoutFlags="All"  Text="Vol" Style="{DynamicResource CaptionStyle}" />
-
-                        <Label AbsoluteLayout.LayoutBounds="0.5,1.0,1.0,0.4" AbsoluteLayout.LayoutFlags="All"  x:Name="LabelVolumeDown" Text="-" Style="{DynamicResource LabelStyle}" >
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="VolDown" NumberOfTapsRequired="1" />
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="OK"  NumberOfTapsRequired="1" />
                             </Label.GestureRecognizers>
                         </Label>
 
                     </AbsoluteLayout>
 
-                </Frame>
+                    <Frame AbsoluteLayout.LayoutBounds="0.1,0.05,0.15,0.15" AbsoluteLayout.LayoutFlags="All" x:Name="FrameBack"  Style="{DynamicResource FrameStyle}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Back"  NumberOfTapsRequired="1" />
+                        </Frame.GestureRecognizers>
+                        <Label x:Name="LabelBack" Text="&#x232B;" Style="{DynamicResource LabelStyle}" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Back" NumberOfTapsRequired="1" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Frame>
 
-                <Frame AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Style="{DynamicResource AddNewButtonFrameStyle}" IsVisible="{Binding AddNewDeviceButtonVisible}" />
-                <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.5,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonaAddFrame" Style="{DynamicResource ActionButtonFrameStyle}" IsVisible="{Binding AddNewDeviceButtonVisible}">
-                    <Label Text="Add new remote device" Style="{DynamicResource ButtonLabelStyle}"/>
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding AddNewRemoteCommand}" />
-                    </Frame.GestureRecognizers>
-                </Frame>
+                    <Frame AbsoluteLayout.LayoutBounds="0.9,0.95,0.2,0.4" AbsoluteLayout.LayoutFlags="All" x:Name="FrameVolume"  Style="{DynamicResource FrameStyle}">
 
-            </AbsoluteLayout>
+                        <AbsoluteLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+
+                            <Label AbsoluteLayout.LayoutBounds="0.5,0.0,1.0,0.4" AbsoluteLayout.LayoutFlags="All" x:Name="LabelVolumeUp" Text="+" Style="{DynamicResource LabelStyle}" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="VolUp" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                            <Label AbsoluteLayout.LayoutBounds="0.5,0.5,1.0,0.3" AbsoluteLayout.LayoutFlags="All"  Text="Vol" Style="{DynamicResource CaptionStyle}" />
+
+                            <Label AbsoluteLayout.LayoutBounds="0.5,1.0,1.0,0.4" AbsoluteLayout.LayoutFlags="All"  x:Name="LabelVolumeDown" Text="-" Style="{DynamicResource LabelStyle}" >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="VolDown" NumberOfTapsRequired="1" />
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                        </AbsoluteLayout>
+
+                    </Frame>
+
+                    <Frame AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Style="{DynamicResource AddNewButtonFrameStyle}" IsVisible="{Binding AddNewDeviceButtonVisible}" />
+                    <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.5,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonaAddFrame" Style="{DynamicResource ActionButtonFrameStyle}" IsVisible="{Binding AddNewDeviceButtonVisible}">
+                        <Label Text="Add new remote device" Style="{DynamicResource ButtonLabelStyle}"/>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding AddNewRemoteCommand}" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                </AbsoluteLayout>
 
         </Frame>
 

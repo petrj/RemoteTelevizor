@@ -33,7 +33,7 @@ namespace RemoteTelevizor
 
             MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_AnimeFrame, async (name) =>
             {
-               await BaseViewModel.Anime<Frame>(name, this);
+                await BaseViewModel.Anime<Frame>(name, this);
             });
 
             BindingContext = _viewModel = new RemoteDeviceViewModel(loggingService, dialogService);
@@ -60,35 +60,52 @@ namespace RemoteTelevizor
 
             if (_viewModel.LastAllocatedSizeChanged(width, height))
             {
-                ResizeArrows(0.5,0.3,0.6,0.6);
+                RefreshGUI();
             }
         }
 
-        public void ResizeArrows(double posX, double posY, double width, double height)
+        private void RefreshGUI()
         {
             _loggingService.Info($"RefreshGUI");
 
-            if (_viewModel == null)
-                return;
-
             Device.BeginInvokeOnMainThread(() =>
             {
-                if (FrameRemote.Width> FrameRemote.Height && FrameRemote.Width > 0)
+                if (_viewModel.Portrait)
                 {
-                    // landscape
-                    width = width * (FrameRemote.Height) / (FrameRemote.Width);
-                }
-
-                if (FrameRemote.Height > FrameRemote.Width && FrameRemote.Height > 0)
+                    ResizeArrows(0.5, 0.3, 0.6, 0.6);
+                    ResizeButtonFrame(FrameVolume, 0.9, 0.95, 0.2, 0.4);
+                    ResizeButtonFrame(FrameBack, 0.1, 0.05, 0.15, 0.15);
+                } else
                 {
-                    // portrait
-                    height = height * (FrameRemote.Width) / (FrameRemote.Height);
+                    ResizeArrows(0.5, 0.5, 0.8, 0.8);
+                    ResizeButtonFrame(FrameVolume, 0.95, 0.5, 0.1, 0.6);
+                    ResizeButtonFrame(FrameBack, 0.1, 0.2, 0.15, 0.15);
                 }
-
-                AbsoluteLayout.SetLayoutFlags(AbsoluteLayoutArrows, AbsoluteLayoutFlags.All);
-                AbsoluteLayout.SetLayoutBounds(AbsoluteLayoutArrows, new Rectangle(posX, posY, width, height));
             });
         }
 
+        private void ResizeArrows(double posX, double posY, double width, double height)
+        {
+            if (!_viewModel.Portrait && FrameRemote.Width > 0)
+            {
+                // landscape
+                width = width * (FrameRemote.Height) / (FrameRemote.Width);
+            }
+
+            if (_viewModel.Portrait && FrameRemote.Height > 0)
+            {
+                // portrait
+                height = height * (FrameRemote.Width) / (FrameRemote.Height);
+            }
+
+            AbsoluteLayout.SetLayoutFlags(AbsoluteLayoutArrows, AbsoluteLayoutFlags.All);
+            AbsoluteLayout.SetLayoutBounds(AbsoluteLayoutArrows, new Rectangle(posX, posY, width, height));
+        }
+
+        public static void ResizeButtonFrame(Frame frame, double posX, double posY, double width, double height)
+        {
+            AbsoluteLayout.SetLayoutFlags(frame, AbsoluteLayoutFlags.All);
+            AbsoluteLayout.SetLayoutBounds(frame, new Rectangle(posX, posY, width, height));
+        }
     }
 }

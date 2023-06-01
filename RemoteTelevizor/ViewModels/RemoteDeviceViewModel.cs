@@ -67,6 +67,14 @@ namespace RemoteTelevizor.ViewModels
             return true;
         }
 
+        public bool Portrait
+        {
+            get
+            {
+                return _lastAllocatedSize.Height > _lastAllocatedSize.Width;
+            }
+        }
+
         private async Task OnButtonPressed(object parameter)
         {
             if (parameter == null)
