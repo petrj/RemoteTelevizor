@@ -77,6 +77,7 @@
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="10,0,10,0"/>
             </Style>
 
             <Style x:Key="LabelStyle" TargetType="Label">
@@ -219,7 +220,7 @@
                     </Frame>
 
                     <Frame AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Style="{DynamicResource AddNewButtonFrameStyle}" IsVisible="{Binding AddNewDeviceButtonVisible}" />
-                    <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.5,0.3" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonaAddFrame" Style="{DynamicResource ActionButtonFrameStyle}" IsVisible="{Binding AddNewDeviceButtonVisible}">
+                    <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.5,0.2" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonaAddFrame" Style="{DynamicResource ActionButtonFrameStyle}" IsVisible="{Binding AddNewDeviceButtonVisible}">
                         <Label Text="Add new remote device" Style="{DynamicResource ButtonLabelStyle}"/>
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding AddNewRemoteCommand}" />

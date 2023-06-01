@@ -39,11 +39,11 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-     <ScrollView>
+    <ScrollView Margin="10,10,10,10">
 
         <StackLayout>
 
-            <Grid Margin="10,10,0,0">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
@@ -83,7 +83,5 @@
         </StackLayout>
 
     </ScrollView>
-
-
 
 </ContentPage>

@@ -56,26 +56,26 @@ namespace RemoteTelevizor
 
             if (_viewModel.LastAllocatedSizeChanged(width, height))
             {
-                ResizeGrid(0.5, 0.5, 0.8, 0.8);
+                ResizeGrid(0.5, 0.5, 0.9, 0.9);
             }
         }
 
         public void ResizeGrid(double posX, double posY, double width, double height)
         {
-            _loggingService.Info($"RefreshGUI");
+            _loggingService.Info($"ResizeGrid");
 
             if (_viewModel == null)
                 return;
 
             Device.BeginInvokeOnMainThread(() =>
             {
-                if (FrameRemote.Width > FrameRemote.Height && FrameRemote.Width > 0)
+                if (!_viewModel.Portrait && FrameRemote.Width > 0)
                 {
                     // landscape
                     width = width * (FrameRemote.Height) / (FrameRemote.Width);
                 }
 
-                if (FrameRemote.Height > FrameRemote.Width && FrameRemote.Height > 0)
+                if (_viewModel.Portrait && FrameRemote.Height > 0)
                 {
                     // portrait
                     height = height * (FrameRemote.Width) / (FrameRemote.Height);
