@@ -327,5 +327,6 @@ Temporary Items
 
 # Android apk
 *.apk
-*.apk
+*.aab
+
 
