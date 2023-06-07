@@ -64,11 +64,17 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="LoggerService">
+      <Version>1.0.0</Version>
+    </PackageReference>
     <PackageReference Include="NLog">
       <Version>5.1.3</Version>
     </PackageReference>
     <PackageReference Include="Plugin.CurrentActivity">
       <Version>2.1.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="RemoteAccess">
+      <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.CommunityToolkit">
       <Version>2.0.6</Version>
@@ -113,10 +119,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LoggerService\LoggerService.csproj">
-      <Project>{6336BB08-0206-46CE-B259-EB3C0953341A}</Project>
-      <Name>LoggerService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RemoteTelevizor\RemoteTelevizor.csproj">
       <Project>{665D259F-4E12-435E-9E81-86BF6FEC0EFE}</Project>
       <Name>RemoteTelevizor</Name>

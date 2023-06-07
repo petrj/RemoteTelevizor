@@ -11,15 +11,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="LoggerService" Version="1.0.0" />
     <PackageReference Include="NLog" Version="5.1.5" />
+    <PackageReference Include="RemoteAccess" Version="1.0.1" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.6" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\LoggerService\LoggerService.csproj" />
-    <ProjectReference Include="..\RemoteAccess\RemoteAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>
