@@ -73,8 +73,8 @@
     <PackageReference Include="Plugin.CurrentActivity">
       <Version>2.1.0.4</Version>
     </PackageReference>
-    <PackageReference Include="RemoteAccess">
-      <Version>1.0.1</Version>
+    <PackageReference Include="RemoteAccessService">
+      <Version>1.0.4</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.CommunityToolkit">
       <Version>2.0.6</Version>

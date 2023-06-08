@@ -1,6 +1,5 @@
 ﻿using Android.Telecom;
 using LoggerService;
-using RemoteAccess;
 using RemoteTelevizor.Models;
 using RemoteTelevizor.Services;
 using RemoteTelevizor.ViewModels;

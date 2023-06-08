@@ -2,7 +2,7 @@
 using Android.InputMethodServices;
 using Android.Views;
 using LoggerService;
-using RemoteAccess;
+using RemoteAccessService;
 using RemoteTelevizor.Models;
 using RemoteTelevizor.Services;
 using System;
@@ -22,7 +22,7 @@ namespace RemoteTelevizor.ViewModels
         private Size _lastAllocatedSize = new Size(-1, -1);
 
         private RemoteDeviceConnection _currentConnection;
-        private RemoteAccessService _remoteAccessService;
+        private RemoteAccessService.RemoteAccessService _remoteAccessService;
 
         public Command OnButtonPressedCommand { get; set; }
         public Command AddNewRemoteCommand { get; set; }
@@ -30,7 +30,7 @@ namespace RemoteTelevizor.ViewModels
         public RemoteDeviceViewModel(ILoggingService loggingService, DialogService dialogService)
         {
             _loggingService = loggingService;
-            _remoteAccessService = new RemoteAccessService(loggingService);
+            _remoteAccessService = new RemoteAccessService.RemoteAccessService(loggingService);
             _dialogService = dialogService;
 
             OnButtonPressedCommand = new Command<object>(async (parameter) => await OnButtonPressed(parameter));
