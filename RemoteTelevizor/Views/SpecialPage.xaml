@@ -209,7 +209,7 @@
 
                     <Frame AbsoluteLayout.LayoutBounds="0.6,0.95,0.15,0.15" AbsoluteLayout.LayoutFlags="All" x:Name="FrameYellow"  Style="{DynamicResource FrameStyle}" BackgroundColor="Yellow">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Green"  NumberOfTapsRequired="1" />
+                            <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Yellow"  NumberOfTapsRequired="1" />
                         </Frame.GestureRecognizers>
                     </Frame>
 
