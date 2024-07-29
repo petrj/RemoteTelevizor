@@ -11,17 +11,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LoggerService" Version="1.0.2" />
-    <PackageReference Include="NLog" Version="5.2.0" />
+    <PackageReference Include="LoggerService" Version="1.0.4" />
+    <PackageReference Include="NLog" Version="5.3.2" />
     <PackageReference Include="RemoteAccessService" Version="1.0.4" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.6" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.5" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2662" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.8.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Mono.Android">
-      <HintPath>..\..\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v13.0\Mono.Android.dll</HintPath>
+      <HintPath>..\..\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v13.0\Mono.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
 
