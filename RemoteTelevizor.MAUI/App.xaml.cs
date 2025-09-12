@@ -36,6 +36,11 @@ namespace RemoteTelevizor.MAUI
                 _flyoutPage.IsPresented = false;
             });
 
+            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_ShowOrHideFlyoutPage, (msg) =>
+            {
+                _flyoutPage.IsPresented = !_flyoutPage.IsPresented;
+            });
+
 
             _flyoutPage = new FlyoutPage()
             {

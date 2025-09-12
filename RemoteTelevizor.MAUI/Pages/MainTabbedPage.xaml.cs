@@ -39,5 +39,10 @@ namespace RemoteTelevizor
                 _specialPage.Connection = value;
             }
         }
+
+        private void ToolbarItemMenu_Clicked(object sender, EventArgs e)
+        {
+            MessagingCenter.Send("", BaseViewModel.MSG_ShowOrHideFlyoutPage);
+        }
     }
 }

@@ -71,37 +71,23 @@
                 <Entry Grid.Row="7" Grid.Column="0"  x:Name="SecurityKeyEntry" Text="{Binding SecurityKey, Mode=TwoWay}" Style="{StaticResource CommonEntryTextStyle}" />
             </Grid>
 
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
+            <Frame x:Name="CancelButtonFrame"  Style="{DynamicResource ActionButtonFrameStyle}" HorizontalOptions="End">
+                <Label Text="Cancel" Style="{DynamicResource ButtonLabelStyle}"/>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="15*" />
-                    <ColumnDefinition Width="15*" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Cancel_Tapped" NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
 
-                </Grid.ColumnDefinitions>
+            </Frame>
 
-                <Frame Grid.Column="2" x:Name="AddButtonFrame"  Style="{DynamicResource ActionButtonFrameStyle}" HorizontalOptions="End">
-                    <Label Text="Save" Style="{DynamicResource ButtonLabelStyle}"/>
+            <Frame x:Name="AddButtonFrame"  Style="{DynamicResource ActionButtonFrameStyle}" HorizontalOptions="End">
+                <Label Text="Save" Style="{DynamicResource ButtonLabelStyle}"/>
 
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnButtonAdd" NumberOfTapsRequired="1" />
-                    </Frame.GestureRecognizers>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnButtonAdd" NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
 
-                </Frame>
-
-                <Frame Grid.Column="1" x:Name="CancelButtonFrame"  Style="{DynamicResource ActionButtonFrameStyle}" HorizontalOptions="End">
-                    <Label Text="Cancel" Style="{DynamicResource ButtonLabelStyle}"/>
-
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Cancel_Tapped" NumberOfTapsRequired="1" />
-                    </Frame.GestureRecognizers>
-
-                </Frame>
-
-            </Grid>
+            </Frame>
 
         </StackLayout>
 

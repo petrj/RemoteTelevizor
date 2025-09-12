@@ -11,6 +11,7 @@ namespace RemoteTelevizor.Models
     {
         public const string MSG_ToastMessage = "ToastMessage";
         public const string MSG_HideFlyoutPage = "HideFlyoutPage";
+        public const string MSG_ShowOrHideFlyoutPage = "ShowFlyoutPage";
         public const string MSG_SelectRemoteDevice = "SelectRemoteDevice";
         public const string MSG_SelectNoRemoteDevice = "SelectNoRemoteDevice";
 
