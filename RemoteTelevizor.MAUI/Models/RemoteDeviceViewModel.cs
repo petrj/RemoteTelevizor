@@ -76,23 +76,23 @@ namespace RemoteTelevizor.ViewModels
             {
                 case "Up":
                     MessagingCenter.Send("ImageUp", BaseViewModel.MSG_AnimeButton);
-                    await SendKey("Up");
+                    await SendKey("DpadUp");
                     break;
                 case "Down":
                     MessagingCenter.Send("ImageDown", BaseViewModel.MSG_AnimeButton);
-                    await SendKey("Down");
+                    await SendKey("DpadDown");
                     break;
                 case "Left":
                     MessagingCenter.Send("ImageLeft", BaseViewModel.MSG_AnimeButton);
-                    await SendKey("Left");
+                    await SendKey("DpadLeft");
                     break;
                 case "Right":
                     MessagingCenter.Send("ImageRight", BaseViewModel.MSG_AnimeButton);
-                    await SendKey("Right");
+                    await SendKey("DpadRight");
                     break;
                 case "OK":
                     MessagingCenter.Send("ImageOK", BaseViewModel.MSG_AnimeButton);
-                    await SendKey("OK");
+                    await SendKey("Enter");
                     break;
 
 
@@ -113,7 +113,7 @@ namespace RemoteTelevizor.ViewModels
 
                 case "Info":
                     MessagingCenter.Send("FrameInfo", BaseViewModel.MSG_AnimeFrame);
-                    await SendKey("Info");
+                    await SendKey("Guide");
                     break;
 
                 case "PageUp":

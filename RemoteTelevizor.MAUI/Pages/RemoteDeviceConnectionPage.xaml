@@ -58,27 +58,50 @@
                     <ColumnDefinition Width="100*" />
                 </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Text="Name" Style="{StaticResource CaptionStyle}" />
-            <Entry Grid.Row="1" Grid.Column="0" x:Name="NameEntry" Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource CommonEntryTextStyle}" />
+                <Label Grid.Row="0" Grid.Column="0" Text="Name" Style="{StaticResource CaptionStyle}" />
+                <Entry Grid.Row="1" Grid.Column="0" x:Name="NameEntry" Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource CommonEntryTextStyle}" />
 
-            <Label Grid.Row="2" Grid.Column="0" Text="IP" Style="{StaticResource CaptionStyle}" />
-            <Entry Grid.Row="3" Grid.Column="0" x:Name="IPEntry" Text="{Binding IP, Mode=TwoWay}" Style="{StaticResource CommonEntryTextStyle}" Keyboard="Url" />
+                <Label Grid.Row="2" Grid.Column="0" Text="IP" Style="{StaticResource CaptionStyle}" />
+                <Entry Grid.Row="3" Grid.Column="0" x:Name="IPEntry" Text="{Binding IP, Mode=TwoWay}" Style="{StaticResource CommonEntryTextStyle}" Keyboard="Url" />
 
-            <Label Grid.Row="4" Grid.Column="0" Text="Port" Style="{StaticResource CaptionStyle}"  />
-            <Entry Grid.Row="5" Grid.Column="0" x:Name="PortEntry" Text="{Binding Port, Mode=TwoWay}" Style="{StaticResource CommonEntryTextStyle}" Keyboard="Numeric" />
+                <Label Grid.Row="4" Grid.Column="0" Text="Port" Style="{StaticResource CaptionStyle}"  />
+                <Entry Grid.Row="5" Grid.Column="0" x:Name="PortEntry" Text="{Binding Port, Mode=TwoWay}" Style="{StaticResource CommonEntryTextStyle}" Keyboard="Numeric" />
 
-            <Label Grid.Row="6" Grid.Column="0" Text="Security Key" Style="{StaticResource CaptionStyle}" />
-            <Entry Grid.Row="7" Grid.Column="0"  x:Name="SecurityKeyEntry" Text="{Binding SecurityKey, Mode=TwoWay}" Style="{StaticResource CommonEntryTextStyle}" />
-        </Grid>
+                <Label Grid.Row="6" Grid.Column="0" Text="Security Key" Style="{StaticResource CaptionStyle}" />
+                <Entry Grid.Row="7" Grid.Column="0"  x:Name="SecurityKeyEntry" Text="{Binding SecurityKey, Mode=TwoWay}" Style="{StaticResource CommonEntryTextStyle}" />
+            </Grid>
 
-        <Frame x:Name="AddButtonFrame"  Style="{DynamicResource ActionButtonFrameStyle}" HorizontalOptions="End">
-                <Label Text="Save" Style="{DynamicResource ButtonLabelStyle}"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
 
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnButtonAdd" NumberOfTapsRequired="1" />
-                </Frame.GestureRecognizers>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="15*" />
+                    <ColumnDefinition Width="15*" />
 
-        </Frame>
+                </Grid.ColumnDefinitions>
+
+                <Frame Grid.Column="2" x:Name="AddButtonFrame"  Style="{DynamicResource ActionButtonFrameStyle}" HorizontalOptions="End">
+                    <Label Text="Save" Style="{DynamicResource ButtonLabelStyle}"/>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnButtonAdd" NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
+
+                </Frame>
+
+                <Frame Grid.Column="1" x:Name="CancelButtonFrame"  Style="{DynamicResource ActionButtonFrameStyle}" HorizontalOptions="End">
+                    <Label Text="Cancel" Style="{DynamicResource ButtonLabelStyle}"/>
+
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Cancel_Tapped" NumberOfTapsRequired="1" />
+                    </Frame.GestureRecognizers>
+
+                </Frame>
+
+            </Grid>
 
         </StackLayout>
 

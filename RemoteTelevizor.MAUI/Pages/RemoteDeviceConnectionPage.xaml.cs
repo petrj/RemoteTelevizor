@@ -76,6 +76,10 @@ namespace RemoteTelevizor
             await Device.InvokeOnMainThreadAsync(async () => await Navigation.PopModalAsync());
         }
 
-
+        private async void Cancel_Tapped(object sender, TappedEventArgs e)
+        {
+            Confirmed = false;
+            await Device.InvokeOnMainThreadAsync(async () => await Navigation.PopModalAsync());
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
+using Microsoft.UI.Xaml;
+using RemoteTelevizor.ViewModels;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -17,6 +19,19 @@ namespace RemoteTelevizor.MAUI.WinUI
         public App()
         {
             this.InitializeComponent();
+
+            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_ToastMessage, (message) =>
+            {
+                ShowToastMessage(message);
+            });
+        }
+
+        private void ShowToastMessage(string msg)
+        {
+            new ToastContentBuilder()
+                .AddText("DVBT Televizor")
+                .AddText(msg)
+                .Show();
         }
 
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();

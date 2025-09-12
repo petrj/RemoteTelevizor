@@ -34,11 +34,16 @@ namespace RemoteTelevizor
         {
             get
             {
+                if (File.Exists(Path.Combine(ConfigDir, "lastconnection.txt")))
+                {
+                    return File.ReadAllText(Path.Combine(ConfigDir, "lastconnection.txt"));
+                }
+
                 return null;
             }
             set
             {
-
+                File.WriteAllText(Path.Combine(ConfigDir, "lastconnection.txt"), value ?? "");
             }
         }
 
@@ -100,12 +105,20 @@ namespace RemoteTelevizor
 
         public RemoteDeviceConnection GetConnectionByIPAndPort(string ipAndPort)
         {
+            foreach (var connection in Connections)
+            {
+                if (connection.IpAndPort == ipAndPort)
+                {
+                    return connection;
+                }
+            }
+
             return null;
         }
 
         public RemoteDeviceConnection GetConnectionByIPAndPort(string ip, int port)
         {
-            return null;
+            return GetConnectionByIPAndPort($"{ip}:{port}");
         }
     }
 }
