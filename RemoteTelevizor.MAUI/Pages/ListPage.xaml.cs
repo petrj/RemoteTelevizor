@@ -1,4 +1,6 @@
-﻿using LoggerService;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using LoggerService;
+using RemoteTelevizor.MAUI;
 using RemoteTelevizor.Models;
 using RemoteTelevizor.Services;
 using RemoteTelevizor.ViewModels;
@@ -19,7 +21,7 @@ namespace RemoteTelevizor
             _appData = appData;
 
             _dialogService = new DialogService(this);
-            /*
+
             MessagingCenter.Subscribe<RemoteDeviceConnection>(this, BaseViewModel.MSG_EditRemoteDevice, async (device) =>
             {
                 await EditRemoteDevice(device);
@@ -29,7 +31,7 @@ namespace RemoteTelevizor
             {
                 await AddRemoteDevice();
             });
-            */
+
             BindingContext = _viewModel = new ListPageViewModel(loggingService, _appData, _dialogService);
         }
 
@@ -63,7 +65,6 @@ namespace RemoteTelevizor
 
         private async Task EditRemoteDevice(RemoteDeviceConnection remoteDeviceConnection)
         {
-            /*
             if (remoteDeviceConnection == null)
             {
                 return;
@@ -87,12 +88,11 @@ namespace RemoteTelevizor
             };
 
             await Device.InvokeOnMainThreadAsync(async () => await Navigation.PushModalAsync(remoteDeviceConnectionPage));
-            */
         }
 
         private async Task AddRemoteDevice()
         {
-            /*
+
             var remoteDeviceConnectionPage = new RemoteDeviceConnectionPage(_loggingService);
 
             remoteDeviceConnectionPage.Connection = new RemoteDeviceConnection()
@@ -118,7 +118,7 @@ namespace RemoteTelevizor
             };
 
             await Device.InvokeOnMainThreadAsync(async () => await Navigation.PushModalAsync(remoteDeviceConnectionPage));
-            */
+
         }
 
         private async void OnButtonAdd(object sender, EventArgs e)

@@ -112,7 +112,7 @@
                     <AbsoluteLayout AbsoluteLayout.LayoutBounds="0.5,0.3,0.6,0.6" AbsoluteLayout.LayoutFlags="All" x:Name="AbsoluteLayoutArrows"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
 
                         <Frame AbsoluteLayout.LayoutBounds="0.5,0,0.75,0.25" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonUpFrame" Style="{DynamicResource ButtonFrameStyle}">
-                            <Image Source="ButtonUp" x:Name="ImageUp" Aspect="AspectFit"/>
+                            <Image Source="buttonup.png" x:Name="ImageUp" Aspect="AspectFit"/>
 
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Up" NumberOfTapsRequired="1" />
@@ -121,7 +121,7 @@
                         </Frame>
 
                         <Frame AbsoluteLayout.LayoutBounds="0.5,1,0.75,0.25" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonDownFrame"  Style="{DynamicResource ButtonFrameStyle}">
-                            <Image Source="ButtonDown" x:Name="ImageDown" Aspect="AspectFit"/>
+                            <Image Source="buttondown.png" x:Name="ImageDown" Aspect="AspectFit"/>
 
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Down"  NumberOfTapsRequired="1" />
@@ -130,7 +130,7 @@
                         </Frame>
 
                         <Frame AbsoluteLayout.LayoutBounds="0,0.5,0.25,0.75" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonLeftFrame"  Style="{DynamicResource ButtonFrameStyle}">
-                            <Image Source="ButtonLeft" x:Name="ImageLeft" Aspect="AspectFit"/>
+                            <Image Source="buttonleft.png" x:Name="ImageLeft" Aspect="AspectFit"/>
 
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Left"  NumberOfTapsRequired="1" />
@@ -139,7 +139,7 @@
                         </Frame>
 
                         <Frame AbsoluteLayout.LayoutBounds="1,0.5,0.25,0.75" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonRightFrame"  Style="{DynamicResource ButtonFrameStyle}">
-                            <Image Source="ButtonRight" x:Name="ImageRight" Aspect="AspectFit"/>
+                            <Image Source="buttonright.png" x:Name="ImageRight" Aspect="AspectFit"/>
 
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="Right"  NumberOfTapsRequired="1" />
@@ -148,7 +148,7 @@
                         </Frame>
 
                         <Frame AbsoluteLayout.LayoutBounds="0.5,0.5,0.4,0.4" AbsoluteLayout.LayoutFlags="All" x:Name="ButtonOKFrame"  Style="{DynamicResource ButtonFrameStyle}">
-                            <Image Source="ButtonOK"  Aspect="AspectFit" x:Name="ImageOK"/>
+                            <Image Source="buttonok.png"  Aspect="AspectFit" x:Name="ImageOK"/>
 
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OnButtonPressedCommand}" CommandParameter="OK"  NumberOfTapsRequired="1" />

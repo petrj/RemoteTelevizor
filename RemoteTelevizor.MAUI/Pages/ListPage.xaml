@@ -102,17 +102,7 @@
                     <DataTemplate>
                         <ViewCell Height="50">
                             <ViewCell.View>
-                            <Grid
-
-                                 local2:PressedEffect.LongPressCommand="{Binding Source={x:Reference RemoteDeviceConnectionListView}, Path=BindingContext.LongPressCommand}"
-                                    local2:PressedEffect.LongPressCommandParameter="{Binding .}"
-                                    local2:PressedEffect.ShortPressCommand="{Binding Source={x:Reference RemoteDeviceConnectionListView}, Path=BindingContext.ShortPressCommand}"
-                                    local2:PressedEffect.ShortPressCommandParameter="{Binding .}"
-                                    RowSpacing="0">
-
-                                <Grid.Effects>
-                                    <local2:PressedEffect />
-                                </Grid.Effects>
+                            <Grid RowSpacing="0">
 
                                 <Grid.RowDefinitions>
                                         <RowDefinition Height="50" />

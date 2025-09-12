@@ -19,7 +19,6 @@ namespace RemoteTelevizor
 
             _loggingService = loggingService;
 
-            /*
             MessagingCenter.Subscribe<string>(this, BaseViewModel.MSG_AnimeButton, async (name) =>
             {
                 await BaseViewModel.Anime<Image>(name, this);
@@ -29,7 +28,6 @@ namespace RemoteTelevizor
             {
                 await BaseViewModel.Anime<Frame>(name, this);
             });
-            */
 
             BindingContext = _viewModel = new RemoteDeviceViewModel(loggingService, dialogService);
         }

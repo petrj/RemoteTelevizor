@@ -1,5 +1,6 @@
 ﻿using LoggerService;
 using RemoteTelevizor.Models;
+using RemoteTelevizor.ViewModels;
 
 namespace RemoteTelevizor.MAUI
 {
@@ -20,6 +21,22 @@ namespace RemoteTelevizor.MAUI
             _tabbedPage = new MainTabbedPage(loggingService, appData);
             _appData = appData;
 
+            MessagingCenter.Subscribe<RemoteDeviceConnection>(this, RemoteDeviceViewModel.MSG_SelectRemoteDevice, (device) =>
+            {
+                Connection = device;
+            });
+
+            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_SelectNoRemoteDevice, (device) =>
+            {
+                Connection = null;
+            });
+
+            MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_HideFlyoutPage, (msg) =>
+            {
+                _flyoutPage.IsPresented = false;
+            });
+
+
             _flyoutPage = new FlyoutPage()
             {
                 Title = "Remote Televizor"
@@ -28,9 +45,39 @@ namespace RemoteTelevizor.MAUI
             _flyoutPage.Flyout = _listPage;
             _flyoutPage.Detail = _tabbedPage;
 
+            // setting previous/first connection
+            Connection = appData.GetConnectionByIPAndPort(appData.LastConnectionIpAndPort);
+
+            if (Connection == null)
+            {
+                if (appData.Connections.Count > 0)
+                {
+                    Connection = appData.Connections[0];
+                }
+            }
+
             MainPage = new NavigationPage(_flyoutPage);
         }
 
+        public RemoteDeviceConnection Connection
+        {
+            get
+            {
+                return _tabbedPage.Connection;
+            }
+            set
+            {
+                _listPage.Connection = value;
+                _tabbedPage.Connection = value;
 
+                if (value != null)
+                {
+                    if (_appData.LastConnectionIpAndPort != value.IpAndPort)
+                    {
+                        _appData.LastConnectionIpAndPort = value.IpAndPort;
+                    }
+                }
+            }
+        }
     }
 }
