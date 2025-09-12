@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RemoteTelevizor.ListPage"
+             BackgroundColor="Black"
+             Title="Remote devices"
+             xmlns:local2="clr-namespace:RemoteTelevizor">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="ListViewStyle" TargetType="ListView">
+                <Setter Property="SeparatorVisibility" Value="Default"/>
+                <Setter Property="SeparatorColor" Value="White"/>
+                <Setter Property="HasUnevenRows" Value="True"/>
+                <Setter Property="IsPullToRefreshEnabled" Value="True"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+            </Style>
+
+            <Style x:Key="ListItemLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="Margin" Value="15,5,5,5"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="CaptionStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#41b3ff"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="5,5,5,5"/>
+            </Style>
+
+            <Style x:Key="LabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="25,5,5,5"/>
+            </Style>
+
+            <Style x:Key="ActionButtonFrameStyle" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="90"/>
+                <Setter Property="BackgroundColor" Value="Green"/>
+                <Setter Property="Opacity" Value="1"/>
+                <Setter Property="Padding" Value="5,5,5,5"/>
+                <Setter Property="Margin" Value="5,10,10,5"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="BorderColor" Value="White"/>
+            </Style>
+
+            <Style x:Key="ButtonLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="TitleFrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#444444"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout BackgroundColor="#333333">
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80*" />
+                <ColumnDefinition Width="20*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="Devices" Style="{DynamicResource CaptionStyle}"/>
+
+            <Frame Grid.Row="0" Grid.Column="1" x:Name="ButtonaAddFrame"  Style="{DynamicResource ActionButtonFrameStyle}">
+                <Label Text="&#xA0;&#xA0;+&#xA0;&#xA0;" Style="{DynamicResource ButtonLabelStyle}"/>
+
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnButtonAdd" NumberOfTapsRequired="1" />
+                </Frame.GestureRecognizers>
+
+            </Frame>
+
+        </Grid>
+
+            <ListView
+                AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All"
+                x:Name="RemoteDeviceConnectionListView"
+                ItemsSource="{Binding RemoteDevices}"
+                CachingStrategy="RecycleElement"
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding RefreshCommand}"
+                IsRefreshing="{Binding IsBusy}"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                Style="{StaticResource ListViewStyle}">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="50">
+                            <ViewCell.View>
+                            <Grid
+
+                                 local2:PressedEffect.LongPressCommand="{Binding Source={x:Reference RemoteDeviceConnectionListView}, Path=BindingContext.LongPressCommand}"
+                                    local2:PressedEffect.LongPressCommandParameter="{Binding .}"
+                                    local2:PressedEffect.ShortPressCommand="{Binding Source={x:Reference RemoteDeviceConnectionListView}, Path=BindingContext.ShortPressCommand}"
+                                    local2:PressedEffect.ShortPressCommandParameter="{Binding .}"
+                                    RowSpacing="0">
+
+                                <Grid.Effects>
+                                    <local2:PressedEffect />
+                                </Grid.Effects>
+
+                                <Grid.RowDefinitions>
+                                        <RowDefinition Height="50" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80*" />
+                                        <ColumnDefinition Width="20*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" Style="{DynamicResource LabelStyle}"/>
+
+                                    <Label Grid.Row="0" Grid.Column="1" Text="&#xA0;&#xA0;&#x22EE;&#xA0;&#xA0;" Style="{DynamicResource LabelStyle}">
+                                        <Label.GestureRecognizers>
+                                        <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding Source={x:Reference RemoteDeviceConnectionListView}, Path=BindingContext.MenuCommand}" CommandParameter="{Binding .}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+
+                            </Grid>
+
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+    </StackLayout>
+
+</ContentPage>
