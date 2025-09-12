@@ -21,9 +21,12 @@ namespace RemoteTelevizor
             _numPage = new NumPage(loggingService, appData, dialogService) { Title = "Numeric"};
             _specialPage = new SpecialPage(loggingService, appData, dialogService) { Title = "Special" };
 
+            _basicPage.SetValue(Shell.TabBarBackgroundColorProperty, Colors.Black);
+
             Children.Add(_basicPage);
             Children.Add(_numPage);
             Children.Add(_specialPage);
+
         }
 
         public RemoteDeviceConnection Connection
@@ -43,6 +46,13 @@ namespace RemoteTelevizor
         private void ToolbarItemMenu_Clicked(object sender, EventArgs e)
         {
             MessagingCenter.Send("", BaseViewModel.MSG_ShowOrHideFlyoutPage);
+        }
+
+        protected override void OnAppearing()
+        {
+            BackgroundColor = Colors.Black;
+
+            base.OnAppearing();
         }
     }
 }
