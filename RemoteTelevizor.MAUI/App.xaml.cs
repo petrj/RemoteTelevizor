@@ -35,14 +35,29 @@ namespace RemoteTelevizor.MAUI
 
             MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_HideFlyoutPage, (msg) =>
             {
-                _flyoutPage.IsPresented = false;
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    try
+                    {
+                        _flyoutPage.IsPresented = false;
+                    } catch (Exception ex)
+                    {
+                        loggingService.Error($"Error in MSG_HideFlyoutPage: {ex}");
+                    }
+                });
             });
 
             MessagingCenter.Subscribe<string>(this, RemoteDeviceViewModel.MSG_ShowOrHideFlyoutPage, (msg) =>
             {
-                _flyoutPage.IsPresented = !_flyoutPage.IsPresented;
+                try
+                {
+                    _flyoutPage.IsPresented = !_flyoutPage.IsPresented;
+                }
+                catch (Exception ex)
+                {
+                    loggingService.Error($"Error in MSG_ShowOrHideFlyoutPage: {ex}");
+                }
             });
-
 
             _flyoutPage = new FlyoutPage()
             {
