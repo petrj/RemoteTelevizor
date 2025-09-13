@@ -38,7 +38,7 @@
 
             <Style x:Key="ActionButtonFrameStyle" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="90"/>
-                <Setter Property="BackgroundColor" Value="Green"/>
+                <Setter Property="BackgroundColor" Value="Blue"/>
                 <Setter Property="Opacity" Value="1"/>
                 <Setter Property="Padding" Value="5,5,5,5"/>
                 <Setter Property="Margin" Value="5,10,10,5"/>

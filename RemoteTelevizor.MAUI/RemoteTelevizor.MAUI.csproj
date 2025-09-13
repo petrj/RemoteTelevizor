@@ -31,6 +31,7 @@
 		<!-- Versions -->
 		<ApplicationDisplayVersion>4.0</ApplicationDisplayVersion>
 		<ApplicationVersion>4</ApplicationVersion>
+		<PackageVersion>4.0.0</PackageVersion>
 
 		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
 		<WindowsPackageType>None</WindowsPackageType>
@@ -44,8 +45,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\icon.png" Color="#000000" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\icon.png" Color="#000000" BaseSize="128,128" />
