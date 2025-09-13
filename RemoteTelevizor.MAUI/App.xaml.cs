@@ -15,6 +15,8 @@ namespace RemoteTelevizor.MAUI
         {
             InitializeComponent();
 
+            Current.UserAppTheme = AppTheme.Dark;
+
             var loggingService = new DummyLoggingService();
 
             _listPage = new ListPage(loggingService, appData);

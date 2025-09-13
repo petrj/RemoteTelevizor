@@ -39,7 +39,7 @@
 
             <Style x:Key="ActionButtonFrameStyle" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="90"/>
-                <Setter Property="BackgroundColor" Value="Green"/>
+                <Setter Property="BackgroundColor" Value="Blue"/>
                 <Setter Property="Opacity" Value="1"/>
                 <Setter Property="Padding" Value="5,5,5,5"/>
                 <Setter Property="Margin" Value="5,10,10,5"/>
@@ -96,31 +96,32 @@
                 RefreshCommand="{Binding RefreshCommand}"
                 IsRefreshing="{Binding IsBusy}"
                 SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                Style="{StaticResource ListViewStyle}">
+                Style="{StaticResource ListViewStyle}"
+                >
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell Height="50">
                             <ViewCell.View>
-                            <Grid RowSpacing="0">
+                            <Grid RowSpacing="0" BackgroundColor="#333333">
 
                                 <Grid.RowDefinitions>
-                                        <RowDefinition Height="50" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="80*" />
-                                        <ColumnDefinition Width="20*" />
-                                    </Grid.ColumnDefinitions>
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80*" />
+                                    <ColumnDefinition Width="20*" />
+                                </Grid.ColumnDefinitions>
 
-                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" Style="{DynamicResource LabelStyle}"/>
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Name}" Style="{DynamicResource LabelStyle}"/>
 
-                                    <Label Grid.Row="0" Grid.Column="1" Text="&#xA0;&#xA0;&#x22EE;&#xA0;&#xA0;" Style="{DynamicResource LabelStyle}">
-                                        <Label.GestureRecognizers>
-                                        <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding Source={x:Reference RemoteDeviceConnectionListView}, Path=BindingContext.MenuCommand}" CommandParameter="{Binding .}" />
-                                        </Label.GestureRecognizers>
-                                    </Label>
+                                        <Label Grid.Row="0" Grid.Column="1" Text="&#xA0;&#xA0;&#x22EE;&#xA0;&#xA0;" Style="{DynamicResource LabelStyle}">
+                                            <Label.GestureRecognizers>
+                                            <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding Source={x:Reference RemoteDeviceConnectionListView}, Path=BindingContext.MenuCommand}" CommandParameter="{Binding .}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
 
-                            </Grid>
+                                </Grid>
 
                             </ViewCell.View>
                         </ViewCell>
