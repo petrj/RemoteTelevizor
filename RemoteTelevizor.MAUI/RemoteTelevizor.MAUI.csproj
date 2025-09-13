@@ -29,9 +29,9 @@
 		<ApplicationId>net.petrjanousek.RemoteTelevizor</ApplicationId>
 
 		<!-- Versions -->
-		<ApplicationDisplayVersion>5.0</ApplicationDisplayVersion>
-		<ApplicationVersion>5</ApplicationVersion>
-		<PackageVersion>5.0.0</PackageVersion>
+		<ApplicationDisplayVersion>6.0</ApplicationDisplayVersion>
+		<ApplicationVersion>6</ApplicationVersion>
+		<PackageVersion>6.0.0</PackageVersion>
 
 		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
 		<WindowsPackageType>None</WindowsPackageType>
@@ -54,6 +54,7 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net9.0-android|AnyCPU'">
 	  <AndroidEnableMultiDex>True</AndroidEnableMultiDex>
+	  <AndroidPackageFormat>aab</AndroidPackageFormat>
 	</PropertyGroup>
 
 	<ItemGroup>

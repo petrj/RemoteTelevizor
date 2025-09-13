@@ -100,7 +100,7 @@ namespace RemoteTelevizor
                 Name = "New remote device",
                 IP = "192.168.1.42",
                 Port = 49152,
-                SecurityKey = "DVBTloggeTelevizor"
+                SecurityKey = "DVBTTelevizor"
             };
 
             remoteDeviceConnectionPage.Disappearing += delegate
