@@ -97,7 +97,7 @@
                 IsRefreshing="{Binding IsBusy}"
                 SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                 Style="{StaticResource ListViewStyle}"
-                >
+                ItemTapped="RemoteDeviceConnectionListView_ItemTapped">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -105,7 +105,7 @@
                             <ViewCell.View>
                             <Grid RowSpacing="0" BackgroundColor="#333333">
 
-                                <Grid.RowDefinitions>
+                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="50" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>

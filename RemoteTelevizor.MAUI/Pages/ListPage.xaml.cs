@@ -125,5 +125,13 @@ namespace RemoteTelevizor
         {
             await AddRemoteDevice();
         }
+
+        private void RemoteDeviceConnectionListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (e.Item is RemoteDeviceConnection)
+            {
+                _viewModel.ShortPressCommand.Execute(e.Item);
+            }
+        }
     }
 }
